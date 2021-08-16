@@ -76,6 +76,8 @@ void ofApp::setup_screen() {
 	bool borderless = full_scr == 1;
 	bool pure_fullscr = full_scr == 2;
 
+	ofSetWindowPosition(PRM _scr_x_, PRM _scr_y_);
+
 	if (no_fullscr) {
 		ofSetFullscreen(false);
 		ofSetWindowShape(PRM _scr_w_, PRM _scr_h_);

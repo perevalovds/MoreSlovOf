@@ -97,18 +97,9 @@ int Common::get_sample_rate(int stringlist_index) {
 }
 
 //--------------------------------------------------------------------------------
-int Common::get_sound_buffer_size(int stringlist_index) {
-	//stringlist *sound_buffer = 512 [16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
-	if (stringlist_index == 0) return 16;
-	if (stringlist_index == 1) return 32;
-	if (stringlist_index == 2) return 64;
-	if (stringlist_index == 3) return 128;
-	if (stringlist_index == 4) return 256;
-	if (stringlist_index == 5) return 512;
-	if (stringlist_index == 6) return 1024;
-	if (stringlist_index == 7) return 2048;
-	if (stringlist_index == 8) return 4096;
-	return 512;
+int Common::get_sound_buffer_size(int v) {
+	//int *sound_buffer=512 8:4096 1,50          //stringlist *sound_buffer = 512 [16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
+	return v;
 }
 
 

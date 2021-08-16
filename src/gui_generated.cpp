@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-07-07-10-43-24-872
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-01-56-04-600
 
 Parameters params;
 //--------------------------------------------------------------
@@ -29,7 +29,7 @@ Parameters::Parameters() {
 	_out_channels_=2;
 	_sample_rate_=4;
 	_sound_buffers_=4;
-	_sound_buffer_=5;
+	_sound_buffer_=512;
 	_engine_=2;
 	_selectby_=0;
 	_device_in_=0;
@@ -201,7 +201,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("Sound setup:");
 	gui.addStringList("*sample_rate",_sample_rate_,4,6,"8000","11025","22050","32000","44100","48000");
 	gui.addInt("*sound_buffers",_sound_buffers_,4,1,16,1,10);
-	gui.addStringList("*sound_buffer",_sound_buffer_,5,9,"16","32","64","128","256","512","1024","2048","4096");
+	gui.addInt("*sound_buffer",_sound_buffer_,512,8,4096,1,50);
 	gui.addTab();
 	gui.addDummy("Select devices:");
 	gui.addStringList("*engine",_engine_,2,3,"WASAPI","ASIO","DS");
