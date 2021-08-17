@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-27-56-530
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-39-48-691
 
 Parameters params;
 //--------------------------------------------------------------
@@ -61,6 +61,7 @@ Parameters::Parameters() {
 	w_fadeout_perc=10;
 	w_repeat0_msec=250;
 	w_repeat1_msec=250;
+	w_vol_perc=50;
 	w_envelope=0;
 	w_stereo_range=0;
 	w_speed_perc=100;
@@ -195,6 +196,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("w_repeat0_msec",w_repeat0_msec,250,0,1000,10,100);
 	gui.addInt("w_repeat1_msec",w_repeat1_msec,250,0,1000,10,100);
 	gui.addDummy("Vol_Stereo");
+	gui.addInt("w_vol_perc",w_vol_perc,50,0,100,1,10);
 	gui.addStringList("w_envelope",w_envelope,0,3,"const","fadeout","fadein");
 	gui.addInt("w_stereo_range",w_stereo_range,0,0,100,1,10);
 	gui.addDummy("Fragment");
@@ -275,6 +277,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_fadeout_perc", ofColor(255,255,100));
 	gui.set_var_color("w_repeat0_msec", ofColor(100,255,100));
 	gui.set_var_color("w_repeat1_msec", ofColor(100,255,100));
+	gui.set_var_color("w_vol_perc", ofColor(100,100,255));
 	gui.set_var_color("w_envelope", ofColor(100,100,255));
 	gui.set_var_color("w_stereo_range", ofColor(100,100,255));
 	gui.set_var_color("w_speed_perc", ofColor(255,100,100));

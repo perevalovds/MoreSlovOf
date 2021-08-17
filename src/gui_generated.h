@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-27-56-529
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-39-48-690
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -88,6 +88,7 @@ struct Parameters {
 	int w_fadeout_perc;
 	int w_repeat0_msec;
 	int w_repeat1_msec;
+	int w_vol_perc;
 	int w_envelope;
 	int w_stereo_range;
 	int w_speed_perc;
