@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-21-45-00-826
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-22-56-47-572
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -118,6 +118,8 @@ struct Parameters {
 	int w_pantype1;
 	int w_panstp1;
 	float w_panmov1;
+	int w_morph1;
+	int w_percent1;
 	int w_mode2;
 	int w_delay2;
 	float w_pos2;
@@ -132,6 +134,8 @@ struct Parameters {
 	int w_pantype2;
 	int w_panstp2;
 	float w_panmov2;
+	int w_morph2;
+	int w_percent2;
 	int w_mode3;
 	int w_delay3;
 	float w_pos3;
@@ -146,6 +150,8 @@ struct Parameters {
 	int w_pantype3;
 	int w_panstp3;
 	float w_panmov3;
+	int w_morph3;
+	int w_percent3;
 	int w_mode4;
 	int w_delay4;
 	float w_pos4;
@@ -160,6 +166,8 @@ struct Parameters {
 	int w_pantype4;
 	int w_panstp4;
 	float w_panmov4;
+	int w_morph4;
+	int w_percent4;
 	int w_mode5;
 	int w_delay5;
 	float w_pos5;
@@ -174,6 +182,8 @@ struct Parameters {
 	int w_pantype5;
 	int w_panstp5;
 	float w_panmov5;
+	int w_morph5;
+	int w_percent5;
 	int w_mode6;
 	int w_delay6;
 	float w_pos6;
@@ -188,6 +198,8 @@ struct Parameters {
 	int w_pantype6;
 	int w_panstp6;
 	float w_panmov6;
+	int w_morph6;
+	int w_percent6;
 	int sea_x;
 	int sea_y;
 	int sea_w;
