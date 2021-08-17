@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-19-47-779
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-27-56-530
 
 Parameters params;
 //--------------------------------------------------------------
@@ -45,6 +45,7 @@ Parameters::Parameters() {
 	mic_cutoff=0.1;
 	PASS_THRU=0;
 	PASS_VOL=1;
+	SEA_VOL=1;
 	pass_thru_delta_="0";
 	OUT_VOL=1;
 	_Pedal_baud_="57600";
@@ -157,16 +158,16 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("");
 	gui.addButton("ShowDevices",ShowDevices);
 	gui.addDummy("");
-	gui.addDummy("Mic sound:");
 	gui.addDummy("MIC");
 	gui.addFloat("MIC_VOL",MIC_VOL,1,0,100,1000,100);
 	gui.addStringList("MIC_FILTER",MIC_FILTER,0,4,"BYPASS","LOWPASS","HIGHPASS","BANDPASS");
 	gui.addFloat("mic_cutoff",mic_cutoff,0.1,0,1,1000,100);
-	gui.addDummy("Pass mic sound:");
+	gui.addDummy("MIXER:");
 	gui.addStringList("PASS_THRU",PASS_THRU,0,2,"OFF","ON");
 	gui.addFloat("PASS_VOL",PASS_VOL,1,0,10,1000,100);
+	gui.addFloat("SEA_VOL",SEA_VOL,1,0,10,1000,100);
 	gui.addString("-pass_thru_delta",pass_thru_delta_,"0");
-	gui.addDummy("Generated sound:");
+	gui.addDummy("Resulted sound:");
 	gui.addFloat("OUT_VOL",OUT_VOL,1,0,10,1000,100);
 	gui.addPage("Pedal");
 	gui.addString("*Pedal_baud",_Pedal_baud_,"57600");
@@ -258,6 +259,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("mic_cutoff", ofColor(100,255,100));
 	gui.set_var_color("PASS_THRU", ofColor(255,100,100));
 	gui.set_var_color("PASS_VOL", ofColor(255,100,100));
+	gui.set_var_color("SEA_VOL", ofColor(255,100,100));
 	gui.set_var_color("-pass_thru_delta", ofColor(200,200,200));
 	gui.set_var_color("OUT_VOL", ofColor(255,100,100));
 	gui.set_var_color("*Pedal_baud", ofColor(100,100,255));

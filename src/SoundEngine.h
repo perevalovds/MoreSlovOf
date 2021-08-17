@@ -49,6 +49,7 @@ protected:
 	int mic_rec_n_ = 0;
 	int mic_rec_on_ = 0;
 
+	vector<float> stereo_buffer_;
 };
 
 extern SoundEngine SOUND;

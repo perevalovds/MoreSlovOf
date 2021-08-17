@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-19-47-778
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-27-56-529
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -69,6 +69,7 @@ struct Parameters {
 	float mic_cutoff;
 	int PASS_THRU;
 	float PASS_VOL;
+	float SEA_VOL;
 	string pass_thru_delta_;
 	float OUT_VOL;
 	string Pedal_baud;

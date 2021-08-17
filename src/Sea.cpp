@@ -56,3 +56,13 @@ void Sea::push_word(const vector<float> &sound, int n) {
 }
 
 //--------------------------------------------------------------
+void Sea::audioOut(vector<float> stereo_buffer, int n) {
+	for (auto &w : words_) {
+		if (w.is_live()) {
+			w.audioOut(stereo_buffer, n);
+		}
+	}
+
+}
+
+//--------------------------------------------------------------

@@ -300,7 +300,13 @@ void SoundEngine::audioOut(ofSoundBuffer &output) {
 	int OUT_CH_START = PRM out_channel_start - 1;
 	int OUT_CH = PRM out_channels;
 
-	//TEST прямо тут отправляем данные с эмуляции в колонки
+	stereo_buffer_.resize(n * 2);
+	fill(stereo_buffer_.begin(), stereo_buffer_.end(), 0);
+
+	//звуки моря слов
+	SEA.audioOut(stereo_buffer_, n);
+
+	//добавляем звук с микрофона 
 	if (PRM PASS_THRU) {
 		//pass thru
 		if (pass_read_pos_ + n > pass_write_pos_) {
@@ -312,19 +318,21 @@ void SoundEngine::audioOut(ofSoundBuffer &output) {
 				//ofRandom(-0.1, 0.1) * PRM PASS_VOL;
 
 			pass_read_pos_++;
-			for (int c = 0; c < OUT_CH; c++) {
-				output[i*ch + OUT_CH_START + c] = v;
-			}
-			//pass_read_pos_ %= pass_thru_buf_n;
+
+			stereo_buffer_[i * 2] = stereo_buffer_[i * 2 + 1] += v;
 		}
 	}
 	else {
 		pass_read_pos_ += n;
-		//pass_read_pos_ %= pass_thru_buf_n;
 	}
 
-	//processing
-	//DEMONS.audioOut(output);
+	//заполнение выхода
+	for (int i = 0; i < n; i++) {
+		for (int c = 0; c < OUT_CH; c++) {
+			output[i*ch + OUT_CH_START + c] += stereo_buffer_[i*2 + c%2];
+		}
+	}
+
 
 	//volume
 	float vol = output.getRMSAmplitude();

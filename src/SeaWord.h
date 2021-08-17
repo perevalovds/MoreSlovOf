@@ -42,6 +42,9 @@ struct SeaWord {
 	void update();
 	void draw();
 	bool is_live();
+
+	//звук
+	void audioOut(vector<float> stereo_buffer, int n);
 protected:
 	vector<float> sound_;
 	float n_ = 0;
