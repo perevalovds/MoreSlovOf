@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-09-33-671
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-19-47-778
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -81,10 +81,7 @@ struct Parameters {
 	int _max_rec_msec_;
 	int max_words;
 	int _max_words_;
-	int sea_x;
-	int sea_y;
-	int sea_w;
-	int sea_h;
+	string WORDS_;
 	int w_duration_msec;
 	int w_evolution_perc;
 	int w_fadeout_perc;
@@ -102,6 +99,10 @@ struct Parameters {
 	int w_flt;
 	int w_flt_cutoff0;
 	int w_flt_cutoff1;
+	int sea_x;
+	int sea_y;
+	int sea_w;
+	int sea_h;
 	int SaveDebugSounds;
     Parameters();
     void setup(ofxKuTextGui &gui, string fileName);

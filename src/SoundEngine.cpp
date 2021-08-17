@@ -218,9 +218,12 @@ void SoundEngine::update() {
 		mic_rec_n_ = 0;
 		mic_rec_on_ = 1;
 	}
-	if (mic_rec_on_ && (!pedal || mic_rec_n_ == max_mic_rec_n_)) {	//stop rec
-		mic_rec_on_ = 0;
-		SEA.push_word(mic_recording_, mic_rec_n_);
+	else {
+		if (mic_rec_on_ && !pedal) { // || mic_rec_n_ == max_mic_rec_n_)) {	//stop rec
+			mic_rec_on_ = 0;
+			SEA.push_word(mic_recording_, mic_rec_n_);
+			mic_rec_n_ = 0;
+		}
 	}
 
 }
@@ -271,6 +274,15 @@ void SoundEngine::audioIn(ofSoundBuffer &input) {
 		pass_thru_buf_[pass_write_pos_ % pass_thru_buf_n] = input[i*ch];	//0-й канал
 		pass_write_pos_++;
 		//pass_write_pos_ %= pass_thru_buf_n;
+	}
+
+	//pedal recording
+	if (mic_rec_on_) {
+		int m = min(n, max_mic_rec_n_ - mic_rec_n_);	//смотрим, сколько дозаполнить
+		for (int i = 0; i < m; i++) {
+			mic_recording_[mic_rec_n_++] = input[i*ch];
+		}
+		//cout << mic_rec_n_ << " / " << max_mic_rec_n_ << endl;
 	}
 
 	//processing

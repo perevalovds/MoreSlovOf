@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-09-33-672
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-19-47-779
 
 Parameters params;
 //--------------------------------------------------------------
@@ -54,10 +54,7 @@ Parameters::Parameters() {
 	PEDAL_=0;
 	_max_rec_msec_=10000;
 	_max_words_=15;
-	sea_x=400;
-	sea_y=20;
-	sea_w=1000;
-	sea_h=600;
+	WORDS_="...";
 	w_duration_msec=10000;
 	w_evolution_perc=40;
 	w_fadeout_perc=10;
@@ -75,6 +72,10 @@ Parameters::Parameters() {
 	w_flt=0;
 	w_flt_cutoff0=500;
 	w_flt_cutoff1=0.5;
+	sea_x=400;
+	sea_y=20;
+	sea_w=1000;
+	sea_h=600;
 	SaveDebugSounds=0;
 }
 
@@ -183,10 +184,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("*max_rec_msec",_max_rec_msec_,10000,1000,10000,100,1000);
 	gui.addInt("*max_words",_max_words_,15,5,100,1,10);
 	gui.addDummy("");
-	gui.addInt("sea_x",sea_x,400,0,2000,10,50);
-	gui.addInt("sea_y",sea_y,20,0,2000,10,50);
-	gui.addInt("sea_w",sea_w,1000,0,2000,10,50);
-	gui.addInt("sea_h",sea_h,600,0,2000,10,50);
+	gui.addString("-WORDS",WORDS_,"...");
 	gui.addTab();
 	gui.addDummy("Duration");
 	gui.addInt("w_duration_msec",w_duration_msec,10000,100,60000,10,500);
@@ -211,6 +209,12 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_flt",w_flt,0,4,"No","Lopass","Hipass","Bandpass");
 	gui.addInt("w_flt_cutoff0",w_flt_cutoff0,500,0,1000,5,50);
 	gui.addInt("w_flt_cutoff1",w_flt_cutoff1,0.5,0,1000,5,50);
+	gui.addPage("Draw");
+	gui.addDummy("");
+	gui.addInt("sea_x",sea_x,400,0,2000,10,50);
+	gui.addInt("sea_y",sea_y,20,0,2000,10,50);
+	gui.addInt("sea_w",sea_w,1000,0,2000,10,50);
+	gui.addInt("sea_h",sea_h,600,0,2000,10,50);
 	gui.addPage("Debug");
 	gui.addVar("ClearLog");
 	gui.addVar("Save");
@@ -263,10 +267,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("-PEDAL", ofColor(255,100,100));
 	gui.set_var_color("*max_rec_msec", ofColor(255,100,100));
 	gui.set_var_color("*max_words", ofColor(255,100,100));
-	gui.set_var_color("sea_x", ofColor(128,128,128));
-	gui.set_var_color("sea_y", ofColor(128,128,128));
-	gui.set_var_color("sea_w", ofColor(128,128,128));
-	gui.set_var_color("sea_h", ofColor(128,128,128));
+	gui.set_var_color("-WORDS", ofColor(255,255,100));
 	gui.set_var_color("w_duration_msec", ofColor(255,255,100));
 	gui.set_var_color("w_evolution_perc", ofColor(255,255,100));
 	gui.set_var_color("w_fadeout_perc", ofColor(255,255,100));
@@ -284,6 +285,10 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_flt", ofColor(255,255,100));
 	gui.set_var_color("w_flt_cutoff0", ofColor(255,255,100));
 	gui.set_var_color("w_flt_cutoff1", ofColor(255,255,100));
+	gui.set_var_color("sea_x", ofColor(128,128,128));
+	gui.set_var_color("sea_y", ofColor(128,128,128));
+	gui.set_var_color("sea_w", ofColor(128,128,128));
+	gui.set_var_color("sea_h", ofColor(128,128,128));
 	gui.set_var_color("SaveDebugSounds", ofColor(80,80,255));
 	fileName_ = fileName;
 	gui_ = &gui;

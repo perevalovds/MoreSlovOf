@@ -14,7 +14,16 @@ void Sea::setup() {
 
 //--------------------------------------------------------------
 void Sea::update() {
-
+	//выводим, сколько слов используется
+	int count = 0;
+	for (auto &w : words_) {
+		if (w.is_live()) {
+			count++;
+		}
+	}
+	string s = ofToString(count) + " / " + ofToString(PRM max_words);
+	if (count >= PRM max_words - 2) s += "  !!!!!";	//предупреждение
+	PRM WORDS_ = s;
 }
 
 //--------------------------------------------------------------
@@ -38,9 +47,11 @@ void Sea::push_word(const vector<float> &sound, int n) {
 		}
 	}
 	//не нашли - тогда берем произвольное
-	int k = ofRandom(words_.size());
-	if (k >= 0 && k < words_.size()) {
-		words_[k].run(sound, n);
+	if (!found) {
+		int k = ofRandom(words_.size());
+		if (k >= 0 && k < words_.size()) {
+			words_[k].run(sound, n);
+		}
 	}
 }
 
