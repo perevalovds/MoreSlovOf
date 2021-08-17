@@ -5,7 +5,7 @@
 #include "ofMain.h"
 
 struct Common {
-	static int sample_rate();
+	static void setup();
 
 	static int max_mic_rec_n();
 
@@ -16,3 +16,5 @@ struct Common {
 	static int get_sound_buffer_size(int v);
 
 };
+
+extern int SR;	//sample rate, call set_sample_rate() to set up it

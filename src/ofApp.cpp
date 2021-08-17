@@ -4,11 +4,11 @@
 #include "ofxKuFile.h"
 #include "gui_generated.h"
 #include "ofxKuMessageLog.h"
-#include "Remote.h"
 #include "SoundEngine.h"
 #include "Pedal.h"
 #include "Sea.h"
 #include "Pedal.h"
+#include "Common.h"
 
 string app_ver = "v.01 (64 bit, autosave off)";
 string Title = "MoreSlov " + app_ver;
@@ -53,9 +53,6 @@ void ofApp::setup() {
 	MLOGGER.setup("fonts/Arial Unicode.ttf");
 	MLOGGER.set_parameters(prm);
 
-	//----------------------------
-	//Удаленное управление
-	REMOTE.setup(PRM OSC_in_port, this, &gui);
 
 	//----------------------------
 	//Screen
@@ -63,6 +60,8 @@ void ofApp::setup() {
 
 	//----------------------------
 	//Sound & content
+	Common::setup();
+
 	pedal_setup();
 	SEA.setup();
 	SOUND.setup();
@@ -181,10 +180,6 @@ void ofApp::update_buttons() {  //нажатия кнопок
 //--------------------------------------------------------------
 void ofApp::update(){
 	float dt = 1.0 / PRM FPS;	//фиксированный dt для точного моделирования
-
-	//----------------------------
-	//Удаленное управление
-	REMOTE.update();
 
 	//----------------------------
 	//GUI

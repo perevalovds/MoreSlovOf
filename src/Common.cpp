@@ -2,14 +2,16 @@
 #include "gui_generated.h"
 #include "ofxKuProbability.h"
 
+int SR = 0;	//sample rate
+
 //--------------------------------------------------------------------------------
-int Common::sample_rate() {
-	return get_sample_rate(PRM sample_rate);
+void Common::setup() {
+	SR = get_sample_rate(PRM sample_rate);
 }
 
 //--------------------------------------------------------------------------------
 int Common::max_mic_rec_n() {
-	return PRM max_rec_msec * sample_rate() / 1000;
+	return PRM max_rec_msec * SR / 1000;
 }
 
 //--------------------------------------------------------------------------------

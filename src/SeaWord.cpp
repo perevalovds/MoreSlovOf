@@ -56,7 +56,7 @@ void SeaWord::run(const vector<float> &sound, int n, const SeaWordParam &param) 
 	n_ = n;
 	is_live_ = true;
 
-	MLOG("Sound " + ofToString(id_) + ": " + ofToString(1000 * n / Common::sample_rate()) + " msec");
+	MLOG("Sound " + ofToString(id_) + ": " + ofToString(1000 * n / SR) + " msec");
 }
 
 //--------------------------------------------------------------

@@ -143,7 +143,7 @@ void SoundEngine::start_stream() {
 	PRM SOUND_STATUS_ = started_;
 
 	if (started_) {
-		int sample_rate = Common::sample_rate();
+		int sample_rate = SR;
 		int buffer_size = Common::get_sound_buffer_size(PRM sound_buffer);
 		int buffers = PRM sound_buffers;
 
