@@ -76,8 +76,11 @@ bool SeaWord::is_live() {
 void SeaWord::audioOut(vector<float> &stereo_buffer, int n) {
 	if (is_live()) {
 		for (int i = 0; i < n; i++) {
-			stereo_buffer[2 * i] = stereo_buffer[2 * i + 1] = sound_[i_++];
+			float v = sound_[i_++];
 			i_ %= n_;
+
+			stereo_buffer[2 * i] += v;
+			stereo_buffer[2 * i + 1] += v;
 		}
 
 	}

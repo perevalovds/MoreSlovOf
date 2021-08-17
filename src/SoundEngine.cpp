@@ -305,9 +305,15 @@ void SoundEngine::audioOut(ofSoundBuffer &output) {
 
 	stereo_buffer_.resize(n * 2);
 	fill(stereo_buffer_.begin(), stereo_buffer_.end(), 0);
+	float vol_pass = PRM PASS_VOL;
+	float vol_sea = PRM SEA_VOL;
+
 
 	//звуки моря слов
 	SEA.audioOut(stereo_buffer_, n);
+	for (auto &v : stereo_buffer_) {
+		v *= vol_sea;		//Громкость
+	}
 
 	//добавляем звук с микрофона 
 	if (PRM PASS_THRU) {
@@ -317,9 +323,7 @@ void SoundEngine::audioOut(ofSoundBuffer &output) {
 		}
 	
 		for (int i = 0; i < n; i++) {
-			float v = pass_thru_buf_[pass_read_pos_ % pass_thru_buf_n] * PRM PASS_VOL;
-				//ofRandom(-0.1, 0.1) * PRM PASS_VOL;
-
+			float v = pass_thru_buf_[pass_read_pos_ % pass_thru_buf_n] * vol_pass;
 			pass_read_pos_++;
 
 			stereo_buffer_[i * 2] = stereo_buffer_[i * 2 + 1] += v;
@@ -330,9 +334,10 @@ void SoundEngine::audioOut(ofSoundBuffer &output) {
 	}
 
 	//заполнение выхода
+	float out_vol = PRM OUT_VOL;
 	for (int i = 0; i < n; i++) {
 		for (int c = 0; c < OUT_CH; c++) {
-			output[i*ch + OUT_CH_START + c] += stereo_buffer_[i*2 + c%2];
+			output[i*ch + OUT_CH_START + c] += stereo_buffer_[i*2 + c%2] * out_vol;
 		}
 	}
 
