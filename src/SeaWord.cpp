@@ -1,22 +1,20 @@
-#include "Sea.h"
+#include "SeaWord.h"
 #include "gui_generated.h"
 #include "ofxKuMessageLog.h"
 
-Sea SEA;
 
 //--------------------------------------------------------------
-void Sea::setup() {
+void SeaWord::setup() {
 
 }
 
 //--------------------------------------------------------------
-void Sea::update() {
+void SeaWord::update() {
 
 }
 
 //--------------------------------------------------------------
-void Sea::draw() {
-
+void SeaWord::draw() {
 
 }
 

@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-09-04-19-156
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-09-40-44-071
 
 Parameters params;
 //--------------------------------------------------------------
@@ -56,6 +56,22 @@ Parameters::Parameters() {
 	sea_y=20;
 	sea_w=1000;
 	sea_h=600;
+	w_duration_sec=10;
+	w_evolution_perc=40;
+	w_fadeout_perc=10;
+	w_repeat0_sec=0.25;
+	w_repeat1_sec=1;
+	w_envelope=0;
+	w_stereo_range=0;
+	w_len_perc=100;
+	w_pos_perc=0;
+	w_pos_random_perc=0;
+	w_grain_msec=50;
+	w_grain_move_perc=100;
+	w_grain_pause_msec=0;
+	w_flt=0;
+	w_flt_cutoff0=0.5;
+	w_flt_cutoff1=0.5;
 	SaveDebugSounds=0;
 }
 
@@ -156,7 +172,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addButton("Print_Arduinos",Print_Arduinos);
 	gui.addTab();
 	gui.addStringList("-PEDAL",PEDAL_,0,2,"OFF","ON");
-	gui.addPage("Words");
+	gui.addPage("Sea");
 	gui.addVar("-vol_in");
 	gui.addVar("-vol_out");
 	gui.addVar("-PEDAL");
@@ -165,6 +181,29 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("sea_y",sea_y,20,0,2000,10,50);
 	gui.addInt("sea_w",sea_w,1000,0,2000,10,50);
 	gui.addInt("sea_h",sea_h,600,0,2000,10,50);
+	gui.addTab();
+	gui.addDummy("Duration");
+	gui.addFloat("w_duration_sec",w_duration_sec,10,1,60,600,60);
+	gui.addInt("w_evolution_perc",w_evolution_perc,40,1,100,1,10);
+	gui.addInt("w_fadeout_perc",w_fadeout_perc,10,1,100,1,10);
+	gui.addDummy("Repeats");
+	gui.addFloat("w_repeat0_sec",w_repeat0_sec,0.25,0,10,100,10);
+	gui.addFloat("w_repeat1_sec",w_repeat1_sec,1,0,60,100,10);
+	gui.addDummy("Vol_Stereo");
+	gui.addStringList("w_envelope",w_envelope,0,3,"const","fadeout","fadein");
+	gui.addInt("w_stereo_range",w_stereo_range,0,0,100,1,10);
+	gui.addDummy("Fragment");
+	gui.addInt("w_len_perc",w_len_perc,100,1,100,1,10);
+	gui.addInt("w_pos_perc",w_pos_perc,0,0,100,1,10);
+	gui.addInt("w_pos_random_perc",w_pos_random_perc,0,0,100,1,10);
+	gui.addDummy("Granular");
+	gui.addInt("w_grain_msec",w_grain_msec,50,1,1000,1,10);
+	gui.addInt("w_grain_move_perc",w_grain_move_perc,100,0,200,1,10);
+	gui.addInt("w_grain_pause_msec",w_grain_pause_msec,0,0,1000,1,10);
+	gui.addDummy("Filter");
+	gui.addStringList("w_flt",w_flt,0,4,"No","Lopass","Hipass","Bandpass");
+	gui.addFloat("w_flt_cutoff0",w_flt_cutoff0,0.5,0,1,100,10);
+	gui.addFloat("w_flt_cutoff1",w_flt_cutoff1,0.5,0,1,100,10);
 	gui.addPage("Debug");
 	gui.addVar("ClearLog");
 	gui.addVar("Save");
@@ -219,6 +258,22 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("sea_y", ofColor(128,128,128));
 	gui.set_var_color("sea_w", ofColor(128,128,128));
 	gui.set_var_color("sea_h", ofColor(128,128,128));
+	gui.set_var_color("w_duration_sec", ofColor(255,255,100));
+	gui.set_var_color("w_evolution_perc", ofColor(255,255,100));
+	gui.set_var_color("w_fadeout_perc", ofColor(255,255,100));
+	gui.set_var_color("w_repeat0_sec", ofColor(100,255,100));
+	gui.set_var_color("w_repeat1_sec", ofColor(100,255,100));
+	gui.set_var_color("w_envelope", ofColor(100,100,255));
+	gui.set_var_color("w_stereo_range", ofColor(100,100,255));
+	gui.set_var_color("w_len_perc", ofColor(255,100,100));
+	gui.set_var_color("w_pos_perc", ofColor(255,100,100));
+	gui.set_var_color("w_pos_random_perc", ofColor(255,100,100));
+	gui.set_var_color("w_grain_msec", ofColor(100,100,255));
+	gui.set_var_color("w_grain_move_perc", ofColor(100,100,255));
+	gui.set_var_color("w_grain_pause_msec", ofColor(100,100,255));
+	gui.set_var_color("w_flt", ofColor(255,255,100));
+	gui.set_var_color("w_flt_cutoff0", ofColor(255,255,100));
+	gui.set_var_color("w_flt_cutoff1", ofColor(255,255,100));
 	gui.set_var_color("SaveDebugSounds", ofColor(80,80,255));
 	fileName_ = fileName;
 	gui_ = &gui;
