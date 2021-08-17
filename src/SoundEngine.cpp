@@ -24,7 +24,7 @@ void SoundEngine::setup() {
 	pass_read_pos_ = 0;
 
 	//Запись
-	max_mic_rec_n_ = PRM max_rec_msec * PRM sample_rate / 1000; 
+	max_mic_rec_n_ = Common::max_mic_rec_n();
 	mic_recording_.resize(max_mic_rec_n_);
 
 	//Запуск звука

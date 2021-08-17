@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-09-56-06-491
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-10-09-33-672
 
 Parameters params;
 //--------------------------------------------------------------
@@ -65,6 +65,7 @@ Parameters::Parameters() {
 	w_repeat1_msec=250;
 	w_envelope=0;
 	w_stereo_range=0;
+	w_speed_perc=100;
 	w_len_perc=100;
 	w_pos_perc=0;
 	w_pos_random_perc=0;
@@ -179,7 +180,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addVar("-vol_out");
 	gui.addVar("-PEDAL");
 	gui.addDummy("");
-	gui.addInt("*max_rec_msec",_max_rec_msec_,10000,1000,10000,,,);
+	gui.addInt("*max_rec_msec",_max_rec_msec_,10000,1000,10000,100,1000);
 	gui.addInt("*max_words",_max_words_,15,5,100,1,10);
 	gui.addDummy("");
 	gui.addInt("sea_x",sea_x,400,0,2000,10,50);
@@ -198,6 +199,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_envelope",w_envelope,0,3,"const","fadeout","fadein");
 	gui.addInt("w_stereo_range",w_stereo_range,0,0,100,1,10);
 	gui.addDummy("Fragment");
+	gui.addInt("w_speed_perc",w_speed_perc,100,1,100,1,10);
 	gui.addInt("w_len_perc",w_len_perc,100,1,100,1,10);
 	gui.addInt("w_pos_perc",w_pos_perc,0,0,100,1,10);
 	gui.addInt("w_pos_random_perc",w_pos_random_perc,0,0,100,1,10);
@@ -272,6 +274,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_repeat1_msec", ofColor(100,255,100));
 	gui.set_var_color("w_envelope", ofColor(100,100,255));
 	gui.set_var_color("w_stereo_range", ofColor(100,100,255));
+	gui.set_var_color("w_speed_perc", ofColor(255,100,100));
 	gui.set_var_color("w_len_perc", ofColor(255,100,100));
 	gui.set_var_color("w_pos_perc", ofColor(255,100,100));
 	gui.set_var_color("w_pos_random_perc", ofColor(255,100,100));

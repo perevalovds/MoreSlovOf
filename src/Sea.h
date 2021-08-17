@@ -2,6 +2,7 @@
 
 //Sea of words
 #include "ofMain.h"
+#include "SeaWord.h"
 
 struct Sea {
 	void setup();
@@ -9,8 +10,10 @@ struct Sea {
 	void draw();
 
 	//добавить слово
-	//buffer с запасом, надо взять n
-	void push_word(const vector<float> &buffer, int n);
+	//buffer с запасом, надо использовать n
+	void push_word(const vector<float> &sound, int n);
+protected:
+	vector<SeaWord> words_;	//создаем один раз, чтобы звуковой потом мог всегда считывать
 };
 
 

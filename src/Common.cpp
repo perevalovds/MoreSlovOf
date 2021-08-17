@@ -8,6 +8,11 @@ int Common::sample_rate() {
 }
 
 //--------------------------------------------------------------------------------
+int Common::max_mic_rec_n() {
+	return PRM max_rec_msec * sample_rate() / 1000;
+}
+
+//--------------------------------------------------------------------------------
 int Common::get_api_id(int stringlist_index) {
 	//stringlist *engine=DS [WASAPI,ASIO,DS]
 	if (stringlist_index == 0) return ofSoundDevice::Api::MS_WASAPI;

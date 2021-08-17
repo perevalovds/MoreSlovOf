@@ -18,6 +18,7 @@ stringlist w_envelope=const [const,fadeout,fadein]
 int w_stereo_range=0 0:100 1,10
 
 dummy Fragment
+int w_speed_perc=100 1:100 1,10
 int w_len_perc=100 1:100 1,10
 int w_pos_perc=0 0:100 1,10
 int w_pos_random_perc=0 0:100 1,10
@@ -33,14 +34,17 @@ int w_flt_cutoff0=500 0:1000 5,50
 int w_flt_cutoff1=0.5 0:1000 5
 */
 
+//память должна быть выделена заранее, чтобы не было сбоев со звуковом
 
 struct SeaWord {
-	void setup(const vector<float> &sound);
+	void setup();
+	void run(const vector<float> &sound, int n);	//sound может быть длиннее
 	void update();
 	void draw();
 	bool is_live();
 protected:
 	vector<float> sound_;
 	float n_ = 0;
+	bool is_live_ = false;
 };
 
