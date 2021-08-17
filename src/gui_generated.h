@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-07-01-51-688
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-07-53-25-830
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -36,6 +36,8 @@ struct Parameters {
 	int _OSC_in_port_;
 	int in_channels;
 	int _in_channels_;
+	int out_channel_start;
+	int _out_channel_start_;
 	int out_channels;
 	int _out_channels_;
 	int sample_rate;
@@ -44,6 +46,7 @@ struct Parameters {
 	int _sound_buffers_;
 	int sound_buffer;
 	int _sound_buffer_;
+	int sound_buffer_;
 	int engine;
 	int _engine_;
 	int selectby;
@@ -56,9 +59,6 @@ struct Parameters {
 	string _devin_nameports_;
 	string devout_nameports;
 	string _devout_nameports_;
-	int EMULATE_IN;
-	int _EMULATE_IN_;
-	float emulate_vol;
 	string device_in_name_;
 	string device_out_name_;
 	int SOUND_STATUS_;
@@ -68,7 +68,8 @@ struct Parameters {
 	int MIC_FILTER;
 	float mic_cutoff;
 	int PASS_THRU;
-	float pass_vol;
+	float PASS_VOL;
+	string pass_thru_delta_;
 	float OUT_VOL;
 	int SaveDebugSounds;
     Parameters();

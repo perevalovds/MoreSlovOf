@@ -13,6 +13,15 @@ void SoundEngine::setup() {
 
 	PRM SND_CALLB_ = "audioin:NO audioout:NO";
 
+	//Pass thru
+	pass_thru_buf_n = PRM sound_buffer * 2;
+	pass_thru_buf_.resize(pass_thru_buf_n);
+
+	PRM pass_thru_delta_ = "...";
+	pass_write_pos_ = 0; //pass_thru_buf_n;// 0;
+	pass_read_pos_ = 0;
+
+	//Запуск звука
 	start_stream();
 }
 
@@ -21,55 +30,6 @@ void SoundEngine::exit() {
 	ofSoundStreamClose();
 }
 
-//--------------------------------------------------------------------------------
-bool SoundEngine::setup_emulation_in() {
-	emulation_in = 0;
-
-	if (!PRM EMULATE_IN) {
-		return false;
-	}
-
-	int in_ch = PRM in_channels;
-	string file_name = "sounds/emulate_in" + ofToString(in_ch) + ".wav";
-	MLOG("  Эмуляция микрофона из файла " + file_name,
-		"Mic emulation from " + file_name, ofColor(255, 255, 0));
-	ofxAudioFile audiofile;
-
-	if (!ofFile::doesFileExist(file_name)) {
-		MLOG("   Нет файла", "   No file", ofColor(255, 0, 0));
-		return false;
-	}
-
-	audiofile.load(ofToDataPath(file_name));
-	if (!audiofile.loaded()) {
-		MLOG("   Ошибка загрузки файла", "   Error loading file", ofColor(255, 0, 0));
-		return false;
-	}
-
-	int channels = audiofile.channels();
-
-	if (audiofile.channels() != in_ch) {
-		MLOG("   Ошибка загрузки файла, неверное число каналов: " + ofToString(channels),
-			"   Error loading file, bad channels count: " + ofToString(channels),
-			ofColor(255, 0, 0));
-		return false;
-	}
-
-
-	//считывание данных
-	int n = audiofile.length();
-	int ch = audiofile.channels();
-
-	emulation_data.resize(n * ch);
-	for (int i = 0; i < n; i++) {
-		for (int c = 0; c < ch; c++) {
-			emulation_data[i*ch + c] = audiofile.sample(i, c);
-		}
-	}
-
-	emulation_in = 1;
-	return true;
-}
 
 //--------------------------------------------------------------------------------
 //поисе устройства по заданной строке вида namepart:portsin:out
@@ -107,8 +67,6 @@ void SoundEngine::start_stream() {
 
 	ofSoundStreamSettings settings;
 
-	bool emulate = setup_emulation_in();
-
 	//выбор ID
 	int device_in = PRM device_in;
 	int device_out = PRM device_out;
@@ -120,18 +78,13 @@ void SoundEngine::start_stream() {
 
 	//Вход
 	bool in_ok = false;
-	if (emulate) {
-		in_ok = true;
-		PRM device_in_name_ = "emulation";
-		in_started_ = 1;
-	}
 	if (!in_ok) {
 		if (device_in >= 0 && device_in < devices.size()) {
 			auto &device = devices[device_in];
 			MLOG("  Входное устройство " + device.name, "  Input device " + device.name);
-			if (PRM in_channels != device.inputChannels) {
-				MLOG("   Неверное число входов, требуется *in_channels=" + ofToString(PRM in_channels) + ", имеется " + ofToString(device.inputChannels),
-					"   Bad input channels, expected *in_channels=" + ofToString(PRM in_channels) + ", has " + ofToString(device.inputChannels),
+			if (PRM in_channels > device.inputChannels) {
+				MLOG("   Неверное число входов, требуется не менее *in_channels=" + ofToString(PRM in_channels) + ", имеется " + ofToString(device.inputChannels),
+					"   Bad input channels, expected at least *in_channels=" + ofToString(PRM in_channels) + ", has " + ofToString(device.inputChannels),
 					ofColor(255, 0, 0));
 			}
 			else {
@@ -158,9 +111,9 @@ void SoundEngine::start_stream() {
 	if (device_out >= 0 && device_out < devices.size()) {
 		auto &device = devices[device_out];
 		MLOG("  Выходное устройство " + device.name, "  Output device " + device.name);
-		if (PRM out_channels != device.outputChannels) {
-			MLOG("   Неверное число выходов, требуется *out_channels=" + ofToString(PRM out_channels) + ", имеется " + ofToString(device.outputChannels),
-			 	"   Bad output channels, expected *out_channels=" + ofToString(PRM out_channels) + ", has " + ofToString(device.outputChannels),
+		if (PRM out_channel_start - 1 + PRM out_channels > device.outputChannels) {
+			MLOG("   Неверное число выходов, требуется не менее *out_channel_start - 1 + *out_channels = " + ofToString(PRM out_channel_start - 1 + PRM out_channels) + ", имеется " + ofToString(device.outputChannels),
+			 	"   Bad output channels, expected at least *out_channel_start - 1 + *out_channels" + ofToString(PRM out_channel_start - 1 + PRM out_channels) + ", has " + ofToString(device.outputChannels),
 				ofColor(255, 0, 0));
 		}
 		else {
@@ -193,6 +146,9 @@ void SoundEngine::start_stream() {
 		settings.bufferSize = buffer_size;
 		settings.numBuffers = buffers;
 		soundStream.setup(settings);
+
+		//Пишем, какой в итоге получился размер буфера (может ставиться звуковой картой в ее настройках)
+		PRM sound_buffer_ = soundStream.getBufferSize();
 
 		std::ostringstream out_ru, out_en;
 		out_ru << "Звук запущен " << PRM in_channels << ":" << PRM out_channels 
@@ -246,6 +202,10 @@ void SoundEngine::update() {
 	//	recorded = 0;
 	//	record_pos = 0;
 	//}
+
+
+	PRM pass_thru_delta_ = ofToString(pass_write_pos_ - pass_read_pos_);
+
 }
 
 //--------------------------------------------------------------------------------
@@ -270,10 +230,11 @@ void SoundEngine::audioIn(ofSoundBuffer &input) {
 	
 	float &mic_vol = PRM MIC_VOL;
 
-	//коррекция громкости микрофона
 	int n = input.getNumFrames();
 	int ch = input.getNumChannels();
-	for (int c = 0; c < ch; c++) {
+	int IN_CH = PRM in_channels;
+
+	for (int c = 0; c < IN_CH; c++) {
 		for (int i = 0; i < n; i++) {
 			//меняем громкость микрофона
 			auto &inp = input[i*ch + c];
@@ -288,6 +249,13 @@ void SoundEngine::audioIn(ofSoundBuffer &input) {
 	float &Vol = PRM vol_in_;
 	Vol = max(Vol * 0.93f, vol);
 
+	//pass thru
+	for (int i = 0; i < n; i++) {
+		pass_thru_buf_[pass_write_pos_ % pass_thru_buf_n] = input[i*ch];	//0-й канал
+		pass_write_pos_++;
+		//pass_write_pos_ %= pass_thru_buf_n;
+	}
+
 	//processing
 	//DEMONS.audioIn(input);
 
@@ -296,40 +264,34 @@ void SoundEngine::audioIn(ofSoundBuffer &input) {
 
 //--------------------------------------------------------------
 void SoundEngine::audioOut(ofSoundBuffer &output) {
-	//в режиме эмуляции, мы делаем вид, что пришли данные такой же длины, как output
-	emulate_in_perform(output);
-
 	sound_out_called = 1;
+
+	int n = output.getNumFrames();
+	int ch = output.getNumChannels();
+	int OUT_CH_START = PRM out_channel_start - 1;
+	int OUT_CH = PRM out_channels;
 
 	//TEST прямо тут отправляем данные с эмуляции в колонки
 	if (PRM PASS_THRU) {
-		if (emulation_in) {
-			//из считанного эмуляционного буфера
-			//int n = output.getNumFrames();
-			//int in_ch = PRM in_channels;
-			//int out_ch = PRM out_channels;
-			//for (int i = 0; i < n; i++) {
-			//	for (int c = 0; c < out_ch; c++) {
-			//		output[i*out_ch + c] = emulate_buffer[i*in_ch + 0];	//только один канал звука посылаем	
-			//	}
-			//}
-			//return;
-
-			//прямо из исходного буфера
-			//int n = output.getNumFrames();
-			//int in_ch = PRM in_channels;
-			//int out_ch = PRM out_channels;
-			//int emu_size = emulation_data.size();
-			//static int emu_pos = 0;		//ВНИМАНИЕ!!! статичная переменная
-			//for (int i = 0; i < n; i++) {
-			//	for (int c = 0; c < out_ch; c++) {
-			//		output[i*out_ch + c] = emulation_data[emu_pos + 0];	//только один канал звука посылаем
-			//	}
-			//	emu_pos += in_ch;
-			//	emu_pos %= emu_size;
-			//}
-			//return;
+		//pass thru
+		if (pass_read_pos_ + n > pass_write_pos_) {
+			cout << "WARNING: PASS_THRU read buffer " << pass_read_pos_ << " can be further than write " << pass_write_pos_ << endl;
 		}
+	
+		for (int i = 0; i < n; i++) {
+			float v = pass_thru_buf_[pass_read_pos_ % pass_thru_buf_n] * PRM PASS_VOL;
+				//ofRandom(-0.1, 0.1) * PRM PASS_VOL;
+
+			pass_read_pos_++;
+			for (int c = 0; c < OUT_CH; c++) {
+				output[i*ch + OUT_CH_START + c] = v;
+			}
+			//pass_read_pos_ %= pass_thru_buf_n;
+		}
+	}
+	else {
+		pass_read_pos_ += n;
+		//pass_read_pos_ %= pass_thru_buf_n;
 	}
 
 	//processing
@@ -342,23 +304,5 @@ void SoundEngine::audioOut(ofSoundBuffer &output) {
 
 }
 
-
-//--------------------------------------------------------------------------------
-//при эмуляции мы посылаем на audioIn данные по столько же, как приходит в audioOut
-void SoundEngine::emulate_in_perform(const ofSoundBuffer &such_this_buffer) {
-	if (emulation_in) {
-		int n = such_this_buffer.getNumFrames();
-		int in_ch = PRM in_channels;
-		int emu_size = emulation_data.size();
-		emulate_buffer.allocate(n, in_ch);
-
-		emulation_pos %= emu_size;
-		for (int i = 0; i < n*in_ch; i++) {
-			emulate_buffer[i] = emulation_data[emulation_pos++] * PRM emulate_vol;
-			emulation_pos %= emu_size;
-		}
-		audioIn(emulate_buffer);
-	}
-}
 
 //--------------------------------------------------------------------------------

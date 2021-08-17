@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-07-01-51-689
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-07-53-25-831
 
 Parameters params;
 //--------------------------------------------------------------
@@ -23,18 +23,18 @@ Parameters::Parameters() {
 	_messages_y_=320;
 	_OSC_in_port_=12400;
 	_in_channels_=2;
+	_out_channel_start_=1;
 	_out_channels_=2;
 	_sample_rate_=4;
 	_sound_buffers_=4;
 	_sound_buffer_=512;
+	sound_buffer_=512;
 	_engine_=2;
 	_selectby_=0;
 	_device_in_=0;
 	_device_out_=0;
 	_devin_nameports_="...:...:..";
 	_devout_nameports_="...:...:..";
-	_EMULATE_IN_=0;
-	emulate_vol=1;
 	device_in_name_="";
 	device_out_name_="";
 	SOUND_STATUS_=0;
@@ -44,7 +44,8 @@ Parameters::Parameters() {
 	MIC_FILTER=0;
 	mic_cutoff=0.1;
 	PASS_THRU=0;
-	pass_vol=1;
+	PASS_VOL=1;
+	pass_thru_delta_="0";
 	OUT_VOL=1;
 	SaveDebugSounds=0;
 }
@@ -99,11 +100,13 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addTab();
 	gui.addDummy("Channels setup:");
 	gui.addInt("*in_channels",_in_channels_,2,1,8,1,10);
+	gui.addInt("*out_channel_start",_out_channel_start_,1,1,8,1,10);
 	gui.addInt("*out_channels",_out_channels_,2,1,8,1,10);
 	gui.addDummy("Sound setup:");
 	gui.addStringList("*sample_rate",_sample_rate_,4,6,"8000","11025","22050","32000","44100","48000");
 	gui.addInt("*sound_buffers",_sound_buffers_,4,1,16,1,10);
 	gui.addInt("*sound_buffer",_sound_buffer_,512,8,4096,1,50);
+	gui.addInt("-sound_buffer",sound_buffer_,512,8,4096,1,50);
 	gui.addTab();
 	gui.addDummy("Select devices:");
 	gui.addStringList("*engine",_engine_,2,3,"WASAPI","ASIO","DS");
@@ -113,9 +116,6 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("namepart:portsin:out");
 	gui.addString("*devin_nameports",_devin_nameports_,"...:...:..");
 	gui.addString("*devout_nameports",_devout_nameports_,"...:...:..");
-	gui.addDummy("Mic emulator:");
-	gui.addStringList("*EMULATE_IN",_EMULATE_IN_,0,2,"OFF","ON");
-	gui.addFloat("emulate_vol",emulate_vol,1,0,10,100,10);
 	gui.addTab();
 	gui.addDummy("Started devices:");
 	gui.addString("-device_in_name",device_in_name_,"");
@@ -135,7 +135,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addFloat("mic_cutoff",mic_cutoff,0.1,0,1,1000,100);
 	gui.addDummy("Pass mic sound:");
 	gui.addStringList("PASS_THRU",PASS_THRU,0,2,"OFF","ON");
-	gui.addFloat("pass_vol",pass_vol,1,0,1,100,10);
+	gui.addFloat("PASS_VOL",PASS_VOL,1,0,10,1000,100);
+	gui.addString("-pass_thru_delta",pass_thru_delta_,"0");
 	gui.addDummy("Generated sound:");
 	gui.addFloat("OUT_VOL",OUT_VOL,1,0,10,1000,100);
 	gui.addPage("Debug");
@@ -159,26 +160,29 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("*scr_w", ofColor(255,140,255));
 	gui.set_var_color("*scr_h", ofColor(255,140,255));
 	gui.set_var_color("*in_channels", ofColor(255,140,140));
+	gui.set_var_color("*out_channel_start", ofColor(255,140,140));
 	gui.set_var_color("*out_channels", ofColor(255,140,140));
 	gui.set_var_color("*sample_rate", ofColor(255,140,140));
 	gui.set_var_color("*sound_buffers", ofColor(255,140,140));
 	gui.set_var_color("*sound_buffer", ofColor(255,140,140));
+	gui.set_var_color("-sound_buffer", ofColor(200,200,200));
 	gui.set_var_color("*engine", ofColor(255,140,140));
 	gui.set_var_color("*selectby", ofColor(255,140,140));
 	gui.set_var_color("*device_in", ofColor(255,140,140));
 	gui.set_var_color("*device_out", ofColor(255,140,140));
 	gui.set_var_color("*devin_nameports", ofColor(255,140,140));
 	gui.set_var_color("*devout_nameports", ofColor(255,140,140));
-	gui.set_var_color("*EMULATE_IN", ofColor(255,255,0));
-	gui.set_var_color("emulate_vol", ofColor(255,255,0));
+	gui.set_var_color("-device_in_name", ofColor(255,140,140));
+	gui.set_var_color("-device_out_name", ofColor(255,140,140));
 	gui.set_var_color("-SOUND_STATUS", ofColor(255,255,0));
 	gui.set_var_color("-SND_CALLB", ofColor(255,255,0));
 	gui.set_var_color("ShowDevices", ofColor(255,255,0));
 	gui.set_var_color("MIC_VOL", ofColor(100,255,100));
 	gui.set_var_color("MIC_FILTER", ofColor(100,255,100));
 	gui.set_var_color("mic_cutoff", ofColor(100,255,100));
-	gui.set_var_color("PASS_THRU", ofColor(80,255,80));
-	gui.set_var_color("pass_vol", ofColor(80,255,80));
+	gui.set_var_color("PASS_THRU", ofColor(255,100,100));
+	gui.set_var_color("PASS_VOL", ofColor(255,100,100));
+	gui.set_var_color("-pass_thru_delta", ofColor(200,200,200));
 	gui.set_var_color("OUT_VOL", ofColor(255,100,100));
 	gui.set_var_color("SaveDebugSounds", ofColor(80,80,255));
 	fileName_ = fileName;
@@ -196,6 +200,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	messages_y = _messages_y_;
 	OSC_in_port = _OSC_in_port_;
 	in_channels = _in_channels_;
+	out_channel_start = _out_channel_start_;
 	out_channels = _out_channels_;
 	sample_rate = _sample_rate_;
 	sound_buffers = _sound_buffers_;
@@ -206,7 +211,6 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	device_out = _device_out_;
 	devin_nameports = _devin_nameports_;
 	devout_nameports = _devout_nameports_;
-	EMULATE_IN = _EMULATE_IN_;
 }
 
 //--------------------------------------------------------------

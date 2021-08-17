@@ -27,14 +27,6 @@ struct SoundEngine {
 	int sound_in_called = 0;
 	int sound_out_called = 0;
 
-	//Эмуляция микрофона
-	int emulation_in = 0;
-	vector<float> emulation_data;
-	int emulation_pos = 0;
-	ofSoundBuffer emulate_buffer;
-	bool setup_emulation_in();
-	//при эмуляции мы посылаем на audioIn данные по столько же, как приходит в audioOut
-	void emulate_in_perform(const ofSoundBuffer &such_this_buffer);
 
 	string callbacks_status_string(); //информация о callbacks - были или нет
 
@@ -42,8 +34,14 @@ protected:
 	//поисе устройства по заданной строке вида namepart:portsin:out
 	int find_device_by_string(const string &nameports, vector<ofSoundDevice> &devices);
 	
-	//фильт микрофона
+	//фильтр микрофона
 	ofxSoundUtilsFilter mic_filter[8];
+
+	//буфер для passthru
+	vector<float> pass_thru_buf_;
+	int pass_thru_buf_n = 0;
+	int pass_write_pos_ = 0;
+	int pass_read_pos_ = 0;
 
 };
 
