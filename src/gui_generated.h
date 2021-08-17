@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-07-53-25-830
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-08-38-15-661
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -71,6 +71,12 @@ struct Parameters {
 	float PASS_VOL;
 	string pass_thru_delta_;
 	float OUT_VOL;
+	string Pedal_baud;
+	string _Pedal_baud_;
+	int Pedal_invert;
+	string Pedal_status_;
+	int Print_Arduinos;
+	int PEDAL_;
 	int SaveDebugSounds;
     Parameters();
     void setup(ofxKuTextGui &gui, string fileName);

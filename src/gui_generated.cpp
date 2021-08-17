@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-07-53-25-831
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-08-38-15-662
 
 Parameters params;
 //--------------------------------------------------------------
@@ -47,6 +47,11 @@ Parameters::Parameters() {
 	PASS_VOL=1;
 	pass_thru_delta_="0";
 	OUT_VOL=1;
+	_Pedal_baud_="57600";
+	Pedal_invert=0;
+	Pedal_status_="...";
+	Print_Arduinos=0;
+	PEDAL_=0;
 	SaveDebugSounds=0;
 }
 
@@ -139,6 +144,14 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addString("-pass_thru_delta",pass_thru_delta_,"0");
 	gui.addDummy("Generated sound:");
 	gui.addFloat("OUT_VOL",OUT_VOL,1,0,10,1000,100);
+	gui.addPage("Pedal");
+	gui.addString("*Pedal_baud",_Pedal_baud_,"57600");
+	gui.addStringList("Pedal_invert",Pedal_invert,0,2,"NORMAL","INVERTED");
+	gui.addDummy("");
+	gui.addString("-Pedal_status",Pedal_status_,"...");
+	gui.addButton("Print_Arduinos",Print_Arduinos);
+	gui.addTab();
+	gui.addStringList("-PEDAL",PEDAL_,0,2,"OFF","ON");
 	gui.addPage("Debug");
 	gui.addVar("ClearLog");
 	gui.addVar("Save");
@@ -184,6 +197,11 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("PASS_VOL", ofColor(255,100,100));
 	gui.set_var_color("-pass_thru_delta", ofColor(200,200,200));
 	gui.set_var_color("OUT_VOL", ofColor(255,100,100));
+	gui.set_var_color("*Pedal_baud", ofColor(100,100,255));
+	gui.set_var_color("Pedal_invert", ofColor(100,100,255));
+	gui.set_var_color("-Pedal_status", ofColor(255,255,100));
+	gui.set_var_color("Print_Arduinos", ofColor(255,255,100));
+	gui.set_var_color("-PEDAL", ofColor(255,100,100));
 	gui.set_var_color("SaveDebugSounds", ofColor(80,80,255));
 	fileName_ = fileName;
 	gui_ = &gui;
@@ -211,6 +229,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	device_out = _device_out_;
 	devin_nameports = _devin_nameports_;
 	devout_nameports = _devout_nameports_;
+	Pedal_baud = _Pedal_baud_;
 }
 
 //--------------------------------------------------------------

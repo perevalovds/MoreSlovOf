@@ -3,6 +3,7 @@
 #include "gui_generated.h"
 #include "ofxAudioFile.h"
 #include "Common.h"
+#include "Pedal.h"
 
 SoundEngine SOUND;
 
@@ -20,6 +21,9 @@ void SoundEngine::setup() {
 	PRM pass_thru_delta_ = "...";
 	pass_write_pos_ = 0; //pass_thru_buf_n;// 0;
 	pass_read_pos_ = 0;
+
+	//Педаль
+	pedal_setup();
 
 	//Запуск звука
 	start_stream();
@@ -205,6 +209,9 @@ void SoundEngine::update() {
 
 
 	PRM pass_thru_delta_ = ofToString(pass_write_pos_ - pass_read_pos_);
+
+	//Педаль
+	pedal_update();
 
 }
 
