@@ -70,3 +70,4 @@
 /obj/x64/Release/*.res
 /obj/x64/Release/*.pdb
 /obj/Win32/Debug/MoreSlovOf.tlog
+/.vs/MoreSlovOf/v15/ipch/AutoPCH/9f17443d1cf23ebb/*.ipch

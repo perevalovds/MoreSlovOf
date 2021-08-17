@@ -6,17 +6,6 @@
 
 struct Common {
 	static int sample_rate();
-	static int window_in();
-
-	//Конструктор
-	//время предсказания
-	static float gen_predict_sec();
-	//диапазон при обучении
-	static float gen_examplstep();
-
-	//Деструктор
-	static float gen_destructor_amount();
-	static float gen_destructor_range();
 
 	//GUI parser
 	static int get_api_id(int stringlist_index);

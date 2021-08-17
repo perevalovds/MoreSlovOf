@@ -280,7 +280,7 @@ void SoundEngine::audioIn(ofSoundBuffer &input) {
 			inp *= mic_vol;
 
 			//фильтруем микрофон
-			inp = mic_filter[c].process(inp, PRM infilter_cutoff, PRM INFILTER);
+			inp = mic_filter[c].process(inp, PRM mic_cutoff, PRM MIC_FILTER);
 		}
 	}
 	//volume

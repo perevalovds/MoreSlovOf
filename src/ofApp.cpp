@@ -145,15 +145,6 @@ void ofApp::exit() {
 	//Sound
 	SOUND.exit();
 	
-	//Watchdog
-	if (PRM Watchdog) {
-		//cout << "Sending exit signal to Watchog..." << endl;
-		//WATCHDOG.send_exit(PRM wd_port);	//Signal to Watchdog to end working
-		string command = "taskkill /im cmd.exe /f";
-		cout << "Terminating Watchdog by command " << command << endl;
-		system(command.c_str());
-	}
-	
 
 }
 
