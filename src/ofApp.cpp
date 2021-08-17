@@ -14,6 +14,9 @@ string app_ver = "v.01 (64 bit, autosave off)";
 string Title = "MoreSlov " + app_ver;
 string Title_RU = "МореСлов " + app_ver;
 
+ofxKuTextGui gui;
+
+
 //--------------------------------------------------------------
 void ofApp::setup() {
 	cout << "------------------------------------------" << endl;

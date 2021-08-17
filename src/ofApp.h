@@ -32,7 +32,6 @@ public:
 	void gotMessage(ofMessage msg);
 
 	float flash_ = 0;
-	ofxKuTextGui gui;
 	int show_gui = 1;
 	float time0_ = 0;
 

@@ -1,6 +1,8 @@
 #include "Machines.h"
 #include "ofxKuMessageLog.h"
 
+extern ofxKuTextGui gui;
+
 ToneMachine MACHINE;
 
 //--------------------------------------------------
@@ -20,7 +22,7 @@ void ToneMachine::setup() {
 }
     
 //--------------------------------------------------
-void ToneMachine::push_tone(int ton_number, int type, vector<float> &sound, float BPM) {
+void ToneMachine::push_tone(int ton_number, vector<float> &sound, float BPM) {
 	MLOG("Techno " + ofToString(ton_number + 1));
 
 	//Создание тона
@@ -46,6 +48,28 @@ void ToneMachine::push_tone(int ton_number, int type, vector<float> &sound, floa
 
 //--------------------------------------------------
 void ToneMachine::update(float dt) {
+	//считывание параметров
+	for (int i = 0; i < maxTones; i++) {
+		auto &p = params_[i];
+		string name = ofToString(i + 1);
+		p.mode = *gui.findVarStringList("w_mode" + name);
+		p.delay = *gui.findVarInt("w_delay" + name);
+		p.pos = *gui.findVarFloat("w_pos" + name);
+		p.len = *gui.findVarFloat("w_len" + name);
+		p.vol = *gui.findVarFloat("w_vol" + name);
+		p.pan = *gui.findVarFloat("w_pan" + name);
+		p.spd = *gui.findVarFloat("w_spd" + name);
+		p.grain_len = *gui.findVarFloat("w_len" + name);
+		p.voltype = *gui.findVarStringList("w_voltype" + name);
+		p.volstp = *gui.findVarInt("w_volstp" + name);
+		p.volmov = *gui.findVarFloat("w_volmov" + name);
+		p.pantype = *gui.findVarStringList("w_pantype" + name);
+		p.panstp = *gui.findVarInt("w_panstp" + name);
+		p.panmov = *gui.findVarFloat("w_panmov" + name);
+		p.VOL = 1; //*gui.findVarFloat("w_pos" + name);
+	}
+
+
     for (int i=0; i<n; i++) {
         if (tone[i]) tone[i]->update(dt);
     }

@@ -83,7 +83,7 @@ void Sea::push_word(const vector<float> &sound, int n) {
 		if (i < maxTones) {
 			auto sound1 = sound;
 			sound1.resize(n);
-			MACHINE.push_tone(i, 0, sound1, BPM);
+			MACHINE.push_tone(i, sound1, BPM);
 		}
 	}
 }
