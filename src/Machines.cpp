@@ -59,7 +59,7 @@ void ToneMachine::update(float dt) {
 		p.vol = *gui.findVarFloat("w_vol" + name);
 		p.pan = *gui.findVarFloat("w_pan" + name);
 		p.spd = *gui.findVarFloat("w_spd" + name);
-		p.grain_len = *gui.findVarFloat("w_len" + name);
+		p.grain_len = *gui.findVarFloat("w_grain_len" + name);
 		p.voltype = *gui.findVarStringList("w_voltype" + name);
 		p.volstp = *gui.findVarInt("w_volstp" + name);
 		p.volmov = *gui.findVarFloat("w_volmov" + name);
