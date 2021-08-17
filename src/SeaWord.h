@@ -4,32 +4,43 @@
 #include "ofMain.h"
 
 /*
-ѕараметры одного звука:
-   длительность существовани€
-   врем€ угасани€ громкости
+dummy Duration
+int w_duration_msec=10000 100:60000 10,500
+int w_evolution_perc=40 1:100 1,10
+int w_fadeout_perc=10 1:100 1,10
 
-   начальна€ скорость повторов
-   конечна€ скорость повторов
-   сек на переход motion
+dummy Repeats
+int w_repeat0_msec=250 0:1000 10,100
+int w_repeat1_msec=250 0:1000 10,100
 
-   диапазон стерео-панорамы
-   огибающа€ громкости: const,fadein,fadeout
+dummy Vol_Stereo
+stringlist w_envelope=const [const,fadeout,fadein]
+int w_stereo_range=0 0:100 1,10
 
-   длина фрагмента % (используютс€ те же секунды на переход motion)
-   место фрагмента
-   диапазон скачков фрагмента
+dummy Fragment
+int w_len_perc=100 1:100 1,10
+int w_pos_perc=0 0:100 1,10
+int w_pos_random_perc=0 0:100 1,10
 
-   гранул€рность цикл
-   сдвиг (скорость воспроизведени€)
+dummy Granular
+int w_grain_msec=50 1:1000 1,10
+int w_grain_move_perc=100 0:200 1,10
+int w_grain_pause_msec=0 0:1000 1,10
 
-   фильтр - тип Lo,Hi,Band
-   начало и конец частоты
+dummy Filter
+stringlist w_flt=No [No,Lopass,Hipass,Bandpass]
+int w_flt_cutoff0=500 0:1000 5,50
+int w_flt_cutoff1=0.5 0:1000 5
 */
 
 
 struct SeaWord {
-	void setup();
+	void setup(const vector<float> &sound);
 	void update();
 	void draw();
+	bool is_live();
+protected:
+	vector<float> sound_;
+	float n_ = 0;
 };
 

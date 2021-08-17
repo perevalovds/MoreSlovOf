@@ -31,7 +31,7 @@ struct SoundEngine {
 	string callbacks_status_string(); //информация о callbacks - были или нет
 
 protected:
-	//поисе устройства по заданной строке вида namepart:portsin:out
+	//поиск устройства по заданной строке вида namepart:portsin:out
 	int find_device_by_string(const string &nameports, vector<ofSoundDevice> &devices);
 	
 	//фильтр микрофона
@@ -42,6 +42,12 @@ protected:
 	int pass_thru_buf_n = 0;
 	int pass_write_pos_ = 0;
 	int pass_read_pos_ = 0;
+
+	//запись звука по педали
+	int max_mic_rec_n_ = 1000;
+	vector<float> mic_recording_;
+	int mic_rec_n_ = 0;
+	int mic_rec_on_ = 0;
 
 };
 

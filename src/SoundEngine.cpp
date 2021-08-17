@@ -3,6 +3,7 @@
 #include "gui_generated.h"
 #include "ofxAudioFile.h"
 #include "Common.h"
+#include "Sea.h"
 
 
 SoundEngine SOUND;
@@ -21,6 +22,10 @@ void SoundEngine::setup() {
 	PRM pass_thru_delta_ = "...";
 	pass_write_pos_ = 0; //pass_thru_buf_n;// 0;
 	pass_read_pos_ = 0;
+
+	//Запись
+	max_mic_rec_n_ = PRM max_rec_msec * PRM sample_rate / 1000; 
+	mic_recording_.resize(max_mic_rec_n_);
 
 	//Запуск звука
 	start_stream();
@@ -207,6 +212,16 @@ void SoundEngine::update() {
 
 	PRM pass_thru_delta_ = ofToString(pass_write_pos_ - pass_read_pos_);
 
+	//педаль
+	int pedal = PRM PEDAL_;
+	if (!mic_rec_on_ && pedal) {	//start rec
+		mic_rec_n_ = 0;
+		mic_rec_on_ = 1;
+	}
+	if (mic_rec_on_ && (!pedal || mic_rec_n_ == max_mic_rec_n_)) {	//stop rec
+		mic_rec_on_ = 0;
+		SEA.push_word(mic_recording_, mic_rec_n_);
+	}
 
 }
 

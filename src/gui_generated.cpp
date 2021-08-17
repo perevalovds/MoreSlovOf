@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-09-40-44-071
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-09-56-06-491
 
 Parameters params;
 //--------------------------------------------------------------
@@ -52,15 +52,17 @@ Parameters::Parameters() {
 	Pedal_status_="...";
 	Print_Arduinos=0;
 	PEDAL_=0;
+	_max_rec_msec_=10000;
+	_max_words_=15;
 	sea_x=400;
 	sea_y=20;
 	sea_w=1000;
 	sea_h=600;
-	w_duration_sec=10;
+	w_duration_msec=10000;
 	w_evolution_perc=40;
 	w_fadeout_perc=10;
-	w_repeat0_sec=0.25;
-	w_repeat1_sec=1;
+	w_repeat0_msec=250;
+	w_repeat1_msec=250;
 	w_envelope=0;
 	w_stereo_range=0;
 	w_len_perc=100;
@@ -70,7 +72,7 @@ Parameters::Parameters() {
 	w_grain_move_perc=100;
 	w_grain_pause_msec=0;
 	w_flt=0;
-	w_flt_cutoff0=0.5;
+	w_flt_cutoff0=500;
 	w_flt_cutoff1=0.5;
 	SaveDebugSounds=0;
 }
@@ -177,18 +179,21 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addVar("-vol_out");
 	gui.addVar("-PEDAL");
 	gui.addDummy("");
+	gui.addInt("*max_rec_msec",_max_rec_msec_,10000,1000,10000,,,);
+	gui.addInt("*max_words",_max_words_,15,5,100,1,10);
+	gui.addDummy("");
 	gui.addInt("sea_x",sea_x,400,0,2000,10,50);
 	gui.addInt("sea_y",sea_y,20,0,2000,10,50);
 	gui.addInt("sea_w",sea_w,1000,0,2000,10,50);
 	gui.addInt("sea_h",sea_h,600,0,2000,10,50);
 	gui.addTab();
 	gui.addDummy("Duration");
-	gui.addFloat("w_duration_sec",w_duration_sec,10,1,60,600,60);
+	gui.addInt("w_duration_msec",w_duration_msec,10000,100,60000,10,500);
 	gui.addInt("w_evolution_perc",w_evolution_perc,40,1,100,1,10);
 	gui.addInt("w_fadeout_perc",w_fadeout_perc,10,1,100,1,10);
 	gui.addDummy("Repeats");
-	gui.addFloat("w_repeat0_sec",w_repeat0_sec,0.25,0,10,100,10);
-	gui.addFloat("w_repeat1_sec",w_repeat1_sec,1,0,60,100,10);
+	gui.addInt("w_repeat0_msec",w_repeat0_msec,250,0,1000,10,100);
+	gui.addInt("w_repeat1_msec",w_repeat1_msec,250,0,1000,10,100);
 	gui.addDummy("Vol_Stereo");
 	gui.addStringList("w_envelope",w_envelope,0,3,"const","fadeout","fadein");
 	gui.addInt("w_stereo_range",w_stereo_range,0,0,100,1,10);
@@ -202,8 +207,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("w_grain_pause_msec",w_grain_pause_msec,0,0,1000,1,10);
 	gui.addDummy("Filter");
 	gui.addStringList("w_flt",w_flt,0,4,"No","Lopass","Hipass","Bandpass");
-	gui.addFloat("w_flt_cutoff0",w_flt_cutoff0,0.5,0,1,100,10);
-	gui.addFloat("w_flt_cutoff1",w_flt_cutoff1,0.5,0,1,100,10);
+	gui.addInt("w_flt_cutoff0",w_flt_cutoff0,500,0,1000,5,50);
+	gui.addInt("w_flt_cutoff1",w_flt_cutoff1,0.5,0,1000,5,50);
 	gui.addPage("Debug");
 	gui.addVar("ClearLog");
 	gui.addVar("Save");
@@ -254,15 +259,17 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("-Pedal_status", ofColor(255,255,100));
 	gui.set_var_color("Print_Arduinos", ofColor(255,255,100));
 	gui.set_var_color("-PEDAL", ofColor(255,100,100));
+	gui.set_var_color("*max_rec_msec", ofColor(255,100,100));
+	gui.set_var_color("*max_words", ofColor(255,100,100));
 	gui.set_var_color("sea_x", ofColor(128,128,128));
 	gui.set_var_color("sea_y", ofColor(128,128,128));
 	gui.set_var_color("sea_w", ofColor(128,128,128));
 	gui.set_var_color("sea_h", ofColor(128,128,128));
-	gui.set_var_color("w_duration_sec", ofColor(255,255,100));
+	gui.set_var_color("w_duration_msec", ofColor(255,255,100));
 	gui.set_var_color("w_evolution_perc", ofColor(255,255,100));
 	gui.set_var_color("w_fadeout_perc", ofColor(255,255,100));
-	gui.set_var_color("w_repeat0_sec", ofColor(100,255,100));
-	gui.set_var_color("w_repeat1_sec", ofColor(100,255,100));
+	gui.set_var_color("w_repeat0_msec", ofColor(100,255,100));
+	gui.set_var_color("w_repeat1_msec", ofColor(100,255,100));
 	gui.set_var_color("w_envelope", ofColor(100,100,255));
 	gui.set_var_color("w_stereo_range", ofColor(100,100,255));
 	gui.set_var_color("w_len_perc", ofColor(255,100,100));
@@ -302,6 +309,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	devin_nameports = _devin_nameports_;
 	devout_nameports = _devout_nameports_;
 	Pedal_baud = _Pedal_baud_;
+	max_rec_msec = _max_rec_msec_;
+	max_words = _max_words_;
 }
 
 //--------------------------------------------------------------

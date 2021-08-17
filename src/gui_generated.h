@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-09-40-44-070
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-09-56-06-490
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -77,15 +77,19 @@ struct Parameters {
 	string Pedal_status_;
 	int Print_Arduinos;
 	int PEDAL_;
+	int max_rec_msec;
+	int _max_rec_msec_;
+	int max_words;
+	int _max_words_;
 	int sea_x;
 	int sea_y;
 	int sea_w;
 	int sea_h;
-	float w_duration_sec;
+	int w_duration_msec;
 	int w_evolution_perc;
 	int w_fadeout_perc;
-	float w_repeat0_sec;
-	float w_repeat1_sec;
+	int w_repeat0_msec;
+	int w_repeat1_msec;
 	int w_envelope;
 	int w_stereo_range;
 	int w_len_perc;
@@ -95,8 +99,8 @@ struct Parameters {
 	int w_grain_move_perc;
 	int w_grain_pause_msec;
 	int w_flt;
-	float w_flt_cutoff0;
-	float w_flt_cutoff1;
+	int w_flt_cutoff0;
+	int w_flt_cutoff1;
 	int SaveDebugSounds;
     Parameters();
     void setup(ofxKuTextGui &gui, string fileName);
