@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-08-38-15-662
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-09-04-19-156
 
 Parameters params;
 //--------------------------------------------------------------
@@ -52,6 +52,10 @@ Parameters::Parameters() {
 	Pedal_status_="...";
 	Print_Arduinos=0;
 	PEDAL_=0;
+	sea_x=400;
+	sea_y=20;
+	sea_w=1000;
+	sea_h=600;
 	SaveDebugSounds=0;
 }
 
@@ -152,6 +156,15 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addButton("Print_Arduinos",Print_Arduinos);
 	gui.addTab();
 	gui.addStringList("-PEDAL",PEDAL_,0,2,"OFF","ON");
+	gui.addPage("Words");
+	gui.addVar("-vol_in");
+	gui.addVar("-vol_out");
+	gui.addVar("-PEDAL");
+	gui.addDummy("");
+	gui.addInt("sea_x",sea_x,400,0,2000,10,50);
+	gui.addInt("sea_y",sea_y,20,0,2000,10,50);
+	gui.addInt("sea_w",sea_w,1000,0,2000,10,50);
+	gui.addInt("sea_h",sea_h,600,0,2000,10,50);
 	gui.addPage("Debug");
 	gui.addVar("ClearLog");
 	gui.addVar("Save");
@@ -202,6 +215,10 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("-Pedal_status", ofColor(255,255,100));
 	gui.set_var_color("Print_Arduinos", ofColor(255,255,100));
 	gui.set_var_color("-PEDAL", ofColor(255,100,100));
+	gui.set_var_color("sea_x", ofColor(128,128,128));
+	gui.set_var_color("sea_y", ofColor(128,128,128));
+	gui.set_var_color("sea_w", ofColor(128,128,128));
+	gui.set_var_color("sea_h", ofColor(128,128,128));
 	gui.set_var_color("SaveDebugSounds", ofColor(80,80,255));
 	fileName_ = fileName;
 	gui_ = &gui;

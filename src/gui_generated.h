@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-08-38-15-661
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-09-04-19-155
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -77,6 +77,10 @@ struct Parameters {
 	string Pedal_status_;
 	int Print_Arduinos;
 	int PEDAL_;
+	int sea_x;
+	int sea_y;
+	int sea_w;
+	int sea_h;
 	int SaveDebugSounds;
     Parameters();
     void setup(ofxKuTextGui &gui, string fileName);

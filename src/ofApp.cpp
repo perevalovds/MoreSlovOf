@@ -6,6 +6,8 @@
 #include "ofxKuMessageLog.h"
 #include "Remote.h"
 #include "SoundEngine.h"
+#include "Pedal.h"
+#include "Sea.h"
 
 string app_ver = "v.01 (64 bit, autosave off)";
 string Title = "MoreSlov " + app_ver;
@@ -15,7 +17,9 @@ string Title_RU = "МореСлов " + app_ver;
 void ofApp::setup() {
 	cout << "------------------------------------------" << endl;
 	MLOG(Title_RU, Title);
-	cout << "Press Enter or right mouse button to show settings" << endl;
+	MLOG("Press Enter to clear logs");
+
+	cout << "Press Enter to clear logs" << endl;
 	cout << "    Shift+F - toggle fullscreen, Shift+Q - restore borderless screen" << endl;
 	cout << "1,2,Shift+1,2 - select page, cursor - select value, [,],{,},mouseL/R - change value" << endl;
 	cout << "s - save settings, l - load settings" << endl;
@@ -57,6 +61,8 @@ void ofApp::setup() {
 
 	//----------------------------
 	//Sound & content
+	pedal_setup();
+	SEA.setup();
 	SOUND.setup();
 
 	//----------------------------
@@ -189,6 +195,8 @@ void ofApp::update(){
 
 	//----------------------------
 	//Sound & content
+	pedal_update();
+	SEA.update();
 	SOUND.update();
 
 }
@@ -246,7 +254,7 @@ void ofApp::keyPressed  (int key){
 	//	ofExit();
 	//}
 
-	if (key == OF_KEY_RETURN) show_gui = 1 - show_gui;	//Показ настроек
+	if (key == OF_KEY_RETURN) MLOGGER.clear(); //сброс логов
 
 
 	if (key == 'Q') {	//восстановление экрана

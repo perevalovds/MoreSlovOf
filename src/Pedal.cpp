@@ -1,4 +1,4 @@
-#include "Remote.h"
+#include "Pedal.h"
 #include "gui_generated.h"
 #include "ofxKuMessageLog.h"
 
