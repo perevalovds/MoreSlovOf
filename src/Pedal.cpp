@@ -43,10 +43,15 @@ void pedal_update() {
 	if (ard_connected_) {
 		while (arduino_.available()) {
 			int key = arduino_.readByte();
-			if (key == '0') PRM PEDAL_ = (PRM Pedal_invert) ? 1 : 0;
-			if (key == '1') PRM PEDAL_ = (PRM Pedal_invert) ? 0 : 1;
+			if (key == '0') set_pedal_value((PRM Pedal_invert) ? 1 : 0);
+			if (key == '1') set_pedal_value((PRM Pedal_invert) ? 0 : 1);
 		}
 	}
+}
+
+//--------------------------------------------------------------
+void set_pedal_value(int v) {
+	PRM PEDAL_ = v;
 }
 
 //--------------------------------------------------------------

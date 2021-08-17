@@ -62,5 +62,10 @@ protected:
 	vector<SeaSample> samples_;	//повторы
 
 	int i_ = 0;	//test
+	int rep_ = 0;	//test
+	int max_reps_ = 16;
+	float stereo_pos_L_ = 0.5;
+	float stereo_pos_R_ = 0.5;
+
 };
 

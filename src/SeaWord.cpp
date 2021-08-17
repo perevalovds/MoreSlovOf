@@ -50,6 +50,8 @@ void SeaWord::run(const vector<float> &sound, int n, const SeaWordParam &param) 
 
 	param_ = param;
 
+	rep_ = 0;
+
 	//start sound
 	n_ = n;
 	is_live_ = true;
@@ -59,7 +61,7 @@ void SeaWord::run(const vector<float> &sound, int n, const SeaWordParam &param) 
 
 //--------------------------------------------------------------
 void SeaWord::update() {
-
+	
 }
 
 //--------------------------------------------------------------
@@ -74,13 +76,32 @@ bool SeaWord::is_live() {
 
 //--------------------------------------------------------------
 void SeaWord::audioOut(vector<float> &stereo_buffer, int n) {
+	int use_len = n_;//n_ - n_ * rep_/max_reps_;		//сокращаем длину
+	float use_vol = ofMap(rep_, 0, max_reps_, 1, 0);
+
 	if (is_live()) {
 		for (int i = 0; i < n; i++) {
-			float v = sound_[i_++];
-			i_ %= n_;
+			float v = (i_ < use_len) ? sound_[i_] : 0;
+			i_++;
+			if (i_ >= n_) {
+				i_ %= n_;
 
-			stereo_buffer[2 * i] += v;
-			stereo_buffer[2 * i + 1] += v;
+				//repeat -----------------------------------
+				stereo_pos_L_ = 0.5 + ofRandom(-param_.w_stereo_range, param_.w_stereo_range)/200.0f;	//0..1
+				stereo_pos_R_ = 1 - stereo_pos_L_;
+
+				rep_++;
+				//MLOG("Repeat " + ofToString(id_) + ": " + ofToString(rep_));
+				if (rep_ >= max_reps_) {
+					is_live_ = false;
+					//MLOG("Delete " + ofToString(id_));
+					break;
+				}
+				//------------------------------------------
+			}
+
+			stereo_buffer[2 * i] += v * stereo_pos_L_ * use_vol;
+			stereo_buffer[2 * i + 1] += v * stereo_pos_R_ * use_vol;
 		}
 
 	}
