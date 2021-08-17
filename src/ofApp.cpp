@@ -193,7 +193,7 @@ void ofApp::update(){
 	//----------------------------
 	//Sound & content
 	pedal_update();
-	SEA.update();
+	SEA.update(dt);
 	SOUND.update();
 
 }
@@ -224,7 +224,10 @@ void ofApp::draw(){
 		//Сообщения
 		ofSetColor(255);
 		ofFill();
-		MLOGGER.draw();
+
+		if (gui.pageTitle() != "Sea") {
+			MLOGGER.draw();
+		}
 	}
 	else {
 		ofHideCursor();	//hide mouse

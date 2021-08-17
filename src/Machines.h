@@ -22,13 +22,16 @@ struct ToneMachine {
 
     bool shared_pushed;
     
-    void push_tone(int ton_number, int type, vector<float> &sound, float BPM, vector<ToneParams> &params);
+    void push_tone(int ton_number, int type, vector<float> &sound, float BPM);
     void audioOut( float *out_sample, float vol );
     void update(float dt);
   
     int n;
     MachineTone *tone[maxTones];
+	vector<ToneParams> params_;
     
-    int index;  //тон, готовый к записи
+    int index = 0;  //тон, готовый к записи
     
 };
+
+extern ToneMachine MACHINE;

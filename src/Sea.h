@@ -3,10 +3,11 @@
 //Sea of words
 #include "ofMain.h"
 #include "SeaWord.h"
+#include "Machines.h"
 
 struct Sea {
 	void setup();
-	void update();
+	void update(float dt);
 	void draw();
 
 	//добавить слово

@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-21-07-41-987
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-17-21-45-00-827
 
 Parameters params;
 //--------------------------------------------------------------
@@ -57,6 +57,7 @@ Parameters::Parameters() {
 	_max_words_=15;
 	_max_polyphony_=10;
 	WORDS_="...";
+	REC=0;
 	w_duration_msec=10000;
 	w_evolution_perc=40;
 	w_fadeout_perc=10;
@@ -273,6 +274,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("*max_polyphony",_max_polyphony_,10,1,20,1,10);
 	gui.addDummy("");
 	gui.addString("-WORDS",WORDS_,"...");
+	gui.addDummy("");
+	gui.addStringList("REC",REC,0,7,"Sea","Techno1","Techno2","Techno3","Techno4","Techno5","Techno6");
 	gui.addTab();
 	gui.addDummy("Duration");
 	gui.addInt("w_duration_msec",w_duration_msec,10000,100,60000,10,500);
@@ -461,6 +464,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("*max_words", ofColor(255,100,100));
 	gui.set_var_color("*max_polyphony", ofColor(255,100,100));
 	gui.set_var_color("-WORDS", ofColor(255,255,100));
+	gui.set_var_color("REC", ofColor(255,255,100));
 	gui.set_var_color("w_duration_msec", ofColor(255,255,100));
 	gui.set_var_color("w_evolution_perc", ofColor(255,255,100));
 	gui.set_var_color("w_fadeout_perc", ofColor(255,255,100));

@@ -1,5 +1,7 @@
 #include "Machines.h"
+#include "ofxKuMessageLog.h"
 
+ToneMachine MACHINE;
 
 //--------------------------------------------------
 ToneMachine::ToneMachine() {
@@ -8,6 +10,8 @@ ToneMachine::ToneMachine() {
         tone[i] = 0;
     }
     index = 0;
+
+	params_.resize(maxTones);
 }
 
 //--------------------------------------------------
@@ -16,15 +20,16 @@ void ToneMachine::setup() {
 }
     
 //--------------------------------------------------
-void ToneMachine::push_tone(int ton_number, int type, vector<float> &sound, float BPM,
-                            vector<ToneParams> &params) {
-    //Создание тона
+void ToneMachine::push_tone(int ton_number, int type, vector<float> &sound, float BPM) {
+	MLOG("Techno " + ofToString(ton_number + 1));
+
+	//Создание тона
     MachineTone *ton = new MachineTone();
 
     //Запуск тона
     if (ton) {
         int i = ton_number;
-        ton->setup(sound, BPM, &params[i]);
+        ton->setup(sound, BPM, &params_[i]);
         //tone.push_back(ton);
         bool ok = false;
         

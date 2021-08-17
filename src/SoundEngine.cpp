@@ -226,8 +226,6 @@ void SoundEngine::update() {
 		}
 	}
 
-	//Sea
-	SEA.update();
 
 }
 
