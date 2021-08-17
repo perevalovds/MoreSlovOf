@@ -34,7 +34,10 @@ bool SeaWord::is_live() {
 }
 
 //--------------------------------------------------------------
-void SeaWord::audioOut(vector<float> stereo_buffer, int n) {
+void SeaWord::audioOut(vector<float> &stereo_buffer, int n) {
+	for (int i = 0; i < n; i++) {
+		stereo_buffer[2 * i] = stereo_buffer[2 * i + 1] = ofRandom(-0.05, 0.05);
+	}
 
 }
 
