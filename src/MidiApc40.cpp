@@ -173,14 +173,30 @@ void MidiApc40::newMidiMessage(ofxMidiMessage& msg) {
 }*/
 
 //--------------------------------------------------------------
-void MidiApc40::midi_in_note(int port, int channel, int pitch, int onoff, int velocity) {
+void MidiApc40::midi_in_note(int port, int ch, int pitch, int onoff, int velocity) {
 	if (PRM log_midi) {
 		std::ostringstream out;
 		out << "APC note";
 		if (onoff) out << " ON"; 
 		else out << " OFF";
-		out << ", port " << port << ", ch " << channel << ", pitch " << pitch << ", vel " << velocity;
+		out << ", port " << port << ", ch " << ch << ", pitch " << pitch << ", vel " << velocity;
 		MLOG(out.str());
+	}
+
+	//Rec (Record Arm)
+	if (pitch == 48) {
+		if (ch >= 1 && ch <= maxTones) {
+			*gui.findVarStringList("REC" + ofToString(ch)) = onoff;
+		}
+		if (ch == 8) {
+			*gui.findVarStringList("REP_REC") = onoff;
+		}
+	}
+	//Louder ("Solo/Que") - дополнительное увеличение громкости
+	if (pitch == 49) {
+		if (ch >= 1 && ch <= maxTones) {
+			*gui.findVarStringList("w_louder" + ofToString(ch)) = onoff;
+		}
 	}
 }
 
@@ -225,7 +241,7 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	//Mixer - Vol
 	if (ctrl == 7) {
 		if (ch <= 6) set_float("w_vol", ch, value, 1);	//громкость Techno
-		if (ch == 7) set_float("REP_VOL", -1, value, 2);	//громкость REP_VOL
+		if (ch == 8) set_float("REP_VOL", -1, value, 1);	//громкость REP_VOL
 	}
 	//1 - Mode
 	if (ctrl == 16) set_stringlist("w_mode", ch, value, 2);
@@ -243,7 +259,6 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	if (ctrl == 22) set_float("w_spd", ch, value, 1);
 	//6 - Grain Len
 	if (ctrl == 23) set_float("w_grain_len", ch, value, 0.002, 0.1);
-
 
 	//Global Vol
 	if (ch == 1 && ctrl == 14) {

@@ -1,6 +1,7 @@
 #include "Machines.h"
 #include "ofxKuMessageLog.h"
 #include "Common.h"
+#include "ofxSoundUtils.h"
 
 extern ofxKuTextGui gui;
 
@@ -53,7 +54,13 @@ void ToneMachine::update(float dt) {
 	for (int i = 0; i < maxTones; i++) {
 		auto &p = params_[i];
 		string name = ofToString(i + 1);
-		p.vol = *gui.findVarFloat("w_vol" + name);
+
+		//Громкость 
+		float vol = *gui.findVarFloat("w_vol" + name);
+		vol = ofxSoundUtils::volume_linear_to_exp(vol);	//экспонента
+		vol *= (1 + *gui.findVarStringList("w_louder" + name));//опционально увеличиваем с помощью дополнительного флажка "w_louder" - Solo / Que на APC40
+		p.vol = vol;
+		
 		p.pan = *gui.findVarFloat("w_pan" + name);
 
 		p.mode = *gui.findVarStringList("w_mode" + name);

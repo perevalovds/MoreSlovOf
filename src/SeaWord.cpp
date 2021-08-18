@@ -2,6 +2,7 @@
 #include "gui_generated.h"
 #include "ofxKuMessageLog.h"
 #include "Common.h"
+#include "ofxSoundUtils.h"
 
 //--------------------------------------------------------------
 void SeaWordParam::read_from_GUI() {
@@ -20,10 +21,10 @@ void SeaWordParam::read_from_GUI() {
 	w_stereo_range = PRM w_stereo_range;	// 0:100 1, 10
 
 	//Fragment
-	w_speed_perc = PRM w_speed_perc;
-	w_len_perc = PRM w_len_perc;
-	w_pos_perc = PRM w_pos_perc;
-	w_pos_random_perc = PRM w_pos_random_perc;
+	//w_speed_perc = PRM w_speed_perc;
+	//w_len_perc = PRM w_len_perc;
+	//w_pos_perc = PRM w_pos_perc;
+	//w_pos_random_perc = PRM w_pos_random_perc;
 
 	//Granular
 	w_grain_msec = PRM w_grain_msec;
@@ -61,7 +62,7 @@ void SeaWord::run(const vector<float> &sound, int n, const SeaWordParam &param) 
 
 //--------------------------------------------------------------
 void SeaWord::update() {
-	
+	vol_ = ofxSoundUtils::volume_linear_to_exp(PRM REP_VOL);	//нелинейное преобразование громкости
 }
 
 //--------------------------------------------------------------
@@ -77,7 +78,7 @@ bool SeaWord::is_live() {
 //--------------------------------------------------------------
 void SeaWord::audioOut(vector<float> &stereo_buffer, int n) {
 	int use_len = n_;//n_ - n_ * rep_/max_reps_;		//сокращаем длину
-	float use_vol = ofMap(rep_, 0, max_reps_, 1, 0) * PRM REP_VOL;
+	float use_vol = ofMap(rep_, 0, max_reps_, 1, 0) * vol_;
 
 	if (is_live()) {
 		for (int i = 0; i < n; i++) {

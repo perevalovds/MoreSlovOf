@@ -2,6 +2,7 @@
 #include "gui_generated.h"
 #include "ofxKuMessageLog.h"
 
+extern ofxKuTextGui gui;
 Sea SEA;
 
 //--------------------------------------------------------------
@@ -51,10 +52,10 @@ void Sea::push_word(const vector<float> &sound, int n) {
 	if (n <= 0) return;
 
 	//выбор, куда
-	int destination = PRM REC;	//0 - sea, 1,2,3,4,5,6 - techno1..6
+	//int destination = PRM REC;	//0 - sea, 1,2,3,4,5,6 - techno1..6
 
-	if (destination == 0) {
-		//Sea
+	//Sea
+	if (PRM REP_REC) {
 		SeaWordParam param;
 		param.read_from_GUI();
 
@@ -75,12 +76,10 @@ void Sea::push_word(const vector<float> &sound, int n) {
 			}
 		}
 	}
-	else {
-		//Techno
-		int BPM = PRM BPM * 2;	//умножаем на 2, чтобы были быстрее самые короткие длительности
-
-		int i = destination - 1;
-		if (i < maxTones) {
+	//Techno
+	for (int i=0; i<maxTones; i++) {
+		if (*gui.findVarStringList("REC" + ofToString(i+1))) {
+			int BPM = PRM BPM * 2;	//умножаем на 2, чтобы были быстрее самые короткие длительности
 			auto sound1 = sound;
 			sound1.resize(n);
 			MACHINE.push_tone(i, sound1, BPM);

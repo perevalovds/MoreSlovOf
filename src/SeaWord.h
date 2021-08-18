@@ -22,10 +22,10 @@ struct SeaWordParam {
 	int w_stereo_range = 0;	// 0:100 1, 10
 
 	//Fragment
-	int w_speed_perc = 100;
-	int w_len_perc = 100;
-	int w_pos_perc = 0;
-	int w_pos_random_perc = 0;
+	//int w_speed_perc = 100;
+	//int w_len_perc = 100;
+	//int w_pos_perc = 0;
+	//int w_pos_random_perc = 0;
 
 	//Granular
 	int w_grain_msec = 50;
@@ -66,6 +66,8 @@ protected:
 	int max_reps_ = 16;
 	float stereo_pos_L_ = 0.5;
 	float stereo_pos_R_ = 0.5;
+
+	float vol_ = 1;
 
 };
 
