@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-11-26-28-222
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-13-20-52-470
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -72,6 +72,7 @@ struct Parameters {
 	float SEA_VOL;
 	string pass_thru_delta_;
 	float OUT_VOL;
+	int Arduino_Pedal;
 	string Pedal_baud;
 	string _Pedal_baud_;
 	int Pedal_invert;
@@ -101,7 +102,7 @@ struct Parameters {
 	float w_spd1;
 	float w_grain_len1;
 	int w_flt1;
-	int w_cutoff1;
+	float w_cutoff1;
 	float w_vol1;
 	float w_pan1;
 	int w_louder1;
@@ -121,7 +122,7 @@ struct Parameters {
 	float w_spd2;
 	float w_grain_len2;
 	int w_flt2;
-	int w_cutoff2;
+	float w_cutoff2;
 	float w_vol2;
 	float w_pan2;
 	int w_louder2;
@@ -141,7 +142,7 @@ struct Parameters {
 	float w_spd3;
 	float w_grain_len3;
 	int w_flt3;
-	int w_cutoff3;
+	float w_cutoff3;
 	float w_vol3;
 	float w_pan3;
 	int w_louder3;
@@ -161,7 +162,7 @@ struct Parameters {
 	float w_spd4;
 	float w_grain_len4;
 	int w_flt4;
-	int w_cutoff4;
+	float w_cutoff4;
 	float w_vol4;
 	float w_pan4;
 	int w_louder4;
@@ -181,7 +182,7 @@ struct Parameters {
 	float w_spd5;
 	float w_grain_len5;
 	int w_flt5;
-	int w_cutoff5;
+	float w_cutoff5;
 	float w_vol5;
 	float w_pan5;
 	int w_louder5;
@@ -201,7 +202,7 @@ struct Parameters {
 	float w_spd6;
 	float w_grain_len6;
 	int w_flt6;
-	int w_cutoff6;
+	float w_cutoff6;
 	float w_vol6;
 	float w_pan6;
 	int w_louder6;

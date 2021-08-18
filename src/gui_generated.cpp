@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-11-26-28-224
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-13-20-52-472
 
 Parameters params;
 //--------------------------------------------------------------
@@ -48,6 +48,7 @@ Parameters::Parameters() {
 	SEA_VOL=1;
 	pass_thru_delta_="0";
 	OUT_VOL=1;
+	Arduino_Pedal=0;
 	_Pedal_baud_="57600";
 	Pedal_invert=0;
 	Pedal_status_="...";
@@ -71,7 +72,7 @@ Parameters::Parameters() {
 	w_spd1=0.5;
 	w_grain_len1=0.01;
 	w_flt1=0;
-	w_cutoff1=500;
+	w_cutoff1=0.5;
 	w_vol1=0.5;
 	w_pan1=0.5;
 	w_louder1=0;
@@ -91,7 +92,7 @@ Parameters::Parameters() {
 	w_spd2=0.5;
 	w_grain_len2=0.01;
 	w_flt2=0;
-	w_cutoff2=500;
+	w_cutoff2=0.5;
 	w_vol2=0.5;
 	w_pan2=0.5;
 	w_louder2=0;
@@ -111,7 +112,7 @@ Parameters::Parameters() {
 	w_spd3=0.5;
 	w_grain_len3=0.01;
 	w_flt3=0;
-	w_cutoff3=500;
+	w_cutoff3=0.5;
 	w_vol3=0.5;
 	w_pan3=0.5;
 	w_louder3=0;
@@ -131,7 +132,7 @@ Parameters::Parameters() {
 	w_spd4=0.5;
 	w_grain_len4=0.01;
 	w_flt4=0;
-	w_cutoff4=500;
+	w_cutoff4=0.5;
 	w_vol4=0.5;
 	w_pan4=0.5;
 	w_louder4=0;
@@ -151,7 +152,7 @@ Parameters::Parameters() {
 	w_spd5=0.5;
 	w_grain_len5=0.01;
 	w_flt5=0;
-	w_cutoff5=500;
+	w_cutoff5=0.5;
 	w_vol5=0.5;
 	w_pan5=0.5;
 	w_louder5=0;
@@ -171,7 +172,7 @@ Parameters::Parameters() {
 	w_spd6=0.5;
 	w_grain_len6=0.01;
 	w_flt6=0;
-	w_cutoff6=500;
+	w_cutoff6=0.5;
 	w_vol6=0.5;
 	w_pan6=0.5;
 	w_louder6=0;
@@ -296,6 +297,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("Resulted sound:");
 	gui.addFloat("OUT_VOL",OUT_VOL,1,0,10,1000,100);
 	gui.addPage("PedalPult");
+	gui.addStringList("Arduino_Pedal",Arduino_Pedal,0,2,"OFF","ON");
 	gui.addString("*Pedal_baud",_Pedal_baud_,"57600");
 	gui.addStringList("Pedal_invert",Pedal_invert,0,2,"NORMAL","INVERTED");
 	gui.addDummy("");
@@ -333,14 +335,14 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC1",REC1,0,2,"OFF","ON");
 	gui.addDummy("");
 	gui.addStringList("w_mode1",w_mode1,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay1",w_delay1,0,7,"1","2","4","8","16","32","64");
+	gui.addStringList("w_delay1",w_delay1,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos1",w_pos1,0,0,1,100,10);
 	gui.addFloat("w_len1",w_len1,0.5,0,1,200,20);
 	gui.addFloat("w_spd1",w_spd1,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len1",w_grain_len1,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
 	gui.addStringList("w_flt1",w_flt1,0,4,"No","Lopass","Hipass","Bandpass");
-	gui.addInt("w_cutoff1",w_cutoff1,500,0,1000,5,50);
+	gui.addFloat("w_cutoff1",w_cutoff1,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol1",w_vol1,0.5,0,1,100,10);
 	gui.addFloat("w_pan1",w_pan1,0.5,0,1,100,10);
@@ -360,14 +362,14 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC2",REC2,0,2,"OFF","ON");
 	gui.addDummy("");
 	gui.addStringList("w_mode2",w_mode2,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay2",w_delay2,0,7,"1","2","4","8","16","32","64");
+	gui.addStringList("w_delay2",w_delay2,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos2",w_pos2,0,0,1,100,10);
 	gui.addFloat("w_len2",w_len2,0.5,0,1,200,20);
 	gui.addFloat("w_spd2",w_spd2,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len2",w_grain_len2,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
 	gui.addStringList("w_flt2",w_flt2,0,4,"No","Lopass","Hipass","Bandpass");
-	gui.addInt("w_cutoff2",w_cutoff2,500,0,1000,5,50);
+	gui.addFloat("w_cutoff2",w_cutoff2,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol2",w_vol2,0.5,0,1,100,10);
 	gui.addFloat("w_pan2",w_pan2,0.5,0,1,100,10);
@@ -387,14 +389,14 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC3",REC3,0,2,"OFF","ON");
 	gui.addDummy("");
 	gui.addStringList("w_mode3",w_mode3,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay3",w_delay3,0,7,"1","2","4","8","16","32","64");
+	gui.addStringList("w_delay3",w_delay3,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos3",w_pos3,0,0,1,100,10);
 	gui.addFloat("w_len3",w_len3,0.5,0,1,200,20);
 	gui.addFloat("w_spd3",w_spd3,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len3",w_grain_len3,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
 	gui.addStringList("w_flt3",w_flt3,0,4,"No","Lopass","Hipass","Bandpass");
-	gui.addInt("w_cutoff3",w_cutoff3,500,0,1000,5,50);
+	gui.addFloat("w_cutoff3",w_cutoff3,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol3",w_vol3,0.5,0,1,100,10);
 	gui.addFloat("w_pan3",w_pan3,0.5,0,1,100,10);
@@ -414,14 +416,14 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC4",REC4,0,2,"OFF","ON");
 	gui.addDummy("");
 	gui.addStringList("w_mode4",w_mode4,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay4",w_delay4,0,7,"1","2","4","8","16","32","64");
+	gui.addStringList("w_delay4",w_delay4,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos4",w_pos4,0,0,1,100,10);
 	gui.addFloat("w_len4",w_len4,0.5,0,1,200,20);
 	gui.addFloat("w_spd4",w_spd4,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len4",w_grain_len4,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
 	gui.addStringList("w_flt4",w_flt4,0,4,"No","Lopass","Hipass","Bandpass");
-	gui.addInt("w_cutoff4",w_cutoff4,500,0,1000,5,50);
+	gui.addFloat("w_cutoff4",w_cutoff4,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol4",w_vol4,0.5,0,1,100,10);
 	gui.addFloat("w_pan4",w_pan4,0.5,0,1,100,10);
@@ -441,14 +443,14 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC5",REC5,0,2,"OFF","ON");
 	gui.addDummy("");
 	gui.addStringList("w_mode5",w_mode5,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay5",w_delay5,0,7,"1","2","4","8","16","32","64");
+	gui.addStringList("w_delay5",w_delay5,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos5",w_pos5,0,0,1,100,10);
 	gui.addFloat("w_len5",w_len5,0.5,0,1,200,20);
 	gui.addFloat("w_spd5",w_spd5,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len5",w_grain_len5,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
 	gui.addStringList("w_flt5",w_flt5,0,4,"No","Lopass","Hipass","Bandpass");
-	gui.addInt("w_cutoff5",w_cutoff5,500,0,1000,5,50);
+	gui.addFloat("w_cutoff5",w_cutoff5,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol5",w_vol5,0.5,0,1,100,10);
 	gui.addFloat("w_pan5",w_pan5,0.5,0,1,100,10);
@@ -468,14 +470,14 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC6",REC6,0,2,"OFF","ON");
 	gui.addDummy("");
 	gui.addStringList("w_mode6",w_mode6,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay6",w_delay6,0,7,"1","2","4","8","16","32","64");
+	gui.addStringList("w_delay6",w_delay6,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos6",w_pos6,0,0,1,100,10);
 	gui.addFloat("w_len6",w_len6,0.5,0,1,200,20);
 	gui.addFloat("w_spd6",w_spd6,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len6",w_grain_len6,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
 	gui.addStringList("w_flt6",w_flt6,0,4,"No","Lopass","Hipass","Bandpass");
-	gui.addInt("w_cutoff6",w_cutoff6,500,0,1000,5,50);
+	gui.addFloat("w_cutoff6",w_cutoff6,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol6",w_vol6,0.5,0,1,100,10);
 	gui.addFloat("w_pan6",w_pan6,0.5,0,1,100,10);
@@ -566,6 +568,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("SEA_VOL", ofColor(255,100,100));
 	gui.set_var_color("-pass_thru_delta", ofColor(200,200,200));
 	gui.set_var_color("OUT_VOL", ofColor(255,100,100));
+	gui.set_var_color("Arduino_Pedal", ofColor(100,100,255));
 	gui.set_var_color("*Pedal_baud", ofColor(100,100,255));
 	gui.set_var_color("Pedal_invert", ofColor(100,100,255));
 	gui.set_var_color("-Pedal_status", ofColor(255,255,100));

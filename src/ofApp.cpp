@@ -11,7 +11,7 @@
 #include "Common.h"
 #include "MidiApc40.h"
 
-string app_ver = "v.01 (64 bit, autosave off)";
+string app_ver = "v.01 (64 bit, autosave on)";
 string Title = "MoreSlov " + app_ver;
 string Title_RU = "МореСлов " + app_ver;
 
@@ -140,6 +140,7 @@ void ofApp::load() {
 
 //--------------------------------------------------------------
 void ofApp::save() {
+	cout << "Saving..." << endl;
 	PRM save();
 	flash();
 }
@@ -152,7 +153,7 @@ void ofApp::flash() {
 //--------------------------------------------------------------
 void ofApp::exit() {
 	cout << "Exiting..." << endl;
-	//save();
+	save();
 
 	//Sound
 	SOUND.exit();

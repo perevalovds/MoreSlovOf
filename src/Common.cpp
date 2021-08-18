@@ -51,15 +51,15 @@ int Common::get_sound_buffer_size(int v) {
 }
 
 //--------------------------------------------------------------------------------
-int Common::w_delay(int index) {	//stringlist w_delay1=0 [1,2,4,8,16,32,64]
+int Common::w_delay(int index) {	//stringlist w_delay1=0 [64,32,16,8,4,2,1]
 	switch (index) {
-	case 0: return 1;
-	case 1: return 2;
-	case 2: return 4;
+	case 0: return 64;
+	case 1: return 32;
+	case 2: return 16;
 	case 3: return 8;
-	case 4: return 16;
-	case 5: return 32;
-	case 6: return 64;
+	case 4: return 4;
+	case 5: return 2;
+	case 6: return 1;
 
 	default: return 4;
 	}

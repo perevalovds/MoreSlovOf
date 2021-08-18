@@ -15,7 +15,7 @@ struct Common {
 	static int get_sample_rate(int stringlist_index);
 	static int get_sound_buffer_size(int v);
 
-	static int w_delay(int index);	//stringlist w_delay1=0 [1,2,4,8,16,32,64]
+	static int w_delay(int index);	//stringlist w_delay1=0 [64,32,16,8,4,2,1]
 
 };
 

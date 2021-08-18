@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "LfoBeat.h"
 #include "ofxFft.h"
+#include "ofxSoundUtils.h"
 
 extern int SR;  //sample rate
 
@@ -32,6 +33,9 @@ struct ToneParams {
 	int panstp = 1;
 	float panmov = 0;
 	//float VOL = 0.5;
+
+	float flt_cutoff = 0.5;
+	int flt_mode = 0;	//bypass, Lopass, Hipass, Bandpass
 };
 
 
@@ -85,6 +89,8 @@ struct MachineTone {
     
     //внутренние параметры
     int pos_s, len_s, speed_s, grain_s;
+
+	ofxSoundUtilsFilter mic_filter_L, mic_filter_R;
     
     //спектр
     static const int fft_n = 2048; //1024;

@@ -86,7 +86,9 @@ void ToneMachine::update(float dt) {
 		p.pantype = *gui.findVarStringList("w_pantype" + name);
 		p.panstp = *gui.findVarInt("w_panstp" + name);
 		p.panmov = *gui.findVarFloat("w_panmov" + name);
-		//p.VOL = 1; //*gui.findVarFloat("w_pos" + name);
+
+		p.flt_mode = *gui.findVarStringList("w_flt" + name);
+		p.flt_cutoff = *gui.findVarFloat("w_cutoff" + name);
 	}
 
 
