@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-13-30-28-038
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-14-09-00-715
 
 Parameters params;
 //--------------------------------------------------------------
@@ -63,6 +63,7 @@ Parameters::Parameters() {
 	_max_words_=15;
 	_max_polyphony_=10;
 	BPM=120;
+	Rec_Cut_ms=50;
 	WORDS_="...";
 	REC1=0;
 	w_mode1=0;
@@ -326,6 +327,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addVar("-vol_in");
 	gui.addVar("-vol_out");
 	gui.addDummy("");
+	gui.addDummy("Cut_Record");
+	gui.addInt("Rec_Cut_ms",Rec_Cut_ms,50,0,1000,5,50);
 	gui.addDummy("");
 	gui.addString("-WORDS",WORDS_,"...");
 	gui.addDummy("");
@@ -583,6 +586,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("*max_words", ofColor(255,100,100));
 	gui.set_var_color("*max_polyphony", ofColor(255,100,100));
 	gui.set_var_color("BPM", ofColor(100,100,255));
+	gui.set_var_color("Rec_Cut_ms", ofColor(200,100,100));
 	gui.set_var_color("-WORDS", ofColor(255,255,100));
 	gui.set_var_color("REC1", ofColor(255,100,100));
 	gui.set_var_color("w_mode1", ofColor(255,100,255));

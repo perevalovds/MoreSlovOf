@@ -47,14 +47,12 @@ void Sea::draw() {
 
 //--------------------------------------------------------------
 //добавить слово
-//buffer с запасом, надо взять n
-void Sea::push_word(const vector<float> &sound, int n) {
-	if (n <= 0) return;
+//sound с запасом, надо взять n, а также отрезаем начало
+void Sea::push_word(const vector<float> &sound0, int n0) {
 
-	//выбор, куда
-	//int destination = PRM REC;	//0 - sea, 1,2,3,4,5,6 - techno1..6
+	if (n0 <= 0) return;
 
-	//Sea
+	//Повторы - без подрезания
 	if (PRM REP_REC) {
 		SeaWordParam param;
 		param.read_from_GUI();
@@ -63,7 +61,7 @@ void Sea::push_word(const vector<float> &sound, int n) {
 		bool found = false;
 		for (auto &w : words_) {
 			if (!w.is_live()) {
-				w.run(sound, n, param);
+				w.run(sound0, n0, param);
 				found = true;
 				break;
 			}
@@ -72,11 +70,20 @@ void Sea::push_word(const vector<float> &sound, int n) {
 		if (!found) {
 			int k = ofRandom(words_.size());
 			if (k >= 0 && k < words_.size()) {
-				words_[k].run(sound, n, param);
+				words_[k].run(sound0, n0, param);
 			}
 		}
 	}
-	//Techno
+	//Techno - подрезаем
+	int cut_samples = PRM Rec_Cut_ms * SR / 1000;	//сколько отрезать в начале
+	int n = n0 - cut_samples;
+	if (n <= 0) return;
+	vector<float> sound(n);
+	for (int i = 0; i < n; i++) {
+		sound[i] = sound0[i + cut_samples];
+	}
+
+	//Вставляем
 	for (int i=0; i<maxTones; i++) {
 		if (*gui.findVarStringList("REC" + ofToString(i+1))) {
 			int BPM = PRM BPM * 2;	//умножаем на 2, чтобы были быстрее самые короткие длительности
