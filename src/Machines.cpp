@@ -64,6 +64,7 @@ void ToneMachine::update(float dt) {
 		p.pan = *gui.findVarFloat("w_pan" + name);
 
 		p.mode = *gui.findVarStringList("w_mode" + name);
+
 		p.delay = Common::w_delay(*gui.findVarStringList("w_delay" + name));
 		p.pos = *gui.findVarFloat("w_pos" + name);
 		
@@ -91,7 +92,9 @@ void ToneMachine::update(float dt) {
 
 		float cutoff = *gui.findVarFloat("w_cutoff" + name);
 		//нелинейность и диапазон
+		cutoff = ofMap(cutoff, 0, 1, 0.11, 1);
 		p.flt_cutoff = ofMap(cutoff*cutoff, 0, 1, 0.003, 1);
+		//cout << "cutoff " << cutoff << " " << p.flt_cutoff << endl;
 	}
 
 

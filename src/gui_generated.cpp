@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-14-09-00-715
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-14-35-55-288
 
 Parameters params;
 //--------------------------------------------------------------
@@ -337,7 +337,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("Techno1");
 	gui.addStringList("REC1",REC1,0,2,"OFF","ON");
 	gui.addDummy("");
-	gui.addStringList("w_mode1",w_mode1,0,3,"DELAY","GRAIN","SPECTR");
+	gui.addStringList("w_mode1",w_mode1,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay1",w_delay1,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos1",w_pos1,0,0,1,100,10);
 	gui.addFloat("w_len1",w_len1,0.5,0,1,200,20);
@@ -364,7 +364,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("Techno2");
 	gui.addStringList("REC2",REC2,0,2,"OFF","ON");
 	gui.addDummy("");
-	gui.addStringList("w_mode2",w_mode2,0,3,"DELAY","GRAIN","SPECTR");
+	gui.addStringList("w_mode2",w_mode2,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay2",w_delay2,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos2",w_pos2,0,0,1,100,10);
 	gui.addFloat("w_len2",w_len2,0.5,0,1,200,20);
@@ -391,7 +391,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("Techno3");
 	gui.addStringList("REC3",REC3,0,2,"OFF","ON");
 	gui.addDummy("");
-	gui.addStringList("w_mode3",w_mode3,0,3,"DELAY","GRAIN","SPECTR");
+	gui.addStringList("w_mode3",w_mode3,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay3",w_delay3,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos3",w_pos3,0,0,1,100,10);
 	gui.addFloat("w_len3",w_len3,0.5,0,1,200,20);
@@ -418,7 +418,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("Techno4");
 	gui.addStringList("REC4",REC4,0,2,"OFF","ON");
 	gui.addDummy("");
-	gui.addStringList("w_mode4",w_mode4,0,3,"DELAY","GRAIN","SPECTR");
+	gui.addStringList("w_mode4",w_mode4,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay4",w_delay4,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos4",w_pos4,0,0,1,100,10);
 	gui.addFloat("w_len4",w_len4,0.5,0,1,200,20);
@@ -445,7 +445,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("Techno5");
 	gui.addStringList("REC5",REC5,0,2,"OFF","ON");
 	gui.addDummy("");
-	gui.addStringList("w_mode5",w_mode5,0,3,"DELAY","GRAIN","SPECTR");
+	gui.addStringList("w_mode5",w_mode5,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay5",w_delay5,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos5",w_pos5,0,0,1,100,10);
 	gui.addFloat("w_len5",w_len5,0.5,0,1,200,20);
@@ -472,7 +472,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("Techno6");
 	gui.addStringList("REC6",REC6,0,2,"OFF","ON");
 	gui.addDummy("");
-	gui.addStringList("w_mode6",w_mode6,0,3,"DELAY","GRAIN","SPECTR");
+	gui.addStringList("w_mode6",w_mode6,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay6",w_delay6,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_pos6",w_pos6,0,0,1,100,10);
 	gui.addFloat("w_len6",w_len6,0.5,0,1,200,20);

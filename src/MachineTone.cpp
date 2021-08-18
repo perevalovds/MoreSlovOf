@@ -78,11 +78,11 @@ void MachineTone::update( float dt ) {
 
 //--------------------------------------------------
 void MachineTone::audioOut( StereoSample &out ) {
-	if (mode == 0) { audioOut_delay(out); }
+	if (mode == 0) { audioOut_grain(out);  }
 	else {
-		if (mode == 1) { audioOut_grain(out); }
+		if (mode == 1) { audioOut_spectr(out); }
 		else {
-			if (mode == 2) { audioOut_spectr(out); }
+			if (mode == 2) { audioOut_delay(out); }
 			else out.clear();
 		}
 	}
