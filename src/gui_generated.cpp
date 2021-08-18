@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-13-20-52-472
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-13-30-28-038
 
 Parameters params;
 //--------------------------------------------------------------
@@ -48,7 +48,7 @@ Parameters::Parameters() {
 	SEA_VOL=1;
 	pass_thru_delta_="0";
 	OUT_VOL=1;
-	Arduino_Pedal=0;
+	_Arduino_Pedal_=0;
 	_Pedal_baud_="57600";
 	Pedal_invert=0;
 	Pedal_status_="...";
@@ -297,7 +297,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("Resulted sound:");
 	gui.addFloat("OUT_VOL",OUT_VOL,1,0,10,1000,100);
 	gui.addPage("PedalPult");
-	gui.addStringList("Arduino_Pedal",Arduino_Pedal,0,2,"OFF","ON");
+	gui.addStringList("*Arduino_Pedal",_Arduino_Pedal_,0,2,"OFF","ON");
 	gui.addString("*Pedal_baud",_Pedal_baud_,"57600");
 	gui.addStringList("Pedal_invert",Pedal_invert,0,2,"NORMAL","INVERTED");
 	gui.addDummy("");
@@ -568,7 +568,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("SEA_VOL", ofColor(255,100,100));
 	gui.set_var_color("-pass_thru_delta", ofColor(200,200,200));
 	gui.set_var_color("OUT_VOL", ofColor(255,100,100));
-	gui.set_var_color("Arduino_Pedal", ofColor(100,100,255));
+	gui.set_var_color("*Arduino_Pedal", ofColor(100,100,255));
 	gui.set_var_color("*Pedal_baud", ofColor(100,100,255));
 	gui.set_var_color("Pedal_invert", ofColor(100,100,255));
 	gui.set_var_color("-Pedal_status", ofColor(255,255,100));
@@ -751,6 +751,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	device_out = _device_out_;
 	devin_nameports = _devin_nameports_;
 	devout_nameports = _devout_nameports_;
+	Arduino_Pedal = _Arduino_Pedal_;
 	Pedal_baud = _Pedal_baud_;
 	APC_midi_in = _APC_midi_in_;
 	APC_midi_out = _APC_midi_out_;

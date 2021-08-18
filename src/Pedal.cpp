@@ -7,7 +7,7 @@ int ard_connected_ = 0;
 
 //--------------------------------------------------------------
 void pedal_setup() {
-	cout << "Connected COM devices (expect Arduino):" << endl;
+	if (!PRM Arduino_Pedal) return;
 
 	//перебор устройств для подключения
 	bool inited = false;
@@ -30,6 +30,8 @@ void pedal_setup() {
 
 //--------------------------------------------------------------
 void pedal_update() {
+	if (!PRM Arduino_Pedal) return;
+
 	if (PRM Print_Arduinos) {
 		MLOG("Connected COM devices (expect Arduino)");
 		vector <ofSerialDeviceInfo> deviceList = arduino_.getDeviceList();
