@@ -36,14 +36,9 @@ protected:
 	void set_float(string name, int ch, int midi_val, float max_val);
 	void set_float(string name, int ch, int midi_val, float min_val, float max_val);
 
-	/*
-    //Novation launchpad
-    //определить, какая кнопка нажата от 0 до 63
-    static int launchpad_parse_button(int pitch);
-
-    //включить освещение LED, btn от 0 до 63, green,red - от 0 до 1
-    void launchpad_set_led(int btn, float red, float green);
-	*/
+	//отправка данных
+	//void set_apc40_mode();
+	//void test_send();
 };
 
 

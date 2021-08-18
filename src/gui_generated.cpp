@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-18-16-15-597
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-01-05-43-129
 
 Parameters params;
 //--------------------------------------------------------------
@@ -340,9 +340,6 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("*max_polyphony",_max_polyphony_,10,1,20,1,10);
 	gui.addDummy("");
 	gui.addInt("BPM",BPM,120,60,200,1,10);
-	gui.addPage("Sea");
-	gui.addVar("-vol_in");
-	gui.addVar("-vol_out");
 	gui.addDummy("");
 	gui.addDummy("Crop_Record");
 	gui.addStringList("Crop_Mode",Crop_Mode,2,3,"OFF","Manual","Auto");
@@ -350,6 +347,9 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("Crop_ms",Crop_ms,50,0,1000,5,50);
 	gui.addInt("Crop_fade_ms",Crop_fade_ms,10,0,100,1,10);
 	gui.addFloat("Min_Vol",Min_Vol,0.2,0,1,1000,100);
+	gui.addPage("Sea");
+	gui.addVar("-vol_in");
+	gui.addVar("-vol_out");
 	gui.addDummy("");
 	gui.addString("-WORDS",WORDS_,"...");
 	gui.addDummy("");
@@ -358,7 +358,6 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addTab();
 	gui.addDummy("Techno1");
 	gui.addStringList("REC1",REC1,0,2,"OFF","ON");
-	gui.addDummy("");
 	gui.addStringList("w_mode1",w_mode1,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay1",w_delay1,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_len1",w_len1,0.5,0,1,200,20);
@@ -381,11 +380,11 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("Morph");
 	gui.addStringList("w_morph1",w_morph1,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent1",w_percent1,0,0,100,1,10);
+	gui.addDummy("Pos");
 	gui.addFloat("w_pos1",w_pos1,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Techno2");
 	gui.addStringList("REC2",REC2,0,2,"OFF","ON");
-	gui.addDummy("");
 	gui.addStringList("w_mode2",w_mode2,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay2",w_delay2,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_len2",w_len2,0.5,0,1,200,20);
@@ -405,14 +404,14 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_pantype2",w_pantype2,0,8,"const","up","down","rand","sin","-sin","cos","-cos");
 	gui.addInt("w_panstp2",w_panstp2,1,1,64,1,10);
 	gui.addFloat("w_panmov2",w_panmov2,0.5,0,1,100,10);
-	gui.addDummy("");
+	gui.addDummy("Morph");
 	gui.addStringList("w_morph2",w_morph2,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent2",w_percent2,0,0,100,1,10);
+	gui.addDummy("Pos");
 	gui.addFloat("w_pos2",w_pos2,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Techno3");
 	gui.addStringList("REC3",REC3,0,2,"OFF","ON");
-	gui.addDummy("");
 	gui.addStringList("w_mode3",w_mode3,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay3",w_delay3,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_len3",w_len3,0.5,0,1,200,20);
@@ -432,14 +431,14 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_pantype3",w_pantype3,0,8,"const","up","down","rand","sin","-sin","cos","-cos");
 	gui.addInt("w_panstp3",w_panstp3,1,1,64,1,10);
 	gui.addFloat("w_panmov3",w_panmov3,0.5,0,1,100,10);
-	gui.addDummy("");
+	gui.addDummy("Morph");
 	gui.addStringList("w_morph3",w_morph3,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent3",w_percent3,0,0,100,1,10);
+	gui.addDummy("Pos");
 	gui.addFloat("w_pos3",w_pos3,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Techno4");
 	gui.addStringList("REC4",REC4,0,2,"OFF","ON");
-	gui.addDummy("");
 	gui.addStringList("w_mode4",w_mode4,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay4",w_delay4,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_len4",w_len4,0.5,0,1,200,20);
@@ -459,14 +458,14 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_pantype4",w_pantype4,0,8,"const","up","down","rand","sin","-sin","cos","-cos");
 	gui.addInt("w_panstp4",w_panstp4,1,1,64,1,10);
 	gui.addFloat("w_panmov4",w_panmov4,0.5,0,1,100,10);
-	gui.addDummy("");
+	gui.addDummy("Morph");
 	gui.addStringList("w_morph4",w_morph4,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent4",w_percent4,0,0,100,1,10);
+	gui.addDummy("Pos");
 	gui.addFloat("w_pos4",w_pos4,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Techno5");
 	gui.addStringList("REC5",REC5,0,2,"OFF","ON");
-	gui.addDummy("");
 	gui.addStringList("w_mode5",w_mode5,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay5",w_delay5,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_len5",w_len5,0.5,0,1,200,20);
@@ -486,14 +485,14 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_pantype5",w_pantype5,0,8,"const","up","down","rand","sin","-sin","cos","-cos");
 	gui.addInt("w_panstp5",w_panstp5,1,1,64,1,10);
 	gui.addFloat("w_panmov5",w_panmov5,0.5,0,1,100,10);
-	gui.addDummy("");
+	gui.addDummy("Morph");
 	gui.addStringList("w_morph5",w_morph5,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent5",w_percent5,0,0,100,1,10);
+	gui.addDummy("Pos");
 	gui.addFloat("w_pos5",w_pos5,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Techno6");
 	gui.addStringList("REC6",REC6,0,2,"OFF","ON");
-	gui.addDummy("");
 	gui.addStringList("w_mode6",w_mode6,0,3,"GRAIN","SPECTR","DELAY");
 	gui.addStringList("w_delay6",w_delay6,0,7,"64","32","16","8","4","2","1");
 	gui.addFloat("w_len6",w_len6,0.5,0,1,200,20);
@@ -513,9 +512,10 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_pantype6",w_pantype6,0,8,"const","up","down","rand","sin","-sin","cos","-cos");
 	gui.addInt("w_panstp6",w_panstp6,1,1,64,1,10);
 	gui.addFloat("w_panmov6",w_panmov6,0.5,0,1,100,10);
-	gui.addDummy("");
+	gui.addDummy("Morph");
 	gui.addStringList("w_morph6",w_morph6,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent6",w_percent6,0,0,100,1,10);
+	gui.addDummy("Pos");
 	gui.addFloat("w_pos6",w_pos6,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Repeats");

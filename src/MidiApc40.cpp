@@ -59,6 +59,8 @@ void MidiApc40::setup() {
 		}
 		if (result) {
 			MLOG("Started MIDI OUT device " + list[i], ofColor(0,200,0));
+
+			//set_apc40_mode();
 		}
 		output = result;
 	}
@@ -76,13 +78,21 @@ int MidiApc40::find_index(string name_part, vector<string> list) {
 //--------------------------------------------------------------
 void MidiApc40::update() {
 	if (PRM Print_MIDI) {
-		MLOG("Connected MIDI IN devices (expect APC40)");
+		MLOG("Connected MIDI IN devices (expected APC40)");
 		auto list = midiIn.getInPortList();
 		for (int i = 0; i < list.size(); i++) {
 			MLOG("    " + ofToString(i) + ": " + list[i]);
 		}
 
+		MLOG("Connected MIDI OUT devices (expected APC40)");
+		auto list1 = midiOut.getOutPortList();
+		for (int i = 0; i < list1.size(); i++) {
+			MLOG("    " + ofToString(i) + ": " + list1[i]);
+		}
 	}
+	//if (PRM APC_TestSend) {
+	//	test_send();
+	//}
 }
 
 //--------------------------------------------------------------
@@ -274,6 +284,44 @@ void MidiApc40::midi_in_note(int port, int ch, int pitch, int onoff, int velocit
 		}
 	}
 }
+
+//--------------------------------------------------------------
+//отправка данных
+/*void MidiApc40::set_apc40_mode() {
+	MLOG("Putting APC40 to mode...");
+	//0x40 Generic Mode
+	//0x41 Ableton Live Mode
+	//0x42 Alternate Ableton Live Mode
+
+	midiOut.sendMidiByte(0xF0);
+	midiOut.sendMidiByte(0x47);
+	midiOut.sendMidiByte(0x00);
+	midiOut.sendMidiByte(0x73);
+	midiOut.sendMidiByte(0x60);
+	midiOut.sendMidiByte(0x00);
+	midiOut.sendMidiByte(0x04);
+
+	midiOut.sendMidiByte(0x42);
+
+	midiOut.sendMidiByte(0x00);
+	midiOut.sendMidiByte(0x00);
+	midiOut.sendMidiByte(0x00);
+
+	midiOut.sendMidiByte(0xF7);
+}*/
+
+//--------------------------------------------------------------
+/*void MidiApc40::test_send() {
+	if (!output) return;
+	//RECORD ARM: note 0x30 (C_3), channel 0-7 = Track 1-8, 0=off, 1-127=on
+	MLOG("Sending to APC"); //"RECORD ARM change...");
+
+	midiOut.sendNoteOn(0, 48, 127);
+	//for (int i = 0; i < 127; i++) {
+	//	midiOut.sendNoteOn(0, i, 127);
+	//}
+		
+}*/
 
 //--------------------------------------------------------------
 
