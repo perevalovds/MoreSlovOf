@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-17-49-36-403
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-18-16-15-597
 
 Parameters params;
 //--------------------------------------------------------------
@@ -68,6 +68,7 @@ Parameters::Parameters() {
 	Crop_thresh=5;
 	Crop_ms=50;
 	Crop_fade_ms=10;
+	Min_Vol=0.2;
 	WORDS_="...";
 	REC1=0;
 	w_mode1=0;
@@ -348,6 +349,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("Crop_thresh",Crop_thresh,5,0,100,1,10);
 	gui.addInt("Crop_ms",Crop_ms,50,0,1000,5,50);
 	gui.addInt("Crop_fade_ms",Crop_fade_ms,10,0,100,1,10);
+	gui.addFloat("Min_Vol",Min_Vol,0.2,0,1,1000,100);
 	gui.addDummy("");
 	gui.addString("-WORDS",WORDS_,"...");
 	gui.addDummy("");
@@ -635,6 +637,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("Crop_thresh", ofColor(200,100,100));
 	gui.set_var_color("Crop_ms", ofColor(200,100,100));
 	gui.set_var_color("Crop_fade_ms", ofColor(200,100,100));
+	gui.set_var_color("Min_Vol", ofColor(200,100,100));
 	gui.set_var_color("-WORDS", ofColor(255,255,100));
 	gui.set_var_color("REC1", ofColor(255,100,100));
 	gui.set_var_color("w_mode1", ofColor(255,100,255));

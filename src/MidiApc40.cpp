@@ -174,34 +174,6 @@ void MidiApc40::newMidiMessage(ofxMidiMessage& msg) {
 }*/
 
 //--------------------------------------------------------------
-void MidiApc40::midi_in_note(int port, int ch, int pitch, int onoff, int velocity) {
-	if (PRM log_midi) {
-		std::ostringstream out;
-		out << "APC note";
-		if (onoff) out << " ON"; 
-		else out << " OFF";
-		out << ", port " << port << ", ch " << ch << ", pitch " << pitch << ", vel " << velocity;
-		MLOG(out.str());
-	}
-
-	//Rec (Record Arm)
-	if (pitch == 48) {
-		if (ch >= 1 && ch <= maxTones) {
-			*gui.findVarStringList("REC" + ofToString(ch)) = onoff;
-		}
-		if (ch == 8) {
-			*gui.findVarStringList("REP_REC") = onoff;
-		}
-	}
-	//Louder ("Solo/Que") - дополнительное увеличение громкости
-	if (pitch == 49) {
-		if (ch >= 1 && ch <= maxTones) {
-			*gui.findVarStringList("w_louder" + ofToString(ch)) = onoff;
-		}
-	}
-}
-
-//--------------------------------------------------------------
 void MidiApc40::set_int(string name, int ch, int midi_val, int max_val) {
 	if (ch >= 1 && ch <= maxTones) {
 		*gui.findVarInt(name + ofToString(ch)) = (max_val+1) * midi_val / 128;
@@ -273,6 +245,34 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 
 	
 
+}
+
+//--------------------------------------------------------------
+void MidiApc40::midi_in_note(int port, int ch, int pitch, int onoff, int velocity) {
+	if (PRM log_midi) {
+		std::ostringstream out;
+		out << "APC note";
+		if (onoff) out << " ON";
+		else out << " OFF";
+		out << ", port " << port << ", ch " << ch << ", pitch " << pitch << ", vel " << velocity;
+		MLOG(out.str());
+	}
+
+	//Rec (Record Arm)
+	if (pitch == 48) {
+		if (ch >= 1 && ch <= maxTones) {
+			*gui.findVarStringList("REC" + ofToString(ch)) = onoff;
+		}
+		//if (ch == 8) {
+		//	*gui.findVarStringList("REP_REC") = onoff;
+		//}
+	}
+	//Louder ("Solo/Que") - дополнительное увеличение громкости
+	if (pitch == 49) {
+		if (ch >= 1 && ch <= maxTones) {
+			*gui.findVarStringList("w_louder" + ofToString(ch)) = onoff;
+		}
+	}
 }
 
 //--------------------------------------------------------------

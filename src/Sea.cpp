@@ -139,6 +139,20 @@ void Sea::crop(const vector<float> &sound0, int n0, vector<float> &sound) {
 		}
 	}
 
+	//повышение минимальной громкости
+	float min_vol = PRM Min_Vol;
+	if (min_vol > 0) {
+		float max_v = 0.0001;
+		for (auto &v : sound) {
+			max_v = max(max_v, fabs(v));
+		}
+		if (max_v < min_vol) {
+			float koef = min_vol / max_v;
+			for (auto &v : sound) {
+				v *= koef;
+			}
+		}
+	}
 }
 
 //--------------------------------------------------------------
