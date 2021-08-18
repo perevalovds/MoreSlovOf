@@ -25,7 +25,7 @@ void ofApp::setup() {
 	MLOG("Press Enter to clear logs");
 
 	cout << "Press Enter to clear logs" << endl;
-	cout << "    Space - Pedal" << endl;
+	cout << "    Space,Z - Pedals" << endl;
 	cout << "    Shift+F - toggle fullscreen, Shift+Q - restore borderless screen" << endl;
 	cout << "1,2,Shift+1,2 - select page, cursor - select value, [,],{,},mouseL/R - change value" << endl;
 	cout << "s - save settings, l - load settings" << endl;
@@ -261,7 +261,8 @@ void ofApp::keyPressed  (int key){
 	//	ofExit();
 	//}
 
-	if (key == ' ') set_pedal_value(1);	//Pedal
+	if (key == 'z') set_pedal_value(1);	//Pedal
+	if (key == ' ') set_pedal2_value(1);	//Pedal2
 
 	if (key == OF_KEY_RETURN) MLOGGER.clear(); //сброс логов
 
@@ -301,7 +302,9 @@ void ofApp::keyPressed  (int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased  (int key){
-	if (key == ' ') set_pedal_value(0);	//Pedal
+	if (key == 'z') set_pedal_value(0);	//Pedal
+	if (key == ' ') set_pedal2_value(0);	//Pedal2
+
 
 }
 

@@ -213,15 +213,25 @@ void SoundEngine::update() {
 	PRM pass_thru_delta_ = ofToString(pass_write_pos_ - pass_read_pos_);
 
 	//педаль
-	int pedal = PRM PEDAL_;
+	//0 - техно, 1 - повторы, у техно - приоритет
+	int pedal = PRM PEDAL_ || PRM PEDAL2_;
+
+	//если идет запись повторов, но нажата техно - то остановить запись, чтобы в другом блоке запись техно
+	if (mic_rec_on_ && pedal_index_ == 1 && PRM PEDAL_) {
+		mic_rec_on_ = 0;
+	}
+
+	//начало записи
 	if (!mic_rec_on_ && pedal) {	//start rec
 		mic_rec_n_ = 0;
 		mic_rec_on_ = 1;
+		pedal_index_ = PRM PEDAL_?0:1;	//у техно - приоритет
 	}
 	else {
-		if (mic_rec_on_ && !pedal) { // || mic_rec_n_ == max_mic_rec_n_)) {	//stop rec
+		//отпустили педаль, которая записывала
+		if (mic_rec_on_ && ((pedal_index_ == 0 && PRM PEDAL_) || (pedal_index_ == 1 && PRM PEDAL2_))) {
 			mic_rec_on_ = 0;
-			SEA.push_word(mic_recording_, mic_rec_n_);
+			SEA.push_word(mic_recording_, mic_rec_n_, pedal_index_);
 			mic_rec_n_ = 0;
 		}
 	}

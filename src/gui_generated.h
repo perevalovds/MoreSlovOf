@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-14-35-55-286
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-15-18-58-735
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -80,6 +80,7 @@ struct Parameters {
 	string Pedal_status_;
 	int Print_Arduinos;
 	int PEDAL_;
+	int PEDAL2_;
 	string APC_midi_in;
 	string _APC_midi_in_;
 	string APC_midi_out;

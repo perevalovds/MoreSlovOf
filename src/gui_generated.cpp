@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-14-35-55-288
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-15-18-58-736
 
 Parameters params;
 //--------------------------------------------------------------
@@ -54,6 +54,7 @@ Parameters::Parameters() {
 	Pedal_status_="...";
 	Print_Arduinos=0;
 	PEDAL_=0;
+	PEDAL2_=0;
 	_APC_midi_in_="APC40";
 	_APC_midi_out_="APC40";
 	APC_status_="...";
@@ -305,7 +306,10 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addString("-Pedal_status",Pedal_status_,"...");
 	gui.addButton("Print_Arduinos",Print_Arduinos);
 	gui.addTab();
+	gui.addDummy("techno_keyZ");
 	gui.addStringList("-PEDAL",PEDAL_,0,2,"OFF","ON");
+	gui.addDummy("repeats_keySpace");
+	gui.addStringList("-PEDAL2",PEDAL2_,0,2,"OFF","ON");
 	gui.addTab();
 	gui.addDummy("APC40");
 	gui.addString("*APC_midi_in",_APC_midi_in_,"APC40");
@@ -577,6 +581,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("-Pedal_status", ofColor(255,255,100));
 	gui.set_var_color("Print_Arduinos", ofColor(255,255,100));
 	gui.set_var_color("-PEDAL", ofColor(255,100,100));
+	gui.set_var_color("-PEDAL2", ofColor(255,100,100));
 	gui.set_var_color("*APC_midi_in", ofColor(100,100,255));
 	gui.set_var_color("*APC_midi_out", ofColor(100,100,255));
 	gui.set_var_color("-APC_status", ofColor(255,255,100));

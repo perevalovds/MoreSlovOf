@@ -12,7 +12,8 @@ struct Sea {
 
 	//добавить слово
 	//buffer с запасом, надо использовать n
-	void push_word(const vector<float> &sound, int n);
+	//pedal_index 0 - техно, 1 - повторы
+	void push_word(const vector<float> &sound, int n, int pedal_index);
 
 	//звук
 	void audioOut(vector<float> &stereo_buffer, int n);

@@ -48,6 +48,7 @@ protected:
 	vector<float> mic_recording_;
 	int mic_rec_n_ = 0;
 	int mic_rec_on_ = 0;
+	int pedal_index_ = 0;	//0 - техно, 1 - повторы, у техно - приоритет
 
 	vector<float> stereo_buffer_;
 };
