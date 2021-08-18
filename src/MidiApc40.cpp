@@ -249,7 +249,7 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	//2 - Delay
 	if (ctrl == 17) set_stringlist("w_delay", ch, value, 6);
 	//7 - Filter
-	if (ctrl == 18) set_int("w_cutoff", ch, value, 1000);
+	if (ctrl == 18) set_float("w_cutoff", ch, value, 1);
 	//8 - Pan
 	if (ctrl == 19) set_float("w_pan", ch, value, 1);
 	//3 - Pos

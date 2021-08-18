@@ -89,7 +89,7 @@ void MachineTone::audioOut( StereoSample &out ) {
 
 	//применяем фильтр
 	out.L = mic_filter_L.process(out.L, TP flt_cutoff, TP flt_mode);
-	out.R = mic_filter_L.process(out.R, TP flt_cutoff, TP flt_mode);
+	out.R = mic_filter_R.process(out.R, TP flt_cutoff, TP flt_mode);
 
 	//применяем Vol и Pan
 	out.L *= TP vol * (1 - TP pan); //громкость гасится из-за pan в 2 раза в центре

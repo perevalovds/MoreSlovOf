@@ -67,18 +67,18 @@ void ToneMachine::update(float dt) {
 		p.delay = Common::w_delay(*gui.findVarStringList("w_delay" + name));
 		p.pos = *gui.findVarFloat("w_pos" + name);
 		
-		p.len = *gui.findVarFloat("w_len" + name);
+		float len = *gui.findVarFloat("w_len" + name);
 		//нелинейность и диапазон
-		p.len = ofMap(p.len*p.len, 0, 1, 0.01, 5);	
+		p.len = ofMap(len*len, 0, 1, 0.01, 5);	
 
 
-		p.spd = *gui.findVarFloat("w_spd" + name);
+		float spd = *gui.findVarFloat("w_spd" + name);
 		//нелинейность
-		p.spd *= p.spd;
+		p.spd = spd*spd;
 
-		p.grain_len = *gui.findVarFloat("w_grain_len" + name);
+		float grain_len = *gui.findVarFloat("w_grain_len" + name);
 		//нелинейность
-		p.grain_len = (p.grain_len/0.1)*(p.grain_len / 0.1)*0.1;
+		p.grain_len = (grain_len/0.1)*(grain_len / 0.1)*0.1;
 
 		p.voltype = *gui.findVarStringList("w_voltype" + name);
 		p.volstp = *gui.findVarInt("w_volstp" + name);
@@ -88,7 +88,10 @@ void ToneMachine::update(float dt) {
 		p.panmov = *gui.findVarFloat("w_panmov" + name);
 
 		p.flt_mode = *gui.findVarStringList("w_flt" + name);
-		p.flt_cutoff = *gui.findVarFloat("w_cutoff" + name);
+
+		float cutoff = *gui.findVarFloat("w_cutoff" + name);
+		//нелинейность и диапазон
+		p.flt_cutoff = ofMap(cutoff*cutoff, 0, 1, 0.003, 1);
 	}
 
 
