@@ -78,11 +78,19 @@ void MachineTone::update( float dt ) {
 
 //--------------------------------------------------
 void MachineTone::audioOut( StereoSample &out ) {
-    if (mode == 0) { audioOut_delay(out); return; }
-    if (mode == 1) { audioOut_grain(out); return; }
-    if (mode == 2) { audioOut_spectr(out); return; }
+	if (mode == 0) { audioOut_delay(out); }
+	else {
+		if (mode == 1) { audioOut_grain(out); }
+		else {
+			if (mode == 2) { audioOut_spectr(out); }
+			else out.clear();
+		}
+	}
+
+	//применяем Vol и Pan
+	out.L *= TP vol * (1 - TP pan); //громкость гасится из-за pan в 2 раза в центре
+	out.R *= TP vol * (TP pan);
     
-    return;
 }
 
 //--------------------------------------------------

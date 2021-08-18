@@ -34,6 +34,7 @@ protected:
 	void set_int(string name, int ch, int midi_val, int max_val);
 	void set_stringlist(string name, int ch, int midi_val, int max_val);
 	void set_float(string name, int ch, int midi_val, float max_val);
+	void set_float(string name, int ch, int midi_val, float min_val, float max_val);
 
 	/*
     //Novation launchpad

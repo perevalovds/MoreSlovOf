@@ -206,6 +206,13 @@ void MidiApc40::set_float(string name, int ch, int midi_val, float max_val) {
 }
 
 //--------------------------------------------------------------
+void MidiApc40::set_float(string name, int ch, int midi_val, float min_val, float max_val) {
+	if (ch >= 1 && ch <= maxTones) {
+		*gui.findVarFloat(name + ofToString(ch)) = ofMap(midi_val, 0, 127, min_val, max_val);
+	}
+}
+
+//--------------------------------------------------------------
 void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	if (PRM log_midi) {
 		std::ostringstream out;
@@ -219,19 +226,19 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	//1 - Mode
 	if (ctrl == 16) set_stringlist("w_mode", ch, value, 2);
 	//2 - Delay
-	if (ctrl == 17) set_stringlist("w_delay", ch, value, 5);
-	//3 - Pos
-	if (ctrl == 18) set_float("w_pos", ch, value, 1);
-	//4 - Len
-	if (ctrl == 19) set_float("w_len", ch, value, 5);
-	//5 - Spd
-	if (ctrl == 20) set_float("w_spd", ch, value, 1);
-	//6 - Grain
-	if (ctrl == 21) set_float("w_grain_len", ch, value, 0.1);
+	if (ctrl == 17) set_stringlist("w_delay", ch, value, 6);
 	//7 - Filter
-	if (ctrl == 22) set_int("w_cutoff", ch, value, 1000);
+	if (ctrl == 18) set_int("w_cutoff", ch, value, 1000);
 	//8 - Pan
-	if (ctrl == 23) set_float("w_pan", ch, value, 1);
+	if (ctrl == 19) set_float("w_pan", ch, value, 1);
+	//3 - Pos
+	if (ctrl == 20) set_float("w_pos", ch, value, 1);
+	//4 - Len
+	if (ctrl == 21) set_float("w_len", ch, value, 1);
+	//5 - Spd
+	if (ctrl == 22) set_float("w_spd", ch, value, 1);
+	//6 - Grain Len
+	if (ctrl == 23) set_float("w_grain_len", ch, value, 0.002, 0.1);
 
 
 	//Global Vol

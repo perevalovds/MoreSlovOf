@@ -54,7 +54,9 @@ struct MachineTone {
     LfoBeat lfo_flt;
     
     
-    float vol, pan, flt;
+	float vol = 1;
+	float pan = 0.5;
+	float flt = 0.5;
     
     //bool live;
     int samples_per_bit;

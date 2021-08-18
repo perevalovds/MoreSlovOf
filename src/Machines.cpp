@@ -59,7 +59,11 @@ void ToneMachine::update(float dt) {
 		p.mode = *gui.findVarStringList("w_mode" + name);
 		p.delay = Common::w_delay(*gui.findVarStringList("w_delay" + name));
 		p.pos = *gui.findVarFloat("w_pos" + name);
+		
 		p.len = *gui.findVarFloat("w_len" + name);
+		//нелинейность и диапазон
+		p.len = ofMap(p.len*p.len, 0, 1, 0.01, 5);	
+
 
 		p.spd = *gui.findVarFloat("w_spd" + name);
 		//нелинейность

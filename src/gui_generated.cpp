@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-09-18-05-377
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-09-47-00-988
 
 Parameters params;
 //--------------------------------------------------------------
@@ -64,6 +64,7 @@ Parameters::Parameters() {
 	BPM=120;
 	WORDS_="...";
 	REC=0;
+	REP_VOL=0.5;
 	w_duration_msec=10000;
 	w_evolution_perc=40;
 	w_fadeout_perc=10;
@@ -85,7 +86,7 @@ Parameters::Parameters() {
 	w_mode1=0;
 	w_delay1=0;
 	w_pos1=0;
-	w_len1=5;
+	w_len1=0.5;
 	w_spd1=0.5;
 	w_grain_len1=0.01;
 	w_flt1=0;
@@ -103,7 +104,7 @@ Parameters::Parameters() {
 	w_mode2=0;
 	w_delay2=0;
 	w_pos2=0;
-	w_len2=5;
+	w_len2=0.5;
 	w_spd2=0.5;
 	w_grain_len2=0.01;
 	w_flt2=0;
@@ -121,7 +122,7 @@ Parameters::Parameters() {
 	w_mode3=0;
 	w_delay3=0;
 	w_pos3=0;
-	w_len3=5;
+	w_len3=0.5;
 	w_spd3=0.5;
 	w_grain_len3=0.01;
 	w_flt3=0;
@@ -139,7 +140,7 @@ Parameters::Parameters() {
 	w_mode4=0;
 	w_delay4=0;
 	w_pos4=0;
-	w_len4=5;
+	w_len4=0.5;
 	w_spd4=0.5;
 	w_grain_len4=0.01;
 	w_flt4=0;
@@ -157,7 +158,7 @@ Parameters::Parameters() {
 	w_mode5=0;
 	w_delay5=0;
 	w_pos5=0;
-	w_len5=5;
+	w_len5=0.5;
 	w_spd5=0.5;
 	w_grain_len5=0.01;
 	w_flt5=0;
@@ -175,7 +176,7 @@ Parameters::Parameters() {
 	w_mode6=0;
 	w_delay6=0;
 	w_pos6=0;
-	w_len6=5;
+	w_len6=0.5;
 	w_spd6=0.5;
 	w_grain_len6=0.01;
 	w_flt6=0;
@@ -318,7 +319,9 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC",REC,0,7,"Sea","Techno1","Techno2","Techno3","Techno4","Techno5","Techno6");
 	gui.addVar("-PEDAL");
 	gui.addTab();
-	gui.addDummy("Duration");
+	gui.addDummy("Repeats");
+	gui.addFloat("REP_VOL",REP_VOL,0.5,0,2,200,20);
+	gui.addDummy("");
 	gui.addInt("w_duration_msec",w_duration_msec,10000,100,60000,10,500);
 	gui.addInt("w_evolution_perc",w_evolution_perc,40,1,100,1,10);
 	gui.addInt("w_fadeout_perc",w_fadeout_perc,10,1,100,1,10);
@@ -345,9 +348,9 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addTab();
 	gui.addDummy("Techno1");
 	gui.addStringList("w_mode1",w_mode1,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay1",w_delay1,0,6,"1","2","4","8","16","32");
+	gui.addStringList("w_delay1",w_delay1,0,7,"1","2","4","8","16","32","64");
 	gui.addFloat("w_pos1",w_pos1,0,0,1,100,10);
-	gui.addFloat("w_len1",w_len1,5,0,5,200,20);
+	gui.addFloat("w_len1",w_len1,0.5,0,1,200,20);
 	gui.addFloat("w_spd1",w_spd1,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len1",w_grain_len1,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
@@ -369,9 +372,9 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addTab();
 	gui.addDummy("Techno2");
 	gui.addStringList("w_mode2",w_mode2,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay2",w_delay2,0,6,"1","2","4","8","16","32");
+	gui.addStringList("w_delay2",w_delay2,0,7,"1","2","4","8","16","32","64");
 	gui.addFloat("w_pos2",w_pos2,0,0,1,100,10);
-	gui.addFloat("w_len2",w_len2,5,0,5,200,20);
+	gui.addFloat("w_len2",w_len2,0.5,0,1,200,20);
 	gui.addFloat("w_spd2",w_spd2,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len2",w_grain_len2,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
@@ -393,9 +396,9 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addTab();
 	gui.addDummy("Techno3");
 	gui.addStringList("w_mode3",w_mode3,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay3",w_delay3,0,6,"1","2","4","8","16","32");
+	gui.addStringList("w_delay3",w_delay3,0,7,"1","2","4","8","16","32","64");
 	gui.addFloat("w_pos3",w_pos3,0,0,1,100,10);
-	gui.addFloat("w_len3",w_len3,5,0,5,200,20);
+	gui.addFloat("w_len3",w_len3,0.5,0,1,200,20);
 	gui.addFloat("w_spd3",w_spd3,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len3",w_grain_len3,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
@@ -417,9 +420,9 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addTab();
 	gui.addDummy("Techno4");
 	gui.addStringList("w_mode4",w_mode4,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay4",w_delay4,0,6,"1","2","4","8","16","32");
+	gui.addStringList("w_delay4",w_delay4,0,7,"1","2","4","8","16","32","64");
 	gui.addFloat("w_pos4",w_pos4,0,0,1,100,10);
-	gui.addFloat("w_len4",w_len4,5,0,5,200,20);
+	gui.addFloat("w_len4",w_len4,0.5,0,1,200,20);
 	gui.addFloat("w_spd4",w_spd4,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len4",w_grain_len4,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
@@ -441,9 +444,9 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addTab();
 	gui.addDummy("Techno5");
 	gui.addStringList("w_mode5",w_mode5,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay5",w_delay5,0,6,"1","2","4","8","16","32");
+	gui.addStringList("w_delay5",w_delay5,0,7,"1","2","4","8","16","32","64");
 	gui.addFloat("w_pos5",w_pos5,0,0,1,100,10);
-	gui.addFloat("w_len5",w_len5,5,0,5,200,20);
+	gui.addFloat("w_len5",w_len5,0.5,0,1,200,20);
 	gui.addFloat("w_spd5",w_spd5,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len5",w_grain_len5,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
@@ -465,9 +468,9 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addTab();
 	gui.addDummy("Techno6");
 	gui.addStringList("w_mode6",w_mode6,0,3,"DELAY","GRAIN","SPECTR");
-	gui.addStringList("w_delay6",w_delay6,0,6,"1","2","4","8","16","32");
+	gui.addStringList("w_delay6",w_delay6,0,7,"1","2","4","8","16","32","64");
 	gui.addFloat("w_pos6",w_pos6,0,0,1,100,10);
-	gui.addFloat("w_len6",w_len6,5,0,5,200,20);
+	gui.addFloat("w_len6",w_len6,0.5,0,1,200,20);
 	gui.addFloat("w_spd6",w_spd6,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len6",w_grain_len6,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
@@ -554,6 +557,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("BPM", ofColor(100,100,255));
 	gui.set_var_color("-WORDS", ofColor(255,255,100));
 	gui.set_var_color("REC", ofColor(255,255,100));
+	gui.set_var_color("REP_VOL", ofColor(255,100,100));
 	gui.set_var_color("w_duration_msec", ofColor(255,255,100));
 	gui.set_var_color("w_evolution_perc", ofColor(255,255,100));
 	gui.set_var_color("w_fadeout_perc", ofColor(255,255,100));
