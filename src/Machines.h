@@ -20,6 +20,8 @@ struct ToneMachine {
     ToneMachine();
     void setup();
 
+	void draw_thumbs();		//рисовать звуки
+
     bool shared_pushed;
     
     void push_tone(int ton_number, vector<float> &sound, float BPM);

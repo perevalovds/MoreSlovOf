@@ -228,6 +228,9 @@ void ofApp::draw(){
 		gui.draw(20, 20, true, 255, 255);	//draw gui
 		ofShowCursor();		//show mouse
 
+		//Звуки
+		MACHINE.draw_thumbs();
+
 		//Сообщения
 		ofSetColor(255);
 		ofFill();

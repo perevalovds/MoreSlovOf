@@ -43,13 +43,17 @@ struct ToneParams {
 struct MachineTone {
     vector<float> sound;
     
-    void setup(vector<float> &sound0, float BPM, ToneParams *params);
+    void setup(int id, vector<float> &sound0, float BPM, ToneParams *params);
     void audioOut( StereoSample &out );
     void update( float dt );
-    
+	
+	void draw_thumb(); //рисовать звук и pos
+
     ~MachineTone();
     
-    ToneParams *prm_;
+	int id_ = 0;
+
+	ToneParams *prm_;
 
     int sample;
     int N;
@@ -108,6 +112,11 @@ struct MachineTone {
     int fft_pos;        //подготовленный сэмпл для fft
     void audioOut_make_buffer();
     
+
+	//thumbnail
+	vector<float> thumb_;	//данные для картинки звука
+	void make_thumb();
+
 };
 
 

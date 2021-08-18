@@ -229,7 +229,7 @@ void SoundEngine::update() {
 	}
 	else {
 		//отпустили педаль, которая записывала
-		if (mic_rec_on_ && ((pedal_index_ == 0 && PRM PEDAL_) || (pedal_index_ == 1 && PRM PEDAL2_))) {
+		if (mic_rec_on_ && ((pedal_index_ == 0 && !PRM PEDAL_) || (pedal_index_ == 1 && !PRM PEDAL2_))) {
 			mic_rec_on_ = 0;
 			SEA.push_word(mic_recording_, mic_rec_n_, pedal_index_);
 			mic_rec_n_ = 0;

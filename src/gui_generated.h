@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-15-18-58-735
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-17-04-42-385
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -95,7 +95,9 @@ struct Parameters {
 	int max_polyphony;
 	int _max_polyphony_;
 	int BPM;
-	int Rec_Cut_ms;
+	int Crop_Mode;
+	int Crop_thresh;
+	int Crop_ms;
 	string WORDS_;
 	int REC1;
 	int w_mode1;
@@ -217,7 +219,6 @@ struct Parameters {
 	float w_panmov6;
 	int w_morph6;
 	int w_percent6;
-	int REP_REC;
 	float REP_VOL;
 	int w_duration_msec;
 	int w_evolution_perc;
@@ -237,6 +238,16 @@ struct Parameters {
 	int sea_y;
 	int sea_w;
 	int sea_h;
+	int thumb_x1;
+	int thumb_y;
+	int thumb_w;
+	int thumb_h;
+	float thumb_scl;
+	int thumb_x2;
+	int thumb_x3;
+	int thumb_x4;
+	int thumb_x5;
+	int thumb_x6;
 	int SaveDebugSounds;
     Parameters();
     void setup(ofxKuTextGui &gui, string fileName);

@@ -19,6 +19,9 @@ struct Sea {
 	void audioOut(vector<float> &stereo_buffer, int n);
 protected:
 	vector<SeaWord> words_;	//создаем один раз, чтобы звуковой потом мог всегда считывать
+
+	//подрезка звука - выкл, ручная подрезка начала, авто подрезка начала и конца
+	void crop(const vector<float> &sound0, int n, vector<float> &sound);
 };
 
 

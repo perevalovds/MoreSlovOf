@@ -50,10 +50,11 @@ void Sea::draw() {
 //buffer с запасом, надо использовать n
 //pedal_index 0 - техно, 1 - повторы
 void Sea::push_word(const vector<float> &sound0, int n0, int pedal_index) {
+	vector<float> sound;
+	crop(sound0, n0, sound);	//подрезаем звук выбранным алгоритмом
+	if (sound.empty()) return;
 
-	if (n0 <= 0) return;
-
-	//Повторы - без подрезания
+	//Повторы
 	if (pedal_index == 1) {
 		//if (PRM REP_REC) {
 		SeaWordParam param;
@@ -78,24 +79,54 @@ void Sea::push_word(const vector<float> &sound0, int n0, int pedal_index) {
 
 	}
 	else {
-		//Techno - подрезаем
-		int cut_samples = PRM Rec_Cut_ms * SR / 1000;	//сколько отрезать в начале
-		int n = n0 - cut_samples;
-		if (n <= 0) return;
-		vector<float> sound(n);
-		for (int i = 0; i < n; i++) {
-			sound[i] = sound0[i + cut_samples];
-		}
-
-		//Вставляем
+		//Techno 
 		for (int i = 0; i < maxTones; i++) {
 			if (*gui.findVarStringList("REC" + ofToString(i + 1))) {
-				int BPM = PRM BPM * 2;	//умножаем на 2, чтобы были быстрее самые короткие длительности
-				auto sound1 = sound;
-				sound1.resize(n);
-				MACHINE.push_tone(i, sound1, BPM);
+				int BPM = PRM BPM * 2;	//умножаем на 2, чтобы были быстрее самые короткие длительности				
+				MACHINE.push_tone(i, sound, BPM);
 			}
 		}
+	}
+}
+
+//--------------------------------------------------------------
+//подрезка звука - выкл, ручная подрезка начала, авто подрезка начала и конца
+void Sea::crop(const vector<float> &sound0, int n0, vector<float> &sound) {
+	int mode = PRM Crop_Mode;
+
+	int start = 0;
+	int end = n0 - 1;
+	if (mode == 0) { // off, ничего не подрезаем
+	}
+	if (mode == 1) { // manual, отрезаем начало
+		int cut_samples = PRM Crop_ms * SR / 1000;	
+		start = cut_samples;
+	}
+	if (mode == 2) { // auto, вычисляем начало и конец по адаптивному порогу от максимальной амплитуды 
+		float max_v = 0.0001;
+		for (auto &v : sound0) {
+			max_v = max(max_v, fabs(v));
+		}
+		float thresh = max_v * PRM Crop_thresh / 100.0f;
+		//начало
+		while (start < n0 && fabs(sound0[start] <= thresh)) {
+			start++;
+		}
+		//конец
+		while (end > start && fabs(sound0[end] <= thresh)) {
+			end--;
+		}
+
+	}
+	//подрезаем
+	int n = end+1-start;
+	if (start >= n || n <= 1) {
+		sound.clear();
+		return;
+	}
+	sound.resize(n);
+	for (int i = 0; i < n; i++) {
+		sound[i] = sound0[start + i];
 	}
 }
 

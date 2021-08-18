@@ -24,6 +24,15 @@ void ToneMachine::setup() {
 }
     
 //--------------------------------------------------
+void ToneMachine::draw_thumbs() {		//рисовать звуки
+	for (int i = 0; i < maxTones; i++) {
+		if (tone[i]) {
+			tone[i]->draw_thumb();
+		}
+	}
+}
+
+//--------------------------------------------------
 void ToneMachine::push_tone(int ton_number, vector<float> &sound, float BPM) {
 	MLOG("Techno " + ofToString(ton_number + 1));
 
@@ -33,7 +42,7 @@ void ToneMachine::push_tone(int ton_number, vector<float> &sound, float BPM) {
     //Запуск тона
     if (ton) {
         int i = ton_number;
-        ton->setup(sound, BPM, &params_[i]);
+        ton->setup(i, sound, BPM, &params_[i]);
         //tone.push_back(ton);
         bool ok = false;
         

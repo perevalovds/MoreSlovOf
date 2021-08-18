@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-15-18-58-736
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-17-04-42-386
 
 Parameters params;
 //--------------------------------------------------------------
@@ -64,7 +64,9 @@ Parameters::Parameters() {
 	_max_words_=15;
 	_max_polyphony_=10;
 	BPM=120;
-	Rec_Cut_ms=50;
+	Crop_Mode=2;
+	Crop_thresh=5;
+	Crop_ms=50;
 	WORDS_="...";
 	REC1=0;
 	w_mode1=0;
@@ -186,7 +188,6 @@ Parameters::Parameters() {
 	w_panmov6=0.5;
 	w_morph6=0;
 	w_percent6=0;
-	REP_REC=0;
 	REP_VOL=0.5;
 	w_duration_msec=10000;
 	w_evolution_perc=40;
@@ -206,6 +207,16 @@ Parameters::Parameters() {
 	sea_y=20;
 	sea_w=1000;
 	sea_h=600;
+	thumb_x1=100;
+	thumb_y=800;
+	thumb_w=100;
+	thumb_h=50;
+	thumb_scl=1;
+	thumb_x2=100;
+	thumb_x3=100;
+	thumb_x4=100;
+	thumb_x5=100;
+	thumb_x6=100;
 	SaveDebugSounds=0;
 }
 
@@ -331,12 +342,15 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addVar("-vol_in");
 	gui.addVar("-vol_out");
 	gui.addDummy("");
-	gui.addDummy("Cut_Record");
-	gui.addInt("Rec_Cut_ms",Rec_Cut_ms,50,0,1000,5,50);
+	gui.addDummy("Crop_Record");
+	gui.addStringList("Crop_Mode",Crop_Mode,2,3,"OFF","Manual","Auto");
+	gui.addInt("Crop_thresh",Crop_thresh,5,0,100,1,10);
+	gui.addInt("Crop_ms",Crop_ms,50,0,1000,5,50);
 	gui.addDummy("");
 	gui.addString("-WORDS",WORDS_,"...");
 	gui.addDummy("");
 	gui.addVar("-PEDAL");
+	gui.addVar("-PEDAL2");
 	gui.addTab();
 	gui.addDummy("Techno1");
 	gui.addStringList("REC1",REC1,0,2,"OFF","ON");
@@ -501,7 +515,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("w_percent6",w_percent6,0,0,100,1,10);
 	gui.addTab();
 	gui.addDummy("Repeats");
-	gui.addStringList("REP_REC",REP_REC,0,2,"OFF","ON");
+	gui.addDummy("");
 	gui.addDummy("");
 	gui.addFloat("REP_VOL",REP_VOL,0.5,0,1,100,10);
 	gui.addDummy("");
@@ -529,6 +543,30 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("sea_y",sea_y,20,0,2000,10,50);
 	gui.addInt("sea_w",sea_w,1000,0,2000,10,50);
 	gui.addInt("sea_h",sea_h,600,0,2000,10,50);
+	gui.addTab();
+	gui.addDummy("Techno1");
+	gui.addInt("thumb_x1",thumb_x1,100,0,2000,1,20);
+	gui.addDummy("");
+	gui.addInt("thumb_y",thumb_y,800,0,2000,1,20);
+	gui.addInt("thumb_w",thumb_w,100,1,300,1,20);
+	gui.addInt("thumb_h",thumb_h,50,1,300,1,20);
+	gui.addDummy("");
+	gui.addFloat("thumb_scl",thumb_scl,1,0,10,1000,100);
+	gui.addTab();
+	gui.addDummy("Techno2");
+	gui.addInt("thumb_x2",thumb_x2,100,0,2000,1,20);
+	gui.addTab();
+	gui.addDummy("Techno3");
+	gui.addInt("thumb_x3",thumb_x3,100,0,2000,1,20);
+	gui.addTab();
+	gui.addDummy("Techno4");
+	gui.addInt("thumb_x4",thumb_x4,100,0,2000,1,20);
+	gui.addTab();
+	gui.addDummy("Techno5");
+	gui.addInt("thumb_x5",thumb_x5,100,0,2000,1,20);
+	gui.addTab();
+	gui.addDummy("Techno6");
+	gui.addInt("thumb_x6",thumb_x6,100,0,2000,1,20);
 	gui.addPage("Debug");
 	gui.addVar("ClearLog");
 	gui.addVar("Save");
@@ -591,7 +629,9 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("*max_words", ofColor(255,100,100));
 	gui.set_var_color("*max_polyphony", ofColor(255,100,100));
 	gui.set_var_color("BPM", ofColor(100,100,255));
-	gui.set_var_color("Rec_Cut_ms", ofColor(200,100,100));
+	gui.set_var_color("Crop_Mode", ofColor(200,100,100));
+	gui.set_var_color("Crop_thresh", ofColor(200,100,100));
+	gui.set_var_color("Crop_ms", ofColor(200,100,100));
 	gui.set_var_color("-WORDS", ofColor(255,255,100));
 	gui.set_var_color("REC1", ofColor(255,100,100));
 	gui.set_var_color("w_mode1", ofColor(255,100,255));
@@ -713,7 +753,6 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_panmov6", ofColor(100,100,255));
 	gui.set_var_color("w_morph6", ofColor(255,100,100));
 	gui.set_var_color("w_percent6", ofColor(255,100,100));
-	gui.set_var_color("REP_REC", ofColor(255,100,100));
 	gui.set_var_color("REP_VOL", ofColor(255,100,100));
 	gui.set_var_color("w_duration_msec", ofColor(255,255,100));
 	gui.set_var_color("w_evolution_perc", ofColor(255,255,100));
@@ -733,6 +772,16 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("sea_y", ofColor(128,128,128));
 	gui.set_var_color("sea_w", ofColor(128,128,128));
 	gui.set_var_color("sea_h", ofColor(128,128,128));
+	gui.set_var_color("thumb_x1", ofColor(200,200,200));
+	gui.set_var_color("thumb_y", ofColor(200,200,200));
+	gui.set_var_color("thumb_w", ofColor(200,200,200));
+	gui.set_var_color("thumb_h", ofColor(200,200,200));
+	gui.set_var_color("thumb_scl", ofColor(200,200,200));
+	gui.set_var_color("thumb_x2", ofColor(200,200,200));
+	gui.set_var_color("thumb_x3", ofColor(200,200,200));
+	gui.set_var_color("thumb_x4", ofColor(200,200,200));
+	gui.set_var_color("thumb_x5", ofColor(200,200,200));
+	gui.set_var_color("thumb_x6", ofColor(200,200,200));
 	gui.set_var_color("SaveDebugSounds", ofColor(80,80,255));
 	fileName_ = fileName;
 	gui_ = &gui;

@@ -1,17 +1,25 @@
 #include "MachineTone.h"
 
+#include "gui_generated.h"
+
+extern ofxKuTextGui gui;
+
 //--------------------------------------------------
 MachineTone::~MachineTone() {
     delete fft;
 }
 
 //--------------------------------------------------
-void MachineTone::setup(vector<float> &sound0, float BPM, ToneParams *params) {
+void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *params) {
+	id_ = id;
     prm_ = params;
     
     sound = sound0;
     
-    N = sound0.size();
+    N = sound.size();
+
+	//thumb
+	make_thumb();
     
     //live = true;
     
@@ -217,6 +225,50 @@ void MachineTone::audioOut_make_buffer() {
     //сдвиг положения воспроизведения
     play_fft += n*speed_f;
     
+}
+
+//--------------------------------------------------
+void MachineTone::make_thumb() {
+	int n = 100;		//TODO PARAM размер thumb
+	thumb_.resize(n);
+	fill(thumb_.begin(), thumb_.end(), 0);
+	if (N == 0) return;
+	for (int i = 0; i < N; i++) {
+		auto &v = thumb_[i * n / N];
+		v = max(v, sound[i]);
+	}
+}
+
+//--------------------------------------------------
+//рисовать звук и pos
+void MachineTone::draw_thumb() {
+	int w = PRM thumb_w;
+	int h2 = PRM thumb_h / 2;
+	int x = *gui.findVarInt("thumb_x" + ofToString(id_ + 1));
+	int y = PRM thumb_y + h2;
+
+	float scly = PRM thumb_scl * h2;
+
+	// border
+	ofSetColor(200);
+	ofNoFill();
+	ofDrawRectangle(x, y-h2, w, 2*h2);
+	
+	// sound
+	int n = thumb_.size();
+	if (n > 0) {
+		for (int i = 0; i < w; i++) {
+			int v = int(thumb_[i*n/w] * scly);
+			ofDrawLine(x + i, y - v, x + i, y + v);
+		}
+	}
+
+	// pos
+	ofSetColor(255, 0, 0);
+	ofSetLineWidth(3);
+	int pos = TP pos * w;
+	ofDrawLine(x+pos, y - h2, x+pos, y + h2);
+	ofSetLineWidth(1);
 }
 
 //--------------------------------------------------
