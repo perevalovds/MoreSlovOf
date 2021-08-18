@@ -88,12 +88,11 @@ void ToneMachine::update(float dt) {
 void ToneMachine::audioOut(StereoSample &out_sample) {
 	out_sample.clear();
 
-    StereoSample out1;
-
     for (int i=0; i<n; i++) {
         MachineTone *ton = tone[i];
         if (ton) {           
-            ton->audioOut(out1);
+			StereoSample out1;
+			ton->audioOut(out1);
 			out_sample.L += out1.L;
             out_sample.R += out1.R;            
         }

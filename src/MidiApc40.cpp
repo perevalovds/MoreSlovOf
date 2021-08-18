@@ -216,22 +216,22 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	int N = maxTones;	//число техно-звуков
 	//Mixer - Vol
 	if (ctrl == 7) set_float("w_vol", ch, value, 1);
-	//1 - Pan
-	if (ctrl == 16) set_float("w_pan", ch, value, 1);
-	//2 - Mode
-	if (ctrl == 17) set_stringlist("w_mode", ch, value, 2);
-	//3 - Delay
-	if (ctrl == 18) set_stringlist("w_delay", ch, value, 8);
-	//4 - Pos
-	if (ctrl == 19) set_float("w_pos", ch, value, 1);
-	//5 - Len
-	if (ctrl == 20) set_float("w_len", ch, value, 10);
-	//6 - Spd
-	if (ctrl == 21) set_float("w_spd", ch, value, 1);
-	//7 - Grain
-	if (ctrl == 22) set_float("w_grain_len", ch, value, 0.1);
-	//8 - ...
-	//if (ctrl == 23) set_float("w_pan", ch, value, 1);
+	//1 - Mode
+	if (ctrl == 16) set_stringlist("w_mode", ch, value, 2);
+	//2 - Delay
+	if (ctrl == 17) set_stringlist("w_delay", ch, value, 5);
+	//3 - Pos
+	if (ctrl == 18) set_float("w_pos", ch, value, 1);
+	//4 - Len
+	if (ctrl == 19) set_float("w_len", ch, value, 5);
+	//5 - Spd
+	if (ctrl == 20) set_float("w_spd", ch, value, 1);
+	//6 - Grain
+	if (ctrl == 21) set_float("w_grain_len", ch, value, 0.1);
+	//7 - Filter
+	if (ctrl == 22) set_int("w_cutoff", ch, value, 1000);
+	//8 - Pan
+	if (ctrl == 23) set_float("w_pan", ch, value, 1);
 
 
 	//Global Vol
