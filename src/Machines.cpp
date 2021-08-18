@@ -60,8 +60,15 @@ void ToneMachine::update(float dt) {
 		p.delay = Common::w_delay(*gui.findVarStringList("w_delay" + name));
 		p.pos = *gui.findVarFloat("w_pos" + name);
 		p.len = *gui.findVarFloat("w_len" + name);
+
 		p.spd = *gui.findVarFloat("w_spd" + name);
+		//нелинейность
+		p.spd *= p.spd;
+
 		p.grain_len = *gui.findVarFloat("w_grain_len" + name);
+		//нелинейность
+		p.grain_len = (p.grain_len/0.1)*(p.grain_len / 0.1)*0.1;
+
 		p.voltype = *gui.findVarStringList("w_voltype" + name);
 		p.volstp = *gui.findVarInt("w_volstp" + name);
 		p.volmov = *gui.findVarFloat("w_volmov" + name);
@@ -78,29 +85,19 @@ void ToneMachine::update(float dt) {
 }
 
 //--------------------------------------------------
-void ToneMachine::audioOut(float *out_sample, float vol) {
-    StereoSample out;
-    int k = 0;
+void ToneMachine::audioOut(StereoSample &out_sample) {
+	out_sample.clear();
+
+    StereoSample out1;
+
     for (int i=0; i<n; i++) {
         MachineTone *ton = tone[i];
-        if (ton) {
-            out.L = out.R = 0;
-            ton->audioOut(out);
-            out_sample[k++] = out.L * vol;
-            out_sample[k++] = out.R * vol;
-            
-            //удаляем отработавшие
-            //if (!ton->live) {
-            //    tone[i] = 0;
-            //    delete ton;
-            //}
-        }
-        else {
-            out_sample[k++] = 0;
-            out_sample[k++] = 0;
+        if (ton) {           
+            ton->audioOut(out1);
+			out_sample.L += out1.L;
+            out_sample.R += out1.R;            
         }
     }
-
 }
 
 //--------------------------------------------------

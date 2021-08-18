@@ -23,7 +23,7 @@ struct ToneMachine {
     bool shared_pushed;
     
     void push_tone(int ton_number, vector<float> &sound, float BPM);
-    void audioOut( float *out_sample, float vol );
+    void audioOut(StereoSample &out_sample);
     void update(float dt);
   
     int n;

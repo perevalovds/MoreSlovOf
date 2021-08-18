@@ -7,8 +7,9 @@
 extern int SR;  //sample rate
 
 struct StereoSample {
-    float L, R;
-    StereoSample() { L = R = 0; }
+	float L = 0;
+	float R = 0;
+	void clear() { L = R = 0; }
 };
 
 //Обращение к параметрами машины внутри машины

@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-08-17-51-246
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-08-46-12-211
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -112,14 +112,16 @@ struct Parameters {
 	int w_flt;
 	int w_flt_cutoff0;
 	int w_flt_cutoff1;
-	float w_vol1;
-	float w_pan1;
 	int w_mode1;
 	int w_delay1;
 	float w_pos1;
 	float w_len1;
 	float w_spd1;
 	float w_grain_len1;
+	int w_flt1;
+	int w_cutoff1;
+	float w_vol1;
+	float w_pan1;
 	int w_voltype1;
 	int w_volstp1;
 	float w_volmov1;
@@ -128,14 +130,16 @@ struct Parameters {
 	float w_panmov1;
 	int w_morph1;
 	int w_percent1;
-	float w_vol2;
-	float w_pan2;
 	int w_mode2;
 	int w_delay2;
 	float w_pos2;
 	float w_len2;
 	float w_spd2;
 	float w_grain_len2;
+	int w_flt2;
+	int w_cutoff2;
+	float w_vol2;
+	float w_pan2;
 	int w_voltype2;
 	int w_volstp2;
 	float w_volmov2;
@@ -144,14 +148,16 @@ struct Parameters {
 	float w_panmov2;
 	int w_morph2;
 	int w_percent2;
-	float w_vol3;
-	float w_pan3;
 	int w_mode3;
 	int w_delay3;
 	float w_pos3;
 	float w_len3;
 	float w_spd3;
 	float w_grain_len3;
+	int w_flt3;
+	int w_cutoff3;
+	float w_vol3;
+	float w_pan3;
 	int w_voltype3;
 	int w_volstp3;
 	float w_volmov3;
@@ -160,14 +166,16 @@ struct Parameters {
 	float w_panmov3;
 	int w_morph3;
 	int w_percent3;
-	float w_vol4;
-	float w_pan4;
 	int w_mode4;
 	int w_delay4;
 	float w_pos4;
 	float w_len4;
 	float w_spd4;
 	float w_grain_len4;
+	int w_flt4;
+	int w_cutoff4;
+	float w_vol4;
+	float w_pan4;
 	int w_voltype4;
 	int w_volstp4;
 	float w_volmov4;
@@ -176,14 +184,16 @@ struct Parameters {
 	float w_panmov4;
 	int w_morph4;
 	int w_percent4;
-	float w_vol5;
-	float w_pan5;
 	int w_mode5;
 	int w_delay5;
 	float w_pos5;
 	float w_len5;
 	float w_spd5;
 	float w_grain_len5;
+	int w_flt5;
+	int w_cutoff5;
+	float w_vol5;
+	float w_pan5;
 	int w_voltype5;
 	int w_volstp5;
 	float w_volmov5;
@@ -192,14 +202,16 @@ struct Parameters {
 	float w_panmov5;
 	int w_morph5;
 	int w_percent5;
-	float w_vol6;
-	float w_pan6;
 	int w_mode6;
 	int w_delay6;
 	float w_pos6;
 	float w_len6;
 	float w_spd6;
 	float w_grain_len6;
+	int w_flt6;
+	int w_cutoff6;
+	float w_vol6;
+	float w_pan6;
 	int w_voltype6;
 	int w_volstp6;
 	float w_volmov6;

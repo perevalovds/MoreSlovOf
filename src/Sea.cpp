@@ -77,7 +77,7 @@ void Sea::push_word(const vector<float> &sound, int n) {
 	}
 	else {
 		//Techno
-		int BPM = PRM BPM;
+		int BPM = PRM BPM * 2;	//умножаем на 2, чтобы были быстрее самые короткие длительности
 
 		int i = destination - 1;
 		if (i < maxTones) {
@@ -90,12 +90,12 @@ void Sea::push_word(const vector<float> &sound, int n) {
 
 //--------------------------------------------------------------
 void Sea::audioOut(vector<float> &stereo_buffer, int n) {
-	vector<float> mach(maxTones * 2);
-	float vol = 1;
+
+	StereoSample mach_sample;
 	for (int i = 0; i < n; i++) {
-		MACHINE.audioOut(&mach[0], vol);
-		stereo_buffer[2 * i] += mach[0];
-		stereo_buffer[2 * i + 1] += mach[1];
+		MACHINE.audioOut(mach_sample);
+		stereo_buffer[2 * i] += mach_sample.L;
+		stereo_buffer[2 * i + 1] += mach_sample.R;
 	}
 	for (auto &w : words_) {
 		if (w.is_live()) {
