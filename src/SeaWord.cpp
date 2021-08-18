@@ -77,7 +77,7 @@ bool SeaWord::is_live() {
 //--------------------------------------------------------------
 void SeaWord::audioOut(vector<float> &stereo_buffer, int n) {
 	int use_len = n_;//n_ - n_ * rep_/max_reps_;		//сокращаем длину
-	float use_vol = ofMap(rep_, 0, max_reps_, 1, 0);
+	float use_vol = ofMap(rep_, 0, max_reps_, 1, 0) * PRM REP_VOL;
 
 	if (is_live()) {
 		for (int i = 0; i < n; i++) {

@@ -200,6 +200,7 @@ void MidiApc40::set_stringlist(string name, int ch, int midi_val, int max_val) {
 
 //--------------------------------------------------------------
 void MidiApc40::set_float(string name, int ch, int midi_val, float max_val) {
+	if (ch == -1) *gui.findVarFloat(name) = max_val * midi_val / 127;
 	if (ch >= 1 && ch <= maxTones) {
 		*gui.findVarFloat(name + ofToString(ch)) = max_val * midi_val / 127;
 	}
@@ -222,7 +223,10 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	}
 	int N = maxTones;	//число техно-звуков
 	//Mixer - Vol
-	if (ctrl == 7) set_float("w_vol", ch, value, 1);
+	if (ctrl == 7) {
+		if (ch <= 6) set_float("w_vol", ch, value, 1);	//громкость Techno
+		if (ch == 7) set_float("REP_VOL", -1, value, 2);	//громкость REP_VOL
+	}
 	//1 - Mode
 	if (ctrl == 16) set_stringlist("w_mode", ch, value, 2);
 	//2 - Delay
