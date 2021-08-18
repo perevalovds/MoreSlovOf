@@ -9,6 +9,8 @@ MidiApc40 APC40;
 
 //--------------------------------------------------------------
 void MidiApc40::setup() {
+	PRM log_midi = 0;	//отключаем печать всех сообщений MIDI
+
 	input = true; 
 	output = true; 
     
@@ -170,13 +172,25 @@ void MidiApc40::newMidiMessage(ofxMidiMessage& msg) {
 }*/
 
 //--------------------------------------------------------------
-void midi_in_note(int port, int channel, int pitch, int onoff, int velocity) {
-
+void MidiApc40::midi_in_note(int port, int channel, int pitch, int onoff, int velocity) {
+	if (PRM log_midi) {
+		std::ostringstream out;
+		out << "APC note";
+		if (onoff) out << " ON"; 
+		else out << " OFF";
+		out << ", port " << port << ", ch " << channel << ", pitch " << pitch << ", vel " << velocity;
+		MLOG(out.str());
+	}
 }
 
 //--------------------------------------------------------------
-void midi_in_ctrl(int port, int channel, int ctrl, int value) {
-
+void MidiApc40::midi_in_ctrl(int port, int channel, int ctrl, int value) {
+	if (PRM log_midi) {
+		std::ostringstream out;
+		out << "APC ctrl ";
+		out << " port " << port << ", ch " << channel << ", ctrl " << ctrl << ", value " << value;
+		MLOG(out.str());
+	}
 }
 
 //--------------------------------------------------------------

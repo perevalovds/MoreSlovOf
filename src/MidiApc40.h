@@ -3,8 +3,6 @@
 #include "ofMain.h"
 #include "ofxMidi.h"
 
-void midi_in_note(int port, int channel, int pitch, int onoff, int velocity);
-void midi_in_ctrl(int port, int channel, int ctrl, int value);
 
 
 class MidiApc40 : public ofxMidiListener {	
@@ -28,6 +26,10 @@ protected:
     ofxMidiOut midiOut;
 
 	int find_index(string name_part, vector<string> list);
+
+	void midi_in_note(int port, int channel, int pitch, int onoff, int velocity);
+	void midi_in_ctrl(int port, int channel, int ctrl, int value);
+
 
 	/*
     //Novation launchpad

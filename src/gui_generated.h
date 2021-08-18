@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-06-50-27-739
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-07-23-30-717
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -84,6 +84,7 @@ struct Parameters {
 	string _APC_midi_out_;
 	string APC_status_;
 	int Print_MIDI;
+	int log_midi;
 	int max_rec_msec;
 	int _max_rec_msec_;
 	int max_words;

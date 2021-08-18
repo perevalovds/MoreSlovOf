@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-06-50-27-741
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-07-23-30-718
 
 Parameters params;
 //--------------------------------------------------------------
@@ -57,6 +57,7 @@ Parameters::Parameters() {
 	_APC_midi_out_="APC40";
 	APC_status_="...";
 	Print_MIDI=0;
+	log_midi=0;
 	_max_rec_msec_=10000;
 	_max_words_=15;
 	_max_polyphony_=10;
@@ -287,6 +288,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("");
 	gui.addString("-APC_status",APC_status_,"...");
 	gui.addButton("Print_MIDI",Print_MIDI);
+	gui.addDummy("");
+	gui.addStringList("log_midi",log_midi,0,2,"OFF","ON");
 	gui.addPage("Sea");
 	gui.addVar("-vol_in");
 	gui.addVar("-vol_out");
@@ -505,6 +508,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("*APC_midi_out", ofColor(100,100,255));
 	gui.set_var_color("-APC_status", ofColor(255,255,100));
 	gui.set_var_color("Print_MIDI", ofColor(255,255,100));
+	gui.set_var_color("log_midi", ofColor(255,255,100));
 	gui.set_var_color("*max_rec_msec", ofColor(255,100,100));
 	gui.set_var_color("*max_words", ofColor(255,100,100));
 	gui.set_var_color("*max_polyphony", ofColor(255,100,100));
