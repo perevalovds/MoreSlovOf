@@ -30,6 +30,10 @@ protected:
 	void midi_in_note(int port, int channel, int pitch, int onoff, int velocity);
 	void midi_in_ctrl(int port, int channel, int ctrl, int value);
 
+	//установка значений в GUI
+	void set_int(string name, int ch, int midi_val, int max_val);
+	void set_stringlist(string name, int ch, int midi_val, int max_val);
+	void set_float(string name, int ch, int midi_val, float max_val);
 
 	/*
     //Novation launchpad

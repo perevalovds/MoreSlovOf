@@ -77,7 +77,7 @@ void Sea::push_word(const vector<float> &sound, int n) {
 	}
 	else {
 		//Techno
-		int BPM = 120;
+		int BPM = PRM BPM;
 
 		int i = destination - 1;
 		if (i < maxTones) {

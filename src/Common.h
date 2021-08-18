@@ -15,6 +15,8 @@ struct Common {
 	static int get_sample_rate(int stringlist_index);
 	static int get_sound_buffer_size(int v);
 
+	static int w_delay(int index);	//stringlist w_delay1=0 [1,2,3,4,6,8,16,32,64]
+
 };
 
 extern int SR;	//sample rate, call set_sample_rate() to set up it

@@ -1,5 +1,6 @@
 #include "Machines.h"
 #include "ofxKuMessageLog.h"
+#include "Common.h"
 
 extern ofxKuTextGui gui;
 
@@ -56,7 +57,7 @@ void ToneMachine::update(float dt) {
 		p.pan = *gui.findVarFloat("w_pan" + name);
 
 		p.mode = *gui.findVarStringList("w_mode" + name);
-		p.delay = *gui.findVarInt("w_delay" + name);
+		p.delay = Common::w_delay(*gui.findVarStringList("w_delay" + name));
 		p.pos = *gui.findVarFloat("w_pos" + name);
 		p.len = *gui.findVarFloat("w_len" + name);
 		p.spd = *gui.findVarFloat("w_spd" + name);

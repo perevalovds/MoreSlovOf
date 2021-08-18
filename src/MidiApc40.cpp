@@ -1,6 +1,7 @@
 #include "MidiApc40.h"
 #include "ofxKuMessageLog.h"
 #include "gui_generated.h"
+#include "Machines.h"
 
 extern ofxKuTextGui gui;
 
@@ -184,13 +185,62 @@ void MidiApc40::midi_in_note(int port, int channel, int pitch, int onoff, int ve
 }
 
 //--------------------------------------------------------------
-void MidiApc40::midi_in_ctrl(int port, int channel, int ctrl, int value) {
+void MidiApc40::set_int(string name, int ch, int midi_val, int max_val) {
+	if (ch >= 1 && ch <= maxTones) {
+		*gui.findVarInt(name + ofToString(ch)) = (max_val+1) * midi_val / 128;
+	}
+}
+
+//--------------------------------------------------------------
+void MidiApc40::set_stringlist(string name, int ch, int midi_val, int max_val) {
+	if (ch >= 1 && ch <= maxTones) {
+		*gui.findVarStringList(name + ofToString(ch)) = (max_val+1) * midi_val / 128;
+	}
+}
+
+//--------------------------------------------------------------
+void MidiApc40::set_float(string name, int ch, int midi_val, float max_val) {
+	if (ch >= 1 && ch <= maxTones) {
+		*gui.findVarFloat(name + ofToString(ch)) = max_val * midi_val / 127;
+	}
+}
+
+//--------------------------------------------------------------
+void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	if (PRM log_midi) {
 		std::ostringstream out;
 		out << "APC ctrl ";
-		out << " port " << port << ", ch " << channel << ", ctrl " << ctrl << ", value " << value;
+		out << " port " << port << ", ch " << ch << ", ctrl " << ctrl << ", value " << value;
 		MLOG(out.str());
 	}
+	int N = maxTones;	//число техно-звуков
+	//Mixer - Vol
+	if (ctrl == 7) set_float("w_vol", ch, value, 1);
+	//1 - Pan
+	if (ctrl == 16) set_float("w_pan", ch, value, 1);
+	//2 - Mode
+	if (ctrl == 17) set_stringlist("w_mode", ch, value, 2);
+	//3 - Delay
+	if (ctrl == 18) set_stringlist("w_delay", ch, value, 8);
+	//4 - Pos
+	if (ctrl == 19) set_float("w_pos", ch, value, 1);
+	//5 - Len
+	if (ctrl == 20) set_float("w_len", ch, value, 10);
+	//6 - Spd
+	if (ctrl == 21) set_float("w_spd", ch, value, 1);
+	//7 - Grain
+	if (ctrl == 22) set_float("w_grain_len", ch, value, 0.1);
+	//8 - ...
+	//if (ctrl == 23) set_float("w_pan", ch, value, 1);
+
+
+	//Global Vol
+	if (ch == 1 && ctrl == 14) {
+
+	}
+
+	
+
 }
 
 //--------------------------------------------------------------
