@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-09-47-00-987
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-18-09-58-10-843
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -94,25 +94,6 @@ struct Parameters {
 	int BPM;
 	string WORDS_;
 	int REC;
-	float REP_VOL;
-	int w_duration_msec;
-	int w_evolution_perc;
-	int w_fadeout_perc;
-	int w_repeat0_msec;
-	int w_repeat1_msec;
-	int w_vol_perc;
-	int w_envelope;
-	int w_stereo_range;
-	int w_speed_perc;
-	int w_len_perc;
-	int w_pos_perc;
-	int w_pos_random_perc;
-	int w_grain_msec;
-	int w_grain_move_perc;
-	int w_grain_pause_msec;
-	int w_flt;
-	int w_flt_cutoff0;
-	int w_flt_cutoff1;
 	int w_mode1;
 	int w_delay1;
 	float w_pos1;
@@ -221,6 +202,25 @@ struct Parameters {
 	float w_panmov6;
 	int w_morph6;
 	int w_percent6;
+	float REP_VOL;
+	int w_duration_msec;
+	int w_evolution_perc;
+	int w_fadeout_perc;
+	int w_repeat0_msec;
+	int w_repeat1_msec;
+	int w_vol_perc;
+	int w_envelope;
+	int w_stereo_range;
+	int w_speed_perc;
+	int w_len_perc;
+	int w_pos_perc;
+	int w_pos_random_perc;
+	int w_grain_msec;
+	int w_grain_move_perc;
+	int w_grain_pause_msec;
+	int w_flt;
+	int w_flt_cutoff0;
+	int w_flt_cutoff1;
 	int sea_x;
 	int sea_y;
 	int sea_w;
