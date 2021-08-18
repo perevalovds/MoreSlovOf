@@ -9,6 +9,7 @@
 #include "Sea.h"
 #include "Pedal.h"
 #include "Common.h"
+#include "MidiApc40.h"
 
 string app_ver = "v.01 (64 bit, autosave off)";
 string Title = "MoreSlov " + app_ver;
@@ -66,6 +67,7 @@ void ofApp::setup() {
 	Common::setup();
 
 	pedal_setup();
+	APC40.setup();
 	SEA.setup();
 	SOUND.setup();
 
@@ -196,6 +198,7 @@ void ofApp::update(){
 	//----------------------------
 	//Sound & content
 	pedal_update();
+	APC40.update();
 	SEA.update(dt);
 	SOUND.update();
 

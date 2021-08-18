@@ -15,7 +15,7 @@ void pedal_setup() {
 		string name = "COM" + ofToString(i);
 		inited = arduino_.setup(name, ofToInt(PRM Pedal_baud));
 		if (inited) {
-			MLOG("Arduino connected at " + name, ofColor(64,255,64));
+			MLOG("Arduino connected at " + name, ofColor(0,200,0));
 			ofSleepMillis(500);	//Ожидание после старта - чтобы началась работа
 			ard_connected_ = 1;
 			PRM Pedal_status_ = "Connected " + name;

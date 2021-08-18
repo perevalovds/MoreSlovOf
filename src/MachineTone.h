@@ -15,12 +15,13 @@ struct StereoSample {
 #define TP prm_->
 
 struct ToneParams {
+	float vol = 0.5;
+	float pan = 0.5;
+
 	int mode = 0;
 	int delay = 100;
 	float pos = 0;
 	float len = 0.5;
-	float vol = 0.5;
-	float pan = 0.5;
 	float spd = 0.5;
 	float grain_len = 0.1;
 	int voltype = 0;
@@ -29,7 +30,7 @@ struct ToneParams {
 	int pantype = 0;
 	int panstp = 1;
 	float panmov = 0;
-	float VOL = 0.5;
+	//float VOL = 0.5;
 };
 
 

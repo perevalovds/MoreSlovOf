@@ -52,12 +52,13 @@ void ToneMachine::update(float dt) {
 	for (int i = 0; i < maxTones; i++) {
 		auto &p = params_[i];
 		string name = ofToString(i + 1);
+		p.vol = *gui.findVarFloat("w_vol" + name);
+		p.pan = *gui.findVarFloat("w_pan" + name);
+
 		p.mode = *gui.findVarStringList("w_mode" + name);
 		p.delay = *gui.findVarInt("w_delay" + name);
 		p.pos = *gui.findVarFloat("w_pos" + name);
 		p.len = *gui.findVarFloat("w_len" + name);
-		p.vol = *gui.findVarFloat("w_vol" + name);
-		p.pan = *gui.findVarFloat("w_pan" + name);
 		p.spd = *gui.findVarFloat("w_spd" + name);
 		p.grain_len = *gui.findVarFloat("w_grain_len" + name);
 		p.voltype = *gui.findVarStringList("w_voltype" + name);
@@ -66,7 +67,7 @@ void ToneMachine::update(float dt) {
 		p.pantype = *gui.findVarStringList("w_pantype" + name);
 		p.panstp = *gui.findVarInt("w_panstp" + name);
 		p.panmov = *gui.findVarFloat("w_panmov" + name);
-		p.VOL = 1; //*gui.findVarFloat("w_pos" + name);
+		//p.VOL = 1; //*gui.findVarFloat("w_pos" + name);
 	}
 
 
