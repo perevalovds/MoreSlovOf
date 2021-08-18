@@ -2,6 +2,7 @@
 #include "ofxKuMessageLog.h"
 #include "gui_generated.h"
 #include "Machines.h"
+#include "Pedal.h"
 
 extern ofxKuTextGui gui;
 
@@ -259,6 +260,11 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	if (ctrl == 22) set_float("w_spd", ch, value, 1);
 	//6 - Grain Len
 	if (ctrl == 23) set_float("w_grain_len", ch, value, 0.002, 0.1);
+
+	//Pedal
+	if (ctrl == 64 || ctrl == 67) {
+		set_pedal_value(value == 0);
+	}
 
 	//Global Vol
 	if (ch == 1 && ctrl == 14) {
