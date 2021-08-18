@@ -128,6 +128,17 @@ void Sea::crop(const vector<float> &sound0, int n0, vector<float> &sound) {
 	for (int i = 0; i < n; i++) {
 		sound[i] = sound0[start + i];
 	}
+
+	//фейд
+	int fade = min(int(PRM Crop_fade_ms * SR / 1000), n/2);
+	if (fade > 0) {
+		for (int i = 0; i < fade; i++) {
+			float f = float(i + 1) / fade;
+			sound[i] *= f;
+			sound[n-1-i] *= f;
+		}
+	}
+
 }
 
 //--------------------------------------------------------------
