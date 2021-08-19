@@ -28,6 +28,8 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
     //live = true;
     
 	if (!backup_restore) {
+		add_backup(sound, thumb_);	//записываем в backup
+
 		samples_per_bit = SR * 60 / (BPM * 4);    //сколько сэмплов в доле
 	}
 

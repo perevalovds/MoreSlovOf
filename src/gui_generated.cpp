@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-09-18-16-934
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-09-41-33-066
 
 Parameters params;
 //--------------------------------------------------------------
@@ -76,6 +76,7 @@ Parameters::Parameters() {
 	backup3=0;
 	backup4=0;
 	backup5=0;
+	backup6=0;
 	REC1=0;
 	w_mode1=0;
 	w_delay1=0;
@@ -240,11 +241,11 @@ Parameters::Parameters() {
 	thumb_w=100;
 	thumb_h=50;
 	thumb_scl=1;
+	thumb_x2=100;
+	thumb_x3=100;
 	_Backups7_=5;
 	backup_x=10;
 	backup_y=800;
-	thumb_x2=100;
-	thumb_x3=100;
 	thumb_x4=100;
 	thumb_x5=100;
 	thumb_x6=100;
@@ -393,6 +394,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addButton("backup3",backup3);
 	gui.addButton("backup4",backup4);
 	gui.addButton("backup5",backup5);
+	gui.addButton("backup6",backup6);
 	gui.addTab();
 	gui.addDummy("Techno1");
 	gui.addStringList("REC1",REC1,0,2,"OFF","ON");
@@ -621,17 +623,17 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("thumb_h",thumb_h,50,1,300,1,20);
 	gui.addDummy("");
 	gui.addFloat("thumb_scl",thumb_scl,1,0,10,1000,100);
-	gui.addDummy("");
-	gui.addDummy("Backups7");
-	gui.addInt("*Backups7",_Backups7_,5,1,10,1,10);
-	gui.addInt("backup_x",backup_x,10,0,2000,1,20);
-	gui.addInt("backup_y",backup_y,800,0,2000,1,20);
 	gui.addTab();
 	gui.addDummy("Techno2");
 	gui.addInt("thumb_x2",thumb_x2,100,0,2000,1,20);
 	gui.addTab();
 	gui.addDummy("Techno3");
 	gui.addInt("thumb_x3",thumb_x3,100,0,2000,1,20);
+	gui.addDummy("");
+	gui.addDummy("Backups7");
+	gui.addInt("*Backups7",_Backups7_,5,1,10,1,10);
+	gui.addInt("backup_x",backup_x,10,0,2000,1,20);
+	gui.addInt("backup_y",backup_y,800,0,2000,1,20);
 	gui.addTab();
 	gui.addDummy("Techno4");
 	gui.addInt("thumb_x4",thumb_x4,100,0,2000,1,20);
@@ -718,6 +720,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("backup3", ofColor(200,200,200));
 	gui.set_var_color("backup4", ofColor(200,200,200));
 	gui.set_var_color("backup5", ofColor(200,200,200));
+	gui.set_var_color("backup6", ofColor(200,200,200));
 	gui.set_var_color("REC1", ofColor(255,100,100));
 	gui.set_var_color("w_mode1", ofColor(255,100,255));
 	gui.set_var_color("w_delay1", ofColor(255,100,255));
@@ -882,11 +885,11 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("thumb_w", ofColor(200,200,200));
 	gui.set_var_color("thumb_h", ofColor(200,200,200));
 	gui.set_var_color("thumb_scl", ofColor(200,200,200));
-	gui.set_var_color("*Backups7", ofColor(200,200,200));
-	gui.set_var_color("backup_x", ofColor(200,200,200));
-	gui.set_var_color("backup_y", ofColor(200,200,200));
 	gui.set_var_color("thumb_x2", ofColor(200,200,200));
 	gui.set_var_color("thumb_x3", ofColor(200,200,200));
+	gui.set_var_color("*Backups7", ofColor(255,100,100));
+	gui.set_var_color("backup_x", ofColor(200,200,200));
+	gui.set_var_color("backup_y", ofColor(200,200,200));
 	gui.set_var_color("thumb_x4", ofColor(200,200,200));
 	gui.set_var_color("thumb_x5", ofColor(200,200,200));
 	gui.set_var_color("thumb_x6", ofColor(200,200,200));

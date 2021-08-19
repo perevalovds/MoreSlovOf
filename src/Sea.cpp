@@ -50,6 +50,15 @@ void Sea::draw() {
 	float sepx = PRM thumb_x7 + 0.5 - 10;
 	ofLine(sepx, 0, sepx, ofGetHeight()); //линия после техно-машин
 
+	//звуки
+	MACHINE.draw_thumbs();
+
+	//backups
+	auto *tone = MACHINE.tone[maxTones - 1];
+	if (tone) {
+		tone->draw_backups(PRM backup_x, PRM backup_y);
+	}
+	
 }
 
 //--------------------------------------------------------------

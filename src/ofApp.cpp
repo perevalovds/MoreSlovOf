@@ -230,7 +230,6 @@ void ofApp::draw(){
 
 		//Звуки
 		SEA.draw();
-		MACHINE.draw_thumbs();
 
 		//Сообщения
 		ofSetColor(255);
