@@ -220,12 +220,20 @@ void Sea::recbuttons_update() {	//обновить GUI кнопки записи и номер дорожки дл€
 	int pressed_id = -1;	//кака€ только что нажата
 	//bool unpressed = false;	//кака€-то только что отжата
 	int is_pressed_id = -1;	//в целом есть нажата€
+
+	int rec_last = PRM REC;
+	bool rec_was_released = false;
+
 	for (int i = 0; i < maxTones; i++) {
 		if (*rec_gui_[i] != rec_state_[i]) {
 			auto &v = rec_state_[i];
 			v = *rec_gui_[i];
 			if (v) pressed_id = i;
-			//else unpressed = true;
+			else {
+				if (i == rec_last) {
+					rec_was_released = true;	//была отпущена та, где REC
+				}
+			}
 		}
 
 		//если есть нажата€ - первую запомним
@@ -233,16 +241,21 @@ void Sea::recbuttons_update() {	//обновить GUI кнопки записи и номер дорожки дл€
 			is_pressed_id = i;
 		}
 	}
-	//если была нажата - то это REC
+	//если была кака€-то нажата - то это REC
 	if (pressed_id >= 0) PRM REC = pressed_id;
 	else {
 		//иначе текуща€ отжата - если есть другие нажатые, то поставить самую первую из них
-		if (rec_state_[PRM REC] == 0) {
+		if (rec_was_released) {
 			if (is_pressed_id >= 0) {
 				PRM REC = is_pressed_id;
 			}
+			else {
+				//а иначе - следующую
+				recbuttons_set_next();
+			}
 		}
 	}
+	
 }
 
 //--------------------------------------------------------------
@@ -251,6 +264,7 @@ void Sea::recbuttons_set_next() {	//сдвиг на следующую дорожку, если не нажата к
 		int &v = PRM REC;
 		if (rec_state_[v] == 0) {	//вообще нет нажатых
 			v++;
+			v %= maxTones;	//скидываем из 7 в 0
 			v %= (maxTones - 1);	//-1 так как последн€€ не должна записыватьс€ автоматически
 		}
 	}
