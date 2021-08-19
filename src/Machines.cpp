@@ -104,6 +104,10 @@ void ToneMachine::update(float dt) {
 		p.panstp = *gui.findVarInt("w_panstp" + name);
 		p.panmov = *gui.findVarFloat("w_panmov" + name);
 
+		p.morph_id = *gui.findVarStringList("w_morph" + name);
+		p.morph_insensity = *gui.findVarInt("w_percent" + name) / 100.0f;
+
+
 		p.flt_mode = *gui.findVarStringList("w_flt" + name);
 
 		float cutoff = *gui.findVarFloat("w_cutoff" + name);

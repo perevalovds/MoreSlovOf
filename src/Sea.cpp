@@ -2,6 +2,7 @@
 #include "gui_generated.h"
 #include "ofxKuMessageLog.h"
 #include "Common.h"
+#include "Morph.h"
 
 extern ofxKuTextGui gui;
 Sea SEA;
@@ -14,6 +15,7 @@ void Sea::setup() {
 	}
 
 	MACHINE.setup();
+	MORPH.setup();
 
 	recbuttons_setup();
 }

@@ -34,6 +34,9 @@ struct ToneParams {
 	float panmov = 0;
 	//float VOL = 0.5;
 
+	int morph_id = 0;
+	float morph_insensity = 0;
+
 	float flt_cutoff = 0.5;
 	int flt_mode = 0;	//bypass, Lopass, Hipass, Bandpass
 };
@@ -131,6 +134,9 @@ struct MachineTone {
 	};
 	vector<Backup> backups_;	//записанные звуки
 	void add_backup(const vector<float> &sound, const vector<float> &thumb);
+
+	//morph
+	int morph_audio_counter_ = 0;
 
 };
 

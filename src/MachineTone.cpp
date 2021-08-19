@@ -1,6 +1,7 @@
 #include "MachineTone.h"
 
 #include "gui_generated.h"
+#include "Morph.h"
 
 extern ofxKuTextGui gui;
 
@@ -103,6 +104,9 @@ void MachineTone::audioOut( StereoSample &out ) {
 			else out.clear();
 		}
 	}
+
+	//применяем морфинг
+	MORPH.apply_to_audio(TP morph_id, morph_audio_counter_, TP morph_insensity, out);
 
 	//применяем фильтр
 	out.L = mic_filter_L.process(out.L, TP flt_cutoff, TP flt_mode);
