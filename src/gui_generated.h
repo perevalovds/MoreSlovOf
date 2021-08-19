@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-11-20-30-116
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-12-43-25-478
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -95,6 +95,7 @@ struct Parameters {
 	int max_polyphony;
 	int _max_polyphony_;
 	int BPM;
+	int Auto_Rec_Next;
 	int Crop_Mode;
 	int Crop_thresh;
 	int Crop_ms;

@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-11-20-30-117
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-12-43-25-479
 
 Parameters params;
 //--------------------------------------------------------------
@@ -64,6 +64,7 @@ Parameters::Parameters() {
 	_max_words_=15;
 	_max_polyphony_=10;
 	BPM=120;
+	Auto_Rec_Next=1;
 	Crop_Mode=2;
 	Crop_thresh=5;
 	Crop_ms=50;
@@ -371,6 +372,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("*max_polyphony",_max_polyphony_,10,1,20,1,10);
 	gui.addDummy("");
 	gui.addInt("BPM",BPM,120,60,200,1,10);
+	gui.addDummy("Record_Select");
+	gui.addStringList("Auto_Rec_Next",Auto_Rec_Next,1,2,"OFF","ON");
 	gui.addDummy("");
 	gui.addDummy("Crop_Record");
 	gui.addStringList("Crop_Mode",Crop_Mode,2,3,"OFF","Manual","Auto");
@@ -708,6 +711,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("*max_words", ofColor(255,100,100));
 	gui.set_var_color("*max_polyphony", ofColor(255,100,100));
 	gui.set_var_color("BPM", ofColor(100,100,255));
+	gui.set_var_color("Auto_Rec_Next", ofColor(100,100,255));
 	gui.set_var_color("Crop_Mode", ofColor(200,100,100));
 	gui.set_var_color("Crop_thresh", ofColor(200,100,100));
 	gui.set_var_color("Crop_ms", ofColor(200,100,100));
