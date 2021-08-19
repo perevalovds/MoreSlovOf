@@ -41,6 +41,14 @@ void Sea::update(float dt) {
 	//техно
 	recbuttons_update();
 	MACHINE.update(dt);
+
+	//backups
+	if (PRM backup1) restore_backup(0);
+	if (PRM backup2) restore_backup(1);
+	if (PRM backup3) restore_backup(2);
+	if (PRM backup4) restore_backup(3);
+	if (PRM backup5) restore_backup(4);
+	if (PRM backup6) restore_backup(5);
 }
 
 //--------------------------------------------------------------
@@ -243,6 +251,14 @@ void Sea::recbuttons_set_next() {	//сдвиг на следующую дорожку, если не нажата к
 	if (rec_state_[v] == 0) {	//вообще нет нажатых
 		v++;
 		v %= (maxTones-1);	//-1 так как последняя не должна записываться автоматически
+	}
+}
+
+//--------------------------------------------------------------
+void Sea::restore_backup(int i) {
+	auto *tone = MACHINE.tone[maxTones - 1];
+	if (tone) {
+		tone->restore_backup(i);
 	}
 }
 

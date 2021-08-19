@@ -34,6 +34,9 @@ void ofApp::setup() {
 
 	ofSetWindowTitle(Title);
 
+	//Выключение Esc
+	ofSetEscapeQuitsApp(false);
+
 	//----------------------------
 	//GUI
 	PRM setup(gui, "param.ini");
