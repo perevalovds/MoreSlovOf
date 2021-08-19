@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-12-43-25-479
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-13-29-12-562
 
 Parameters params;
 //--------------------------------------------------------------
@@ -407,7 +407,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addFloat("w_spd1",w_spd1,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len1",w_grain_len1,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
-	gui.addStringList("w_flt1",w_flt1,0,4,"No","Lopass","Hipass","Bandpass");
+	gui.addStringList("w_flt1",w_flt1,0,4,"No","Lopass","Bandpass","Hipass");
 	gui.addFloat("w_cutoff1",w_cutoff1,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol1",w_vol1,0.5,0,1,100,10);
@@ -434,7 +434,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addFloat("w_spd2",w_spd2,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len2",w_grain_len2,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
-	gui.addStringList("w_flt2",w_flt2,0,4,"No","Lopass","Hipass","Bandpass");
+	gui.addStringList("w_flt2",w_flt2,0,4,"No","Lopass","Bandpass","Hipass");
 	gui.addFloat("w_cutoff2",w_cutoff2,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol2",w_vol2,0.5,0,1,100,10);
@@ -461,7 +461,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addFloat("w_spd3",w_spd3,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len3",w_grain_len3,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
-	gui.addStringList("w_flt3",w_flt3,0,4,"No","Lopass","Hipass","Bandpass");
+	gui.addStringList("w_flt3",w_flt3,0,4,"No","Lopass","Bandpass","Hipass");
 	gui.addFloat("w_cutoff3",w_cutoff3,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol3",w_vol3,0.5,0,1,100,10);
@@ -488,7 +488,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addFloat("w_spd4",w_spd4,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len4",w_grain_len4,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
-	gui.addStringList("w_flt4",w_flt4,0,4,"No","Lopass","Hipass","Bandpass");
+	gui.addStringList("w_flt4",w_flt4,0,4,"No","Lopass","Bandpass","Hipass");
 	gui.addFloat("w_cutoff4",w_cutoff4,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol4",w_vol4,0.5,0,1,100,10);
@@ -515,7 +515,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addFloat("w_spd5",w_spd5,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len5",w_grain_len5,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
-	gui.addStringList("w_flt5",w_flt5,0,4,"No","Lopass","Hipass","Bandpass");
+	gui.addStringList("w_flt5",w_flt5,0,4,"No","Lopass","Bandpass","Hipass");
 	gui.addFloat("w_cutoff5",w_cutoff5,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol5",w_vol5,0.5,0,1,100,10);
@@ -542,7 +542,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addFloat("w_spd6",w_spd6,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len6",w_grain_len6,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
-	gui.addStringList("w_flt6",w_flt6,0,4,"No","Lopass","Hipass","Bandpass");
+	gui.addStringList("w_flt6",w_flt6,0,4,"No","Lopass","Bandpass","Hipass");
 	gui.addFloat("w_cutoff6",w_cutoff6,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol6",w_vol6,0.5,0,1,100,10);
@@ -569,7 +569,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addFloat("w_spd7",w_spd7,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len7",w_grain_len7,0.01,0.002,0.1,100,10);
 	gui.addDummy("Filter");
-	gui.addStringList("w_flt7",w_flt7,0,4,"No","Lopass","Hipass","Bandpass");
+	gui.addStringList("w_flt7",w_flt7,0,4,"No","Lopass","Bandpass","Hipass");
 	gui.addFloat("w_cutoff7",w_cutoff7,0.5,0,1,200,20);
 	gui.addDummy("Vol-Pan");
 	gui.addFloat("w_vol7",w_vol7,0.5,0,1,100,10);
@@ -608,7 +608,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("w_grain_move_perc",w_grain_move_perc,100,0,200,1,10);
 	gui.addInt("w_grain_pause_msec",w_grain_pause_msec,0,0,1000,1,10);
 	gui.addDummy("Filter");
-	gui.addStringList("w_flt",w_flt,0,4,"No","Lopass","Hipass","Bandpass");
+	gui.addStringList("w_flt",w_flt,0,4,"No","Lopass","Bandpass","Hipass");
 	gui.addInt("w_flt_cutoff0",w_flt_cutoff0,500,0,1000,5,50);
 	gui.addInt("w_flt_cutoff1",w_flt_cutoff1,0.5,0,1000,5,50);
 	gui.addPage("Draw");

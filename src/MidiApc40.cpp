@@ -221,27 +221,36 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 		MLOG(out.str());
 	}
 	int N = maxTones;	//число техно-звуков
+	int NPult = N - 1;	//число звуков, которыми управляем с пульта
 	//Mixer - Vol
 	if (ctrl == 7) {
-		if (ch <= maxTones) set_float("w_vol", ch, value, 1);	//громкость Techno
+		if (ch <= N) set_float("w_vol", ch, value, 1);	//громкость Techno
 		if (ch == 8) set_float("REP_VOL", -1, value, 1);	//громкость REP_VOL
 	}
 	//1 - Mode
-	if (ctrl == 16) set_stringlist("w_mode", ch, value, 2);
+	if (ctrl == 16 && ch <= NPult) set_stringlist("w_mode", ch, value, 2);
 	//2 - Delay
-	if (ctrl == 17) set_stringlist("w_delay", ch, value, 6);
+	if (ctrl == 17 && ch <= NPult) set_stringlist("w_delay", ch, value, 6);
 	//7 - Filter
-	if (ctrl == 18) set_float("w_cutoff", ch, value, 1);
+	if (ctrl == 18 && ch <= NPult) set_float("w_cutoff", ch, value, 1);
 	//8 - Pan
-	if (ctrl == 19) set_float("w_pan", ch, value, 1);
+	if (ctrl == 19 && ch <= NPult) set_float("w_pan", ch, value, 1);
 	//3 - Pos
-	if (ctrl == 20) set_float("w_pos", ch, value, 1);
+	if (ctrl == 20 && ch <= NPult) set_float("w_pos", ch, value, 1);
 	//4 - Len
-	if (ctrl == 21) set_float("w_len", ch, value, 1);
+	if (ctrl == 21 && ch <= NPult) set_float("w_len", ch, value, 1);
 	//5 - Spd
-	if (ctrl == 22) set_float("w_spd", ch, value, 1);
+	if (ctrl == 22 && ch <= NPult) set_float("w_spd", ch, value, 1);
 	//6 - Grain Len
-	if (ctrl == 23) set_float("w_grain_len", ch, value, 0.002, 0.1);
+	if (ctrl == 23 && ch <= NPult) set_float("w_grain_len", ch, value, 0.002, 0.1);
+
+	//Filtr type
+	if (ch == 1 && ctrl >= 48 && ctrl < 48 + NPult) {
+		int filters = 2; //Lowpass, Band, Hipass - в пульте
+		int v = 1+(filters+1) * value / 128; //добавляем 1, так как начинается с bypass
+		int id = ctrl - 48;
+		*gui.findVarStringList("w_flt" + ofToString(id+1)) = v;
+	}
 
 	//Pedal
 	if (ctrl == 64 || ctrl == 67) {

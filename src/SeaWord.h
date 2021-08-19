@@ -33,7 +33,7 @@ struct SeaWordParam {
 	int w_grain_pause_msec = 0;
 
 	//Filter
-	int w_flt = 0; // No[No, Lopass, Hipass, Bandpass]
+	int w_flt = 0; // No[No, Lopass, Bandpass, Hipass]
 	int w_flt_cutoff0 = 500;	//0..1000
 	int w_flt_cutoff1 = 500;	//0..1000
 

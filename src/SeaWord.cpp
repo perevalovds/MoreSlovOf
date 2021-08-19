@@ -32,7 +32,7 @@ void SeaWordParam::read_from_GUI() {
 	w_grain_pause_msec = PRM w_grain_pause_msec;
 
 	//Filter
-	w_flt = PRM w_flt; // No[No, Lopass, Hipass, Bandpass]
+	w_flt = PRM w_flt; // No[No, Lopass, Bandpass, Hipass]
 	w_flt_cutoff0 = PRM w_flt_cutoff0;	//0..1000
 	w_flt_cutoff1 = PRM w_flt_cutoff1;	//0..1000
 }

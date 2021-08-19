@@ -21,7 +21,7 @@ struct SeaSampleParam {
 	int w_grain_pause_msec = 0;
 
 	//Filter
-	int w_flt = 0; // No[No, Lopass, Hipass, Bandpass]
+	int w_flt = 0; // No[No, Lopass, Bandpass, Hipass]
 	int w_flt_cutoff = 500;	//0..1000
 
 };
