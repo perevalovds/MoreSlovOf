@@ -41,16 +41,20 @@ struct ToneParams {
 
 //Один тон
 struct MachineTone {
-    vector<float> sound;
+	~MachineTone();
+	
+	vector<float> sound;
     
-    void setup(int id, vector<float> &sound0, float BPM, ToneParams *params);
+    void setup(int id, vector<float> &sound0, float BPM, ToneParams *params, bool backup_restore = false); //также вызывается при восстановлении backup
     void audioOut( StereoSample &out );
     void update( float dt );
 	
 	void draw_thumb(); //рисовать звук и pos
 
-    ~MachineTone();
-    
+	void setup_backups(int n_backups);	//хранить n_backups записанных звуков
+	void restore_backup(int k);			//восстановить backup в текущий воспроизводимый звук
+	void draw_backups(int x, int y);
+
 	int id_ = 0;
 
 	ToneParams *prm_;
@@ -67,7 +71,7 @@ struct MachineTone {
 	float flt = 0.5;
     
     //bool live;
-    int samples_per_bit;
+    int samples_per_bit = 1000;
     
     
     int Loop_Len; //длина повтора
@@ -107,7 +111,7 @@ struct MachineTone {
     vector<float> phase_;
 
     float play_fft;
-    ofxFft* fft;
+    ofxFft* fft = 0;
     vector<float>fft_buffer;
     int fft_pos;        //подготовленный сэмпл для fft
     void audioOut_make_buffer();
@@ -116,6 +120,17 @@ struct MachineTone {
 	//thumbnail
 	vector<float> thumb_;	//данные для картинки звука
 	void make_thumb();
+
+	void draw_thumb_(const vector<float> &thumb, int x, int y, float pos = -1);
+
+	//backup
+	int backup_n_ = 0;			//сколько backup хранить
+	struct Backup {
+		vector<float> sound;
+		vector<float> thumb;
+	};
+	vector<Backup> backups_;	//записанные звуки
+	void add_backup(const vector<float> &sound, const vector<float> &thumb);
 
 };
 

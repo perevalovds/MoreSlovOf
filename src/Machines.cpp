@@ -2,6 +2,7 @@
 #include "ofxKuMessageLog.h"
 #include "Common.h"
 #include "ofxSoundUtils.h"
+#include "gui_generated.h"
 
 extern ofxKuTextGui gui;
 
@@ -34,27 +35,33 @@ void ToneMachine::draw_thumbs() {		//рисовать звуки
 
 //--------------------------------------------------
 void ToneMachine::push_tone(int ton_number, vector<float> &sound, float BPM) {
-	MLOG("Techno " + ofToString(ton_number + 1));
+	int i = ton_number;
+	MLOG("Techno " + ofToString(i + 1));
 
 	//Создание тона
-    MachineTone *ton = new MachineTone();
+	//если это последняя машина - то не пересоздаем
+	bool is_backups = (i == maxTones - 1);
+	MachineTone *ton = (is_backups) ? tone[i] : 0;
+	if (!ton) {
+		ton = new MachineTone();
+	}
+	if (is_backups) {
+		ton->setup_backups(PRM Backups7);
+	}
 
-    //Запуск тона
-    if (ton) {
-        int i = ton_number;
-        ton->setup(i, sound, BPM, &params_[i]);
-        //tone.push_back(ton);
-        bool ok = false;
-        
-        MachineTone *temp = tone[i];
-        tone[i] = ton;
-        if (temp) {
-            delete temp;
-        }
-        index = i;
-        
-    }
-    shared_pushed = true;
+	//Запуск тона
+	ton->setup(i, sound, BPM, &params_[i]);
+
+	//удаляем старую
+	MachineTone *temp = tone[i];
+	tone[i] = ton;	//сначала переключаем, а потом удаляем, чтобы звук не выдал ошибку!
+	if (!is_backups && temp) {
+		delete temp;
+	}
+	
+	index = i;
+
+	shared_pushed = true;
 }
 
 //--------------------------------------------------

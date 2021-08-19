@@ -10,10 +10,14 @@ MachineTone::~MachineTone() {
 }
 
 //--------------------------------------------------
-void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *params) {
+ //также вызывается при восстановлении backup
+void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *params, bool backup_restore) {
 	id_ = id;
-    prm_ = params;
-    
+
+	if (!backup_restore) {
+		prm_ = params;
+	}
+
     sound = sound0;
     
     N = sound.size();
@@ -23,8 +27,10 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
     
     //live = true;
     
-    samples_per_bit = SR * 60 / (BPM*4);    //сколько сэмплов в доле
-    
+	if (!backup_restore) {
+		samples_per_bit = SR * 60 / (BPM * 4);    //сколько сэмплов в доле
+	}
+
     vol = 0.5;
     pan = 0.5;
     flt = 0.5;
@@ -43,6 +49,7 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
     index_ = 0;
     //--------------
     //Спектр
+	if (fft) delete fft;	 //если повторный вызов - то надо очистить (при восстановлени backup)
     fft = ofxFft::create(fft_n, OF_FFT_WINDOW_HAMMING); //OF_FFT_WINDOW_HANN);
     fft_pos = 0;
     fft_buffer.resize(fft_n);
@@ -242,10 +249,17 @@ void MachineTone::make_thumb() {
 //--------------------------------------------------
 //рисовать звук и pos
 void MachineTone::draw_thumb() {
+	int x = *gui.findVarInt("thumb_x" + ofToString(id_ + 1));	
+	int y = PRM thumb_y;
+
+	draw_thumb_(thumb_, x, y, TP pos);
+}
+
+//--------------------------------------------------
+void MachineTone::draw_thumb_(const vector<float> &thumb, int x, int y, float pos) {
 	int w = PRM thumb_w;
 	int h2 = PRM thumb_h / 2;
-	int x = *gui.findVarInt("thumb_x" + ofToString(id_ + 1));
-	int y = PRM thumb_y + h2;
+	y += h2;
 
 	float scly = PRM thumb_scl * h2;
 
@@ -255,20 +269,56 @@ void MachineTone::draw_thumb() {
 	ofDrawRectangle(x, y-h2, w, 2*h2);
 	
 	// sound
-	int n = thumb_.size();
+	int n = thumb.size();
 	if (n > 0) {
 		for (int i = 0; i < w; i++) {
-			int v = int(thumb_[i*n/w] * scly);
+			int v = int(thumb[i*n/w] * scly);
 			ofDrawLine(x + i, y - v, x + i, y + v);
 		}
 	}
 
 	// pos
-	ofSetColor(255, 0, 0);
-	ofSetLineWidth(3);
-	int pos = TP pos * w;
-	ofDrawLine(x+pos, y - h2, x+pos, y + h2);
-	ofSetLineWidth(1);
+	if (pos >= 0) {
+		ofSetColor(255, 0, 0);
+		ofSetLineWidth(3);
+		int p = pos * w;
+		ofDrawLine(x + p, y - h2, x + p, y + h2);
+		ofSetLineWidth(1);
+	}
+}
+
+//--------------------------------------------------
+void MachineTone::setup_backups(int n_backups) {	//хранить n_backups записанных звуков
+	backup_n_ = n_backups;
+}
+
+//--------------------------------------------------
+void MachineTone::restore_backup(int k) {			//восстановить backup в текущий воспроизводимый звук
+	if (backups_.empty()) return;
+	k = min(k, int(backups_.size()) - 1);
+	bool backup_restore = true;
+	setup(id_, backups_[k].sound, 0, 0, backup_restore);
+}
+
+//--------------------------------------------------
+void MachineTone::draw_backups(int x, int y) {
+	int h1 = PRM thumb_h;
+	for (int i = 0; i < backups_.size(); i++) {
+		draw_thumb_(backups_[i].thumb, x, y + h1 * i);
+	}
+}
+
+//--------------------------------------------------
+void MachineTone::add_backup(const vector<float> &sound, const vector<float> &thumb) {
+	if (backup_n_ > 0) {
+		Backup backup;
+		backup.sound = sound;
+		backup.thumb = thumb;
+		backups_.push_back(backup);
+		while (backups_.size() > backup_n_) {
+			backups_.erase(backups_.begin());
+		}
+	}
 }
 
 //--------------------------------------------------

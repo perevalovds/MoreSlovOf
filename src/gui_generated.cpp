@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-07-39-43-293
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-09-18-16-934
 
 Parameters params;
 //--------------------------------------------------------------
@@ -71,6 +71,11 @@ Parameters::Parameters() {
 	Min_Vol=0.2;
 	WORDS_="...";
 	REC=0;
+	backup1=0;
+	backup2=0;
+	backup3=0;
+	backup4=0;
+	backup5=0;
 	REC1=0;
 	w_mode1=0;
 	w_delay1=0;
@@ -235,11 +240,15 @@ Parameters::Parameters() {
 	thumb_w=100;
 	thumb_h=50;
 	thumb_scl=1;
+	_Backups7_=5;
+	backup_x=10;
+	backup_y=800;
 	thumb_x2=100;
 	thumb_x3=100;
 	thumb_x4=100;
 	thumb_x5=100;
 	thumb_x6=100;
+	thumb_x7=1400;
 	SaveDebugSounds=0;
 }
 
@@ -378,6 +387,12 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addVar("-PEDAL2");
 	gui.addDummy("");
 	gui.addStringList("REC",REC,0,7,"Techno1","Techno2","Techno3","Techno4","Techno5","Techno6","Techno7");
+	gui.addDummy("Backups");
+	gui.addButton("backup1",backup1);
+	gui.addButton("backup2",backup2);
+	gui.addButton("backup3",backup3);
+	gui.addButton("backup4",backup4);
+	gui.addButton("backup5",backup5);
 	gui.addTab();
 	gui.addDummy("Techno1");
 	gui.addStringList("REC1",REC1,0,2,"OFF","ON");
@@ -606,6 +621,11 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("thumb_h",thumb_h,50,1,300,1,20);
 	gui.addDummy("");
 	gui.addFloat("thumb_scl",thumb_scl,1,0,10,1000,100);
+	gui.addDummy("");
+	gui.addDummy("Backups7");
+	gui.addInt("*Backups7",_Backups7_,5,1,10,1,10);
+	gui.addInt("backup_x",backup_x,10,0,2000,1,20);
+	gui.addInt("backup_y",backup_y,800,0,2000,1,20);
 	gui.addTab();
 	gui.addDummy("Techno2");
 	gui.addInt("thumb_x2",thumb_x2,100,0,2000,1,20);
@@ -621,6 +641,9 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addTab();
 	gui.addDummy("Techno6");
 	gui.addInt("thumb_x6",thumb_x6,100,0,2000,1,20);
+	gui.addTab();
+	gui.addDummy("Techno7");
+	gui.addInt("thumb_x7",thumb_x7,1400,0,2000,1,20);
 	gui.addPage("Debug");
 	gui.addVar("ClearLog");
 	gui.addVar("Save");
@@ -690,6 +713,11 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("Min_Vol", ofColor(200,100,100));
 	gui.set_var_color("-WORDS", ofColor(255,255,100));
 	gui.set_var_color("REC", ofColor(255,255,100));
+	gui.set_var_color("backup1", ofColor(200,200,200));
+	gui.set_var_color("backup2", ofColor(200,200,200));
+	gui.set_var_color("backup3", ofColor(200,200,200));
+	gui.set_var_color("backup4", ofColor(200,200,200));
+	gui.set_var_color("backup5", ofColor(200,200,200));
 	gui.set_var_color("REC1", ofColor(255,100,100));
 	gui.set_var_color("w_mode1", ofColor(255,100,255));
 	gui.set_var_color("w_delay1", ofColor(255,100,255));
@@ -854,11 +882,15 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("thumb_w", ofColor(200,200,200));
 	gui.set_var_color("thumb_h", ofColor(200,200,200));
 	gui.set_var_color("thumb_scl", ofColor(200,200,200));
+	gui.set_var_color("*Backups7", ofColor(200,200,200));
+	gui.set_var_color("backup_x", ofColor(200,200,200));
+	gui.set_var_color("backup_y", ofColor(200,200,200));
 	gui.set_var_color("thumb_x2", ofColor(200,200,200));
 	gui.set_var_color("thumb_x3", ofColor(200,200,200));
 	gui.set_var_color("thumb_x4", ofColor(200,200,200));
 	gui.set_var_color("thumb_x5", ofColor(200,200,200));
 	gui.set_var_color("thumb_x6", ofColor(200,200,200));
+	gui.set_var_color("thumb_x7", ofColor(200,200,200));
 	gui.set_var_color("SaveDebugSounds", ofColor(80,80,255));
 	fileName_ = fileName;
 	gui_ = &gui;
@@ -893,6 +925,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	max_rec_msec = _max_rec_msec_;
 	max_words = _max_words_;
 	max_polyphony = _max_polyphony_;
+	Backups7 = _Backups7_;
 }
 
 //--------------------------------------------------------------
