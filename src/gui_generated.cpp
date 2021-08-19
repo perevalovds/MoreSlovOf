@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-09-41-33-066
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-11-20-30-117
 
 Parameters params;
 //--------------------------------------------------------------

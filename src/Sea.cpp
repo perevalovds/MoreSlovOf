@@ -139,18 +139,18 @@ void Sea::crop(const vector<float> &sound0, int n0, vector<float> &sound) {
 		}
 		float thresh = max_v * PRM Crop_thresh / 100.0f;
 		//начало
-		while (start < n0 && fabs(sound0[start] <= thresh)) {
+		while (start < n0 && fabs(sound0[start]) <= thresh) {
 			start++;
 		}
 		//конец
-		while (end > start && fabs(sound0[end] <= thresh)) {
+		while (end > start && fabs(sound0[end]) <= thresh) {
 			end--;
 		}
 
 	}
 	//подрезаем
 	int n = end+1-start;
-	if (start >= n || n <= 1) {
+	if (start >= n0 || n <= 1) {
 		sound.clear();
 		return;
 	}
