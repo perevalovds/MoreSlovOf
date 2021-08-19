@@ -1,6 +1,7 @@
 #include "Sea.h"
 #include "gui_generated.h"
 #include "ofxKuMessageLog.h"
+#include "Common.h"
 
 extern ofxKuTextGui gui;
 Sea SEA;
@@ -13,6 +14,10 @@ void Sea::setup() {
 	}
 
 	MACHINE.setup();
+
+	PRM REC = 0;	//Techno1
+
+	rec_state_.resize(maxTones);		//+1 - 7-я дорожка для слов
 }
 
 //--------------------------------------------------------------
@@ -41,7 +46,10 @@ void Sea::update(float dt) {
 
 //--------------------------------------------------------------
 void Sea::draw() {
-
+	//линия после техно-машин
+	ofSetColor(128);
+	float sepx = 1410.5 - 10;
+	ofLine(sepx, 0, sepx, ofGetHeight()); //линия после техно-машин
 
 }
 
@@ -80,12 +88,18 @@ void Sea::push_word(const vector<float> &sound0, int n0, int pedal_index) {
 	}
 	else {
 		//Techno 
-		for (int i = 0; i < maxTones; i++) {
+		int i = PRM REC;
+		int BPM = PRM BPM * 2;	//умножаем на 2, чтобы были быстрее самые короткие длительности				
+		MACHINE.push_tone(i, sound, BPM);
+
+		set_next_rec();	//переключаемся на следующую дорожку, если не нажата красная
+
+		/*for (int i = 0; i < maxTones; i++) {
 			if (*gui.findVarStringList("REC" + ofToString(i + 1))) {
 				int BPM = PRM BPM * 2;	//умножаем на 2, чтобы были быстрее самые короткие длительности				
 				MACHINE.push_tone(i, sound, BPM);
 			}
-		}
+		}*/
 	}
 }
 
@@ -170,6 +184,19 @@ void Sea::audioOut(vector<float> &stereo_buffer, int n) {
 		}
 	}
 	
+}
+
+
+
+//--------------------------------------------------------------
+void Sea::set_next_rec() {	//сдвиг на следующую дорожку, если не нажата красная кнопка пульта Record Arm
+	MLOG("next rec");
+}
+
+//--------------------------------------------------------------------------------
+void Sea::update_rec_buttons() {	//пользователь нажал или отпустил красную кнопку на пульте
+
+
 }
 
 //--------------------------------------------------------------

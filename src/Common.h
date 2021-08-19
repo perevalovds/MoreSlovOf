@@ -17,6 +17,7 @@ struct Common {
 
 	static int w_delay(int index);	//stringlist w_delay1=0 [64,32,16,8,4,2,1]
 
+
 };
 
-extern int SR;	//sample rate, call set_sample_rate() to set up it
+extern int SR;	//sample rate, call setup() to set up it

@@ -229,6 +229,7 @@ void ofApp::draw(){
 		ofShowCursor();		//show mouse
 
 		//Звуки
+		SEA.draw();
 		MACHINE.draw_thumbs();
 
 		//Сообщения

@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-01-05-43-128
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-07-39-43-292
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -101,6 +101,7 @@ struct Parameters {
 	int Crop_fade_ms;
 	float Min_Vol;
 	string WORDS_;
+	int REC;
 	int REC1;
 	int w_mode1;
 	int w_delay1;
@@ -221,6 +222,26 @@ struct Parameters {
 	int w_morph6;
 	int w_percent6;
 	float w_pos6;
+	int REC7;
+	int w_mode7;
+	int w_delay7;
+	float w_len7;
+	float w_spd7;
+	float w_grain_len7;
+	int w_flt7;
+	float w_cutoff7;
+	float w_vol7;
+	float w_pan7;
+	int w_louder7;
+	int w_voltype7;
+	int w_volstp7;
+	float w_volmov7;
+	int w_pantype7;
+	int w_panstp7;
+	float w_panmov7;
+	int w_morph7;
+	int w_percent7;
+	float w_pos7;
 	float REP_VOL;
 	int w_duration_msec;
 	int w_evolution_perc;

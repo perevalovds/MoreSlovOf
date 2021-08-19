@@ -1,6 +1,7 @@
 #include "Common.h"
 #include "gui_generated.h"
 #include "ofxKuProbability.h"
+#include "ofxKuMessageLog.h"
 
 int SR = 0;	//sample rate
 

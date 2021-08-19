@@ -22,6 +22,12 @@ protected:
 
 	//подрезка звука - выкл, ручная подрезка начала, авто подрезка начала и конца
 	void crop(const vector<float> &sound0, int n, vector<float> &sound);
+
+	//Выбор дорожки для записи
+	static void set_next_rec();	//сдвиг на следующую дорожку, если не нажата красная кнопка пульта Record Arm
+	static void update_rec_buttons();	//пользователь нажал или отпустил красную кнопку трека на пульте или в GUI
+
+	vector<int> rec_state_;	//последнее состояние кнопок
 };
 
 

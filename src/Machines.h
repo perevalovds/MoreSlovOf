@@ -13,7 +13,7 @@ const int Tone_Delay = 0;
 const int Tone_Grain = 1;
 const int Tone_Spectral = 2;
 
-const int maxTones = 6;
+const int maxTones = 7;	//последняя - спецдорожка
 
 //Звуковая машина для воспроизведения сэмплов
 struct ToneMachine {
