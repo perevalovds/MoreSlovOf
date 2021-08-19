@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-17-12-47-884
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-19-24-47-477
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -264,6 +264,48 @@ struct Parameters {
 	int w_flt;
 	int w_flt_cutoff0;
 	int w_flt_cutoff1;
+	float v_spd1;
+	float v_grain_len1;
+	float v_cutoff1;
+	float v_pan1;
+	float v_vol1;
+	float v_pos1;
+	int Variate1;
+	float v_spd2;
+	float v_grain_len2;
+	float v_cutoff2;
+	float v_pan2;
+	float v_vol2;
+	float v_pos2;
+	int Variate2;
+	float v_spd3;
+	float v_grain_len3;
+	float v_cutoff3;
+	float v_pan3;
+	float v_vol3;
+	float v_pos3;
+	int Variate3;
+	float v_spd4;
+	float v_grain_len4;
+	float v_cutoff4;
+	float v_pan4;
+	float v_vol4;
+	float v_pos4;
+	int Variate4;
+	float v_spd5;
+	float v_grain_len5;
+	float v_cutoff5;
+	float v_pan5;
+	float v_vol5;
+	float v_pos5;
+	int Variate5;
+	float v_spd6;
+	float v_grain_len6;
+	float v_cutoff6;
+	float v_pan6;
+	float v_vol6;
+	float v_pos6;
+	int Variate6;
 	int sea_x;
 	int sea_y;
 	int sea_w;

@@ -25,7 +25,7 @@ void ofApp::setup() {
 	MLOG("Press Enter to clear logs");
 
 	cout << "Press Enter to clear logs" << endl;
-	cout << "    Space,Z - Pedals" << endl;
+	cout << "    Space, Shift+O - Pedals" << endl;
 	cout << "    Shift+F - toggle fullscreen, Shift+Q - restore borderless screen" << endl;
 	cout << "1,2,Shift+1,2 - select page, cursor - select value, [,],{,},mouseL/R - change value" << endl;
 	cout << "s - save settings, l - load settings" << endl;
@@ -212,6 +212,8 @@ void ofApp::update(){
 void ofApp::draw(){
 	ofBackground(0);
 
+	string page = gui.pageTitle();
+
 	float w = ofGetWidth();
 	float h = ofGetHeight();
 	
@@ -238,7 +240,7 @@ void ofApp::draw(){
 		ofSetColor(255);
 		ofFill();
 
-		if (gui.pageTitle() != "Sea") {
+		if (page != "Sea" && page != "Variations") {
 			MLOGGER.draw();
 		}
 	}
@@ -267,8 +269,17 @@ void ofApp::keyPressed  (int key){
 	//	ofExit();
 	//}
 
-	if (key == 'z') set_pedal_value(1);	//Pedal
+	//----------------------------------
+	if (key == 'O') set_pedal_value(1);	//Pedal
 	if (key == ' ') set_pedal2_value(1);	//Pedal2
+	if (key == 'z') PRM Variate1 = 1;
+	if (key == 'x') PRM Variate2 = 1;
+	if (key == 'c') PRM Variate3 = 1;
+	if (key == 'v') PRM Variate4 = 1;
+	if (key == 'b') PRM Variate5 = 1;
+	if (key == 'n') PRM Variate6 = 1;
+
+	//----------------------------------
 
 	if (key == OF_KEY_RETURN) MLOGGER.clear(); //сброс логов
 
@@ -308,8 +319,17 @@ void ofApp::keyPressed  (int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased  (int key){
-	if (key == 'z') set_pedal_value(0);	//Pedal
+	//----------------------------------
+	if (key == 'O' || key == 'o') set_pedal_value(0);	//Pedal
 	if (key == ' ') set_pedal2_value(0);	//Pedal2
+
+	if (key == 'z') PRM Variate1 = 0;
+	if (key == 'x') PRM Variate2 = 0;
+	if (key == 'c') PRM Variate3 = 0;
+	if (key == 'v') PRM Variate4 = 0;
+	if (key == 'b') PRM Variate5 = 0;
+	if (key == 'n') PRM Variate6 = 0;
+	//----------------------------------
 
 
 }
