@@ -37,8 +37,8 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
     pan = 0.5;
     flt = 0.5;
 
-    lfo_vol.setup(TP voltype, TP volstp, TP vol, 0, TP volmov);
-    lfo_pan.setup(TP pantype, TP panstp, TP pan, 0, TP panmov);
+    lfo_vol.setup(TP voltype, TP volstp, 1/*TP vol*/, 0, TP volmov);
+    lfo_pan.setup(TP pantype, TP panstp, 0.5/*TP pan*/, 0, TP panmov);
     //lfo_flt.setup(TON flttype, TON fltstp, TON flt, TON fltrnd, TON fltmov);
     
     //Play_Len = (repeats-1) * Loop_Len + N;
