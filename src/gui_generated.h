@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-16-40-25-170
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-17-12-47-884
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -117,9 +117,6 @@ struct Parameters {
 	float w_grain_len1;
 	int w_flt1;
 	float w_cutoff1;
-	float w_vol1;
-	float w_pan1;
-	int w_louder1;
 	int w_voltype1;
 	int w_volstp1;
 	float w_volmov1;
@@ -128,6 +125,9 @@ struct Parameters {
 	float w_panmov1;
 	int w_morph1;
 	int w_percent1;
+	int w_louder1;
+	float w_pan1;
+	float w_vol1;
 	float w_pos1;
 	int REC2;
 	int w_mode2;
@@ -137,9 +137,6 @@ struct Parameters {
 	float w_grain_len2;
 	int w_flt2;
 	float w_cutoff2;
-	float w_vol2;
-	float w_pan2;
-	int w_louder2;
 	int w_voltype2;
 	int w_volstp2;
 	float w_volmov2;
@@ -148,6 +145,9 @@ struct Parameters {
 	float w_panmov2;
 	int w_morph2;
 	int w_percent2;
+	int w_louder2;
+	float w_pan2;
+	float w_vol2;
 	float w_pos2;
 	int REC3;
 	int w_mode3;
@@ -157,9 +157,6 @@ struct Parameters {
 	float w_grain_len3;
 	int w_flt3;
 	float w_cutoff3;
-	float w_vol3;
-	float w_pan3;
-	int w_louder3;
 	int w_voltype3;
 	int w_volstp3;
 	float w_volmov3;
@@ -168,6 +165,9 @@ struct Parameters {
 	float w_panmov3;
 	int w_morph3;
 	int w_percent3;
+	int w_louder3;
+	float w_pan3;
+	float w_vol3;
 	float w_pos3;
 	int REC4;
 	int w_mode4;
@@ -177,9 +177,6 @@ struct Parameters {
 	float w_grain_len4;
 	int w_flt4;
 	float w_cutoff4;
-	float w_vol4;
-	float w_pan4;
-	int w_louder4;
 	int w_voltype4;
 	int w_volstp4;
 	float w_volmov4;
@@ -188,6 +185,9 @@ struct Parameters {
 	float w_panmov4;
 	int w_morph4;
 	int w_percent4;
+	int w_louder4;
+	float w_pan4;
+	float w_vol4;
 	float w_pos4;
 	int REC5;
 	int w_mode5;
@@ -197,9 +197,6 @@ struct Parameters {
 	float w_grain_len5;
 	int w_flt5;
 	float w_cutoff5;
-	float w_vol5;
-	float w_pan5;
-	int w_louder5;
 	int w_voltype5;
 	int w_volstp5;
 	float w_volmov5;
@@ -208,6 +205,9 @@ struct Parameters {
 	float w_panmov5;
 	int w_morph5;
 	int w_percent5;
+	int w_louder5;
+	float w_pan5;
+	float w_vol5;
 	float w_pos5;
 	int REC6;
 	int w_mode6;
@@ -217,9 +217,6 @@ struct Parameters {
 	float w_grain_len6;
 	int w_flt6;
 	float w_cutoff6;
-	float w_vol6;
-	float w_pan6;
-	int w_louder6;
 	int w_voltype6;
 	int w_volstp6;
 	float w_volmov6;
@@ -228,6 +225,9 @@ struct Parameters {
 	float w_panmov6;
 	int w_morph6;
 	int w_percent6;
+	int w_louder6;
+	float w_pan6;
+	float w_vol6;
 	float w_pos6;
 	int REC7;
 	int w_mode7;
@@ -237,9 +237,6 @@ struct Parameters {
 	float w_grain_len7;
 	int w_flt7;
 	float w_cutoff7;
-	float w_vol7;
-	float w_pan7;
-	int w_louder7;
 	int w_voltype7;
 	int w_volstp7;
 	float w_volmov7;
@@ -248,6 +245,9 @@ struct Parameters {
 	float w_panmov7;
 	int w_morph7;
 	int w_percent7;
+	int w_louder7;
+	float w_pan7;
+	float w_vol7;
 	float w_pos7;
 	float REP_VOL;
 	int w_duration_msec;
