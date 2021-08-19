@@ -112,10 +112,14 @@ void MachineTone::audioOut( StereoSample &out ) {
 	out.L = mic_filter_L.process(out.L, TP flt_cutoff, TP flt_mode);
 	out.R = mic_filter_R.process(out.R, TP flt_cutoff, TP flt_mode);
 
+
 	//применяем Vol и Pan
 	out.L *= TP vol * (1 - TP pan); //громкость гасится из-за pan в 2 раза в центре
 	out.R *= TP vol * (TP pan);
-    
+
+	//обновляем громкость
+	measure_vol_ = max(fabs(out.L) + fabs(out.R), measure_vol_*0.999f);
+
 }
 
 //--------------------------------------------------
@@ -258,11 +262,11 @@ void MachineTone::draw_thumb() {
 	int x = *gui.findVarInt("thumb_x" + ofToString(id_ + 1));	
 	int y = PRM thumb_y;
 
-	draw_thumb_(thumb_, x, y, TP pos);
+	draw_thumb_(thumb_, x, y, TP pos, measure_vol_);
 }
 
 //--------------------------------------------------
-void MachineTone::draw_thumb_(const vector<float> &thumb, int x, int y, float pos) {
+void MachineTone::draw_thumb_(const vector<float> &thumb, int x, int y, float pos, float vol) {
 	int w = PRM thumb_w;
 	int h2 = PRM thumb_h / 2;
 	y += h2;
@@ -290,6 +294,14 @@ void MachineTone::draw_thumb_(const vector<float> &thumb, int x, int y, float po
 		int p = pos * w;
 		ofDrawLine(x + p, y - h2, x + p, y + h2);
 		ofSetLineWidth(1);
+	}
+
+	// volume
+	if (vol >= 0) {
+		ofSetColor(255);
+		ofFill();
+		int p = vol * w * PRM thumb_vol;
+		ofDrawRectangle(x, y + h2+2, p, 5);
 	}
 }
 

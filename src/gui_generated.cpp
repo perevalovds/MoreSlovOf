@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-13-29-12-562
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-16-40-25-174
 
 Parameters params;
 //--------------------------------------------------------------
@@ -242,6 +242,7 @@ Parameters::Parameters() {
 	thumb_w=100;
 	thumb_h=50;
 	thumb_scl=1;
+	thumb_vol=10;
 	thumb_x2=100;
 	thumb_x3=100;
 	_Backups7_=5;
@@ -626,6 +627,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("thumb_h",thumb_h,50,1,300,1,20);
 	gui.addDummy("");
 	gui.addFloat("thumb_scl",thumb_scl,1,0,10,1000,100);
+	gui.addFloat("thumb_vol",thumb_vol,10,0,100,1000,100);
 	gui.addTab();
 	gui.addDummy("Techno2");
 	gui.addInt("thumb_x2",thumb_x2,100,0,2000,1,20);
@@ -889,6 +891,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("thumb_w", ofColor(200,200,200));
 	gui.set_var_color("thumb_h", ofColor(200,200,200));
 	gui.set_var_color("thumb_scl", ofColor(200,200,200));
+	gui.set_var_color("thumb_vol", ofColor(200,200,200));
 	gui.set_var_color("thumb_x2", ofColor(200,200,200));
 	gui.set_var_color("thumb_x3", ofColor(200,200,200));
 	gui.set_var_color("*Backups7", ofColor(255,100,100));

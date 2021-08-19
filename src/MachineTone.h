@@ -124,7 +124,7 @@ struct MachineTone {
 	vector<float> thumb_;	//данные для картинки звука
 	void make_thumb();
 
-	void draw_thumb_(const vector<float> &thumb, int x, int y, float pos = -1);
+	void draw_thumb_(const vector<float> &thumb, int x, int y, float pos = -1, float vol = -1);
 
 	//backup
 	int backup_n_ = 0;			//сколько backup хранить
@@ -137,6 +137,9 @@ struct MachineTone {
 
 	//morph
 	int morph_audio_counter_ = 0;
+
+	//измерение громкости
+	float measure_vol_ = 0;
 
 };
 

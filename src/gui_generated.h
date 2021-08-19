@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-13-29-12-561
+//Auto-generated GUI file for ofxKuTextGui, 2021-08-19-16-40-25-170
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -273,6 +273,7 @@ struct Parameters {
 	int thumb_w;
 	int thumb_h;
 	float thumb_scl;
+	float thumb_vol;
 	int thumb_x2;
 	int thumb_x3;
 	int Backups7;

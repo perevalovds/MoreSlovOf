@@ -206,7 +206,7 @@ void Sea::audioOut(vector<float> &stereo_buffer, int n) {
 
 //--------------------------------------------------------------
 void Sea::recbuttons_setup() {
-	PRM REC = 0;	//Techno1
+	PRM REC = maxTones-1;	//Techno6, и чтобы сразу перешел на Techno1
 
 	//считываем указатели из GUI для удобства использования
 	rec_gui_.resize(maxTones);
