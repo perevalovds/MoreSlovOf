@@ -24,9 +24,11 @@ protected:
 	void crop(const vector<float> &sound0, int n, vector<float> &sound);
 
 	//Выбор дорожки для записи
-	static void set_next_rec();	//сдвиг на следующую дорожку, если не нажата красная кнопка пульта Record Arm
-	static void update_rec_buttons();	//пользователь нажал или отпустил красную кнопку трека на пульте или в GUI
+	void recbuttons_setup();
+	void recbuttons_update();	//обновить GUI кнопки записи и номер дорожки для записи
+	void recbuttons_set_next();	//сдвиг на следующую дорожку, если не нажата красная кнопка пульта Record Arm
 
+	vector<int*> rec_gui_;	//значения REC1..7
 	vector<int> rec_state_;	//последнее состояние кнопок
 };
 

@@ -223,7 +223,7 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	int N = maxTones;	//число техно-звуков
 	//Mixer - Vol
 	if (ctrl == 7) {
-		if (ch <= 6) set_float("w_vol", ch, value, 1);	//громкость Techno
+		if (ch <= maxTones) set_float("w_vol", ch, value, 1);	//громкость Techno
 		if (ch == 8) set_float("REP_VOL", -1, value, 1);	//громкость REP_VOL
 	}
 	//1 - Mode

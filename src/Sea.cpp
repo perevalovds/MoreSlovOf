@@ -15,9 +15,7 @@ void Sea::setup() {
 
 	MACHINE.setup();
 
-	PRM REC = 0;	//Techno1
-
-	rec_state_.resize(maxTones);		//+1 - 7-я дорожка для слов
+	recbuttons_setup();
 }
 
 //--------------------------------------------------------------
@@ -41,6 +39,7 @@ void Sea::update(float dt) {
 	}
 
 	//техно
+	recbuttons_update();
 	MACHINE.update(dt);
 }
 
@@ -92,7 +91,7 @@ void Sea::push_word(const vector<float> &sound0, int n0, int pedal_index) {
 		int BPM = PRM BPM * 2;	//умножаем на 2, чтобы были быстрее самые короткие длительности				
 		MACHINE.push_tone(i, sound, BPM);
 
-		set_next_rec();	//переключаемся на следующую дорожку, если не нажата красная
+		recbuttons_set_next();	//переключаемся на следующую дорожку, если не нажата красная
 
 		/*for (int i = 0; i < maxTones; i++) {
 			if (*gui.findVarStringList("REC" + ofToString(i + 1))) {
@@ -186,16 +185,51 @@ void Sea::audioOut(vector<float> &stereo_buffer, int n) {
 	
 }
 
-
-
 //--------------------------------------------------------------
-void Sea::set_next_rec() {	//сдвиг на следующую дорожку, если не нажата красная кнопка пульта Record Arm
-	MLOG("next rec");
+void Sea::recbuttons_setup() {
+	PRM REC = 0;	//Techno1
+
+	//считываем указатели из GUI для удобства использования
+	rec_gui_.resize(maxTones);
+	for (int i = 0; i < maxTones; i++) {
+		rec_gui_[i] = gui.findVarStringList("REC" + ofToString(i + 1));
+	}
+
+	rec_state_.resize(maxTones,-1);		
 }
 
-//--------------------------------------------------------------------------------
-void Sea::update_rec_buttons() {	//пользователь нажал или отпустил красную кнопку на пульте
+//--------------------------------------------------------------
+void Sea::recbuttons_update() {	//обновить GUI кнопки записи и номер дорожки для записи
+	int pressed_id = -1;	//какая только что нажата
+	//bool unpressed = false;	//какая-то только что отжата
+	int is_pressed_id = -1;	//в целом есть нажатая
+	for (int i = 0; i < maxTones; i++) {
+		if (*rec_gui_[i] != rec_state_[i]) {
+			auto &v = rec_state_[i];
+			v = *rec_gui_[i];
+			if (v) pressed_id = i;
+			//else unpressed = true;
+		}
 
+		//если есть нажатая - первую запомним
+		if (rec_state_[i] && is_pressed_id == -1) {
+			is_pressed_id = i;
+		}
+	}
+	//если была нажата - то это REC
+	if (pressed_id >= 0) PRM REC = pressed_id;
+	else {
+		//иначе текущая отжата - если есть другие нажатые, то поставить самую первую из них
+		if (rec_state_[PRM REC] == 0) {
+			if (is_pressed_id >= 0) {
+				PRM REC = is_pressed_id;
+			}
+		}
+	}
+}
+
+//--------------------------------------------------------------
+void Sea::recbuttons_set_next() {	//сдвиг на следующую дорожку, если не нажата красная кнопка пульта Record Arm
 
 }
 
