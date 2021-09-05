@@ -75,15 +75,20 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
 
 //--------------------------------------------------
 void MachineTone::update( float dt ) {
-    
-    pos_f = TP pos;
+	//The reading from GUI and smoothing goes at ToneMachine::update
+
+	string name = ofToString(id_ + 1);
+	
+	//Read values from GUI
+	//Also some value is smoothed
+	Loop_Len = int(samples_per_bit * TP delay);
+	
+	pos_f = TP pos;
     len_f = TP len;
-    speed_f = TP spd;
+	speed_f = TP spd;
     grain_f = TP grain_len;
     mode = TP mode;
     
-    Loop_Len = samples_per_bit * TP delay;
-
     
     pos_s = pos_f * N;
     len_s = len_f * SR;

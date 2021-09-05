@@ -73,7 +73,7 @@ void ToneMachine::update(float dt) {
 
 		int mod = (i < maxTones - 1 && *gui.findVarStringList("Variate" + name));	//включена ли модуляция
 
-		//Громкость 
+		//Volume
 		float vol = *gui.findVarFloat("w_vol" + name);
 		if (mod) vol = ofClamp(vol + *gui.findVarFloat("v_vol" + name), 0, 1); //модуляция
 		vol = ofxSoundUtils::volume_linear_to_exp(vol);	//экспонента
@@ -81,34 +81,47 @@ void ToneMachine::update(float dt) {
 		p.vol = vol;
 		//cout << "vol " << i << " " << vol << endl;
 		
+		//Pan
 		p.pan = *gui.findVarFloat("w_pan" + name);
 		if (mod) p.pan = ofClamp(p.pan + *gui.findVarFloat("v_pan" + name), -1, 1);	//модуляция
 
-
+		//Mode
 		p.mode = *gui.findVarStringList("w_mode" + name);
 
-		p.delay = Common::w_delay(*gui.findVarStringList("w_delay" + name));
+
+		//Loop delay, smoothed
+		string w_delay = "w_delay" + name;
+		string w_delay_ = "-" + w_delay + "_";
+
+		//read from stringlist
+		gui.float_(w_delay_) = Common::w_delay(*gui.findVarStringList(w_delay));
+		//shooth
+		p.delay = gui.updateSmoothedValue(w_delay_, dt, PRM smth_delay_sec);
 		
+		//Position
 		p.pos = *gui.findVarFloat("w_pos" + name);
 		if (mod) p.pos = ofClamp(p.pos + *gui.findVarFloat("v_pos" + name), 0, 1); //модуляция
 
+		//Length
 		float len = *gui.findVarFloat("w_len" + name);
 		//нелинейность и диапазон
 		p.len = ofMap(len*len, 0, 1, 0.01, 5);	
 
-
-		float spd = *gui.findVarFloat("w_spd" + name);
+		//Grain speed
+		float spd = gui.updateSmoothedValue("w_spd" + name, dt, PRM smth_spd_sec); //*gui.findVarFloat("w_spd" + name);
 		if (mod) spd = ofClamp(spd + *gui.findVarFloat("v_spd" + name), 0, 1); //модуляция
 
 		//нелинейность
 		p.spd = spd*spd;
 
-		float grain_len = *gui.findVarFloat("w_grain_len" + name);
+		//Grain length
+		float grain_len = gui.updateSmoothedValue("w_grain_len" + name, dt, PRM sm_gr_len_sec); //*gui.findVarFloat("w_grain_len" + name);
 		if (mod) grain_len = ofClamp(grain_len + *gui.findVarFloat("v_grain_len" + name)*0.1, 0, 1); //модуляция
 
 		//нелинейность
 		p.grain_len = (grain_len/0.1)*(grain_len / 0.1)*0.1;
 
+		//Variations
 		p.voltype = *gui.findVarStringList("w_voltype" + name);
 		p.volstp = *gui.findVarInt("w_volstp" + name);
 		p.volmov = *gui.findVarFloat("w_volmov" + name);
@@ -119,9 +132,10 @@ void ToneMachine::update(float dt) {
 		p.morph_id = *gui.findVarStringList("w_morph" + name);
 		p.morph_insensity = *gui.findVarInt("w_percent" + name) / 100.0f;
 
-
+		//Filter type
 		p.flt_mode = *gui.findVarStringList("w_flt" + name);
 
+		//Filter freq
 		float cutoff = *gui.findVarFloat("w_cutoff" + name);
 		if (mod) cutoff = ofClamp(cutoff + *gui.findVarFloat("v_cutoff" + name), 0, 1); //модуляция
 
@@ -131,7 +145,7 @@ void ToneMachine::update(float dt) {
 		//cout << "cutoff " << cutoff << " " << p.flt_cutoff << endl;
 	}
 
-
+	//Update tones
     for (int i=0; i<n; i++) {
         if (tone[i]) tone[i]->update(dt);
     }
