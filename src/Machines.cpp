@@ -90,14 +90,12 @@ void ToneMachine::update(float dt) {
 
 
 		//Loop delay, smoothed
-		string w_delay = "w_delay" + name;
-		string w_delay_ = "-" + w_delay + "_";
+		float pdelay_log2_raw = 6 - gui.updateSmoothedValue("w_delay" + name, dt, PRM smth_delay_sec);
+		//0 -> 1
+		//6 -> 64
+		p.delay = pow(2, pdelay_log2_raw);
+		//cout << i << " " << p.delay << endl;
 
-		//read from stringlist
-		gui.float_(w_delay_) = Common::w_delay(*gui.findVarStringList(w_delay));
-		//shooth
-		p.delay = gui.updateSmoothedValue(w_delay_, dt, PRM smth_delay_sec);
-		
 		//Position
 		p.pos = *gui.findVarFloat("w_pos" + name);
 		if (mod) p.pos = ofClamp(p.pos + *gui.findVarFloat("v_pos" + name), 0, 1); //модуляция

@@ -21,7 +21,7 @@ struct ToneParams {
 	float pan = 0.5;
 
 	int mode = 0;
-	int delay = 100;
+	float delay = 100;	//pause between samples
 	float pos = 0;
 	float len = 0.5;
 	float spd = 0.5;
@@ -86,7 +86,8 @@ struct MachineTone {
     void audioOut_delay( StereoSample &out );
     void audioOut_grain( StereoSample &out );
     void audioOut_spectr( StereoSample &out );
-    
+	inline void audio_lfo_next_value();
+
     //гранулы
     int play_pos;
     int grain_pos;

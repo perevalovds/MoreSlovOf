@@ -128,41 +128,39 @@ void MachineTone::audioOut( StereoSample &out ) {
 }
 
 //--------------------------------------------------
+inline void MachineTone::audio_lfo_next_value() {
+	vol = lfo_vol.nextValue();
+	pan = lfo_pan.nextValue();
+	//flt = lfo_flt.nextValue();
+	//cout << "index " << index << " pan " << pan << endl;
+	
+}
+
+//--------------------------------------------------
 void MachineTone::audioOut_delay( StereoSample &out ) {
-    int index = (sample+Loop_Len) / Loop_Len;
-    //новый повтор
-    if (index_ != index) {
-        index_ = index;
-        vol = lfo_vol.nextValue();
-        pan = lfo_pan.nextValue();
-        //flt = lfo_flt.nextValue();
-        //cout << "index " << index << " pan " << pan << endl;
-    }
-    
-    int i = (sample+Loop_Len) % Loop_Len;
-    sample++;
-    
-    int u0 = i;
-    if (u0 >= 0 && u0 < N) {
-        float v = sound[u0];
+	//next repeat
+	if (sample >= Loop_Len) {
+		audio_lfo_next_value();
+		sample = 0; 
+	}
+        
+    if (sample >= 0 && sample < N) {
+        float v = sound[sample];
         
         out.L = v*vol*(1-pan); //громкость гасится из-за pan в 2 раза в центре
         out.R = v*vol*(pan);
     }
     //live = (sample < Play_Len);
+	sample++;
+
 }
 
 //--------------------------------------------------
 void MachineTone::audioOut_grain( StereoSample &out ) {
-    int index = (sample+Loop_Len) / Loop_Len;
-    sample++;
-    //новый повтор
-    if (index_ != index) {
-        index_ = index;
-        vol = lfo_vol.nextValue();
-        pan = lfo_pan.nextValue();
-        //flt = lfo_flt.nextValue();
-        //cout << "index " << index << " pan " << pan << endl;
+	//next repeat
+	if (sample >= Loop_Len) {
+		audio_lfo_next_value();
+		sample = 0; 
         play_pos = pos_s;
         grain_pos = 0;
         //played_count = 0;
@@ -184,27 +182,25 @@ void MachineTone::audioOut_grain( StereoSample &out ) {
         }
         
     }
-    //live = (sample < Play_Len);
+	sample++;
 }
 
 //--------------------------------------------------
 void MachineTone::audioOut_spectr( StereoSample &out ) {
     if (fft_pos==0) audioOut_make_buffer(); //обновление буфера
     
-    int index = (sample+Loop_Len) / Loop_Len;
-    sample++;
-    //новый повтор
-    if (index_ != index) {
-        index_ = index;
-        vol = lfo_vol.nextValue();
-        pan = lfo_pan.nextValue();
-        //play_pos = pos_s;
-    }
-    
+	//next repeat
+	if (sample >= Loop_Len) {
+		audio_lfo_next_value();
+		sample = 0;
+	}
+
     float v = fft_buffer[fft_pos];
     out.L = v*vol*(1-pan); //громкость гасится из-за pan в 2 раза в центре
     out.R = v*vol*(pan);
     fft_pos = (fft_pos+1) % fft_n;
+
+	sample++;
 }
 
 //--------------------------------------------------
