@@ -3,6 +3,17 @@
 #include "ofxKuProbability.h"
 #include "ofxKuMessageLog.h"
 
+
+//--------------------------------------------------------------
+void x_exit(const string &message) {
+	ofSetFullscreen(false);
+	MLOG(message, ofColor(255, 0, 0));
+	ofSystemAlertDialog(message);
+	OF_EXIT_APP(0);
+}
+
+//--------------------------------------------------------------
+
 int SR = 0;	//sample rate
 
 //--------------------------------------------------------------------------------

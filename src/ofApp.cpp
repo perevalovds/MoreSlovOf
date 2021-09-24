@@ -11,9 +11,11 @@
 #include "Common.h"
 #include "MidiApc40.h"
 
-string app_ver = "v.01 (64 bit, autosave on)";
+string app_ver = "v.19 (64 bit, autosave on)";
 string Title = "MoreSlov " + app_ver;
 string Title_RU = "МореСлов " + app_ver;
+
+string param_ini = "param.ini";
 
 ofxKuTextGui gui;
 
@@ -22,13 +24,12 @@ ofxKuTextGui gui;
 void ofApp::setup() {
 	cout << "------------------------------------------" << endl;
 	MLOG(Title_RU, Title);
-	MLOG("Press Enter to clear logs");
-
-	cout << "Press Enter to clear logs" << endl;
-	cout << "    Space, Shift+O - Pedals" << endl;
+	cout << "Keys: Enter to clear logs" << endl;
+	cout << "    z, Space  - Pedals" << endl;
+	cout << "    a,s,d,f,g,h - variations" << endl;
 	cout << "    Shift+F - toggle fullscreen, Shift+Q - restore borderless screen" << endl;
-	cout << "1,2,Shift+1,2 - select page, cursor - select value, [,],{,},mouseL/R - change value" << endl;
-	cout << "s - save settings, l - load settings" << endl;
+	cout << "    1,2,Shift+1,2 - select page, cursor - select value, [,],{,},mouseL/R - change value" << endl;
+	cout << "    s - save settings, l - load settings" << endl;
 	cout << "------------------------------------------" << endl;
 	cout << endl;
 
@@ -39,7 +40,13 @@ void ofApp::setup() {
 
 	//----------------------------
 	//GUI
-	PRM setup(gui, "param.ini");
+
+
+	//Если нет param.ini - значит запустили из TotalCommander, выдать ошибку
+	x_assert(ofFile::doesFileExist(param_ini), "Can't find " + param_ini + ". May be you run app from Total Commander. Run from Explorer!");
+
+
+	PRM setup(gui, param_ini);
 	//gui.set_tab_w(140, 10, -10.5);
 	//gui.set_tab_h(20, 2, -14.5);
 
@@ -137,7 +144,7 @@ void ofApp::restore_screen() {		//восстановление экрана - п
 
 //--------------------------------------------------------------
 void ofApp::load() {
-	gui.loadFromFile("param.ini");
+	gui.loadFromFile(param_ini);
 	flash();
 }
 
@@ -213,6 +220,7 @@ void ofApp::draw(){
 	ofBackground(0);
 
 	string page = gui.pageTitle();
+	int page_index = gui.pageIndex();
 
 	float w = ofGetWidth();
 	float h = ofGetHeight();
@@ -240,7 +248,7 @@ void ofApp::draw(){
 		ofSetColor(255);
 		ofFill();
 
-		if (page != "Sea" && page != "Variations") {
+		if (page_index < 4) {	//рисуем текстовый лог только для первых страниц
 			MLOGGER.draw();
 		}
 	}
@@ -270,14 +278,14 @@ void ofApp::keyPressed  (int key){
 	//}
 
 	//----------------------------------
-	if (key == 'O') set_pedal_value(1);	//Pedal
+	if (key == 'z') set_pedal_value(1);	//Pedal
 	if (key == ' ') set_pedal2_value(1);	//Pedal2
-	if (key == 'z') PRM Variate1 = 1;
-	if (key == 'x') PRM Variate2 = 1;
-	if (key == 'c') PRM Variate3 = 1;
-	if (key == 'v') PRM Variate4 = 1;
-	if (key == 'b') PRM Variate5 = 1;
-	if (key == 'n') PRM Variate6 = 1;
+	if (key == 'a') PRM Variate1 = 1;
+	if (key == 's') PRM Variate2 = 1;
+	if (key == 'd') PRM Variate3 = 1;
+	if (key == 'f') PRM Variate4 = 1;
+	if (key == 'g') PRM Variate5 = 1;
+	if (key == 'h') PRM Variate6 = 1;
 
 	//----------------------------------
 
@@ -320,15 +328,15 @@ void ofApp::keyPressed  (int key){
 //--------------------------------------------------------------
 void ofApp::keyReleased  (int key){
 	//----------------------------------
-	if (key == 'O' || key == 'o') set_pedal_value(0);	//Pedal
+	if (key == 'z') set_pedal_value(0);	//Pedal
 	if (key == ' ') set_pedal2_value(0);	//Pedal2
 
-	if (key == 'z') PRM Variate1 = 0;
-	if (key == 'x') PRM Variate2 = 0;
-	if (key == 'c') PRM Variate3 = 0;
-	if (key == 'v') PRM Variate4 = 0;
-	if (key == 'b') PRM Variate5 = 0;
-	if (key == 'n') PRM Variate6 = 0;
+	if (key == 'a') PRM Variate1 = 0;
+	if (key == 's') PRM Variate2 = 0;
+	if (key == 'd') PRM Variate3 = 0;
+	if (key == 'f') PRM Variate4 = 0;
+	if (key == 'g') PRM Variate5 = 0;
+	if (key == 'h') PRM Variate6 = 0;
 	//----------------------------------
 
 

@@ -39,7 +39,9 @@ struct ToneParams {
 
 	float flt_cutoff = 0.5;
 	int flt_mode = 0;	//bypass, Lopass, Hipass, Bandpass
+
 };
+
 
 
 //Один тон

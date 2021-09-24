@@ -4,6 +4,21 @@
 
 #include "ofMain.h"
 
+
+//assert, exit
+void x_exit(const string &message);
+#define x_assert(cond, message) { if (!(cond)) x_exit(message); }
+
+//Замеры времени
+//#define TIMER_ON(i) float time__##i = ofGetElapsedTimeMillis();
+//#define TIMER_PRINT(i, message) cout << "TIME " << message << ": " << ofGetElapsedTimeMillis() - time__##i << " ms" << endl;
+
+//Для отключения замеров времени:
+#define TIMER_ON(i) {}
+#define TIMER_PRINT(i, message) {}
+
+
+
 struct Common {
 	static void setup();
 

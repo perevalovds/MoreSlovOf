@@ -3,6 +3,7 @@
 #include "Common.h"
 #include "ofxSoundUtils.h"
 #include "gui_generated.h"
+#include "MachineDrums.h"
 
 extern ofxKuTextGui gui;
 
@@ -22,6 +23,10 @@ ToneMachine::ToneMachine() {
 //--------------------------------------------------
 void ToneMachine::setup() {
     shared_pushed = false;
+
+	//барабаны
+	drums_setup();
+
 }
     
 //--------------------------------------------------
@@ -66,6 +71,9 @@ void ToneMachine::push_tone(int ton_number, vector<float> &sound, float BPM) {
 
 //--------------------------------------------------
 void ToneMachine::update(float dt) {
+	//обновление барабанов
+	drums_update(dt);
+
 	//считывание параметров
 	for (int i = 0; i < maxTones; i++) {
 		auto &p = params_[i];

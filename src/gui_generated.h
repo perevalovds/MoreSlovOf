@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-05-14-09-31-868
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-24-09-14-00-330
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -264,6 +264,46 @@ struct Parameters {
 	int w_flt;
 	int w_flt_cutoff0;
 	int w_flt_cutoff1;
+	float d1pos1;
+	float d1pos2;
+	float d1pos3;
+	float d1pos4;
+	float d1pos5;
+	float d1pos6;
+	float d1pos7;
+	float d1pos8;
+	float d1pos9;
+	float d1pos10;
+	float d1pos11;
+	float d1pos12;
+	float d1pos13;
+	float d1pos14;
+	float d1pos15;
+	float d1pos16;
+	int d1_Equal;
+	int d1_Random;
+	float d1_len;
+	float d1_spd;
+	float d2pos1;
+	float d2pos2;
+	float d2pos3;
+	float d2pos4;
+	float d2pos5;
+	float d2pos6;
+	float d2pos7;
+	float d2pos8;
+	float d2pos9;
+	float d2pos10;
+	float d2pos11;
+	float d2pos12;
+	float d2pos13;
+	float d2pos14;
+	float d2pos15;
+	float d2pos16;
+	int d2_Equal;
+	int d2_Random;
+	float d2_len;
+	float d2_spd;
 	float smth_delay_sec;
 	float smth_spd_sec;
 	float sm_gr_len_sec;
