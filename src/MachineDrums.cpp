@@ -5,6 +5,8 @@
 
 //барабаны
 float *DRUM_POS[DrumKits][DrumBeats];
+//int DRUM_POS_SAMPLES[DrumKits][DrumBeats];
+
 bool drums_inited_ = false;
 
 //--------------------------------------------------
@@ -43,6 +45,8 @@ void drums_setup() {		//линк с GUI
 	DRUM_POS[1][14] = &PRM d2pos15;
 	DRUM_POS[1][15] = &PRM d2pos16;
 
+	//drums_update(0);	//ставим DRUM_POS_SAMPLES
+
 	drums_inited_ = true;
 }
 
@@ -76,6 +80,11 @@ void drums_update(float dt) {		//обработка кнопок
 	if (PRM d1_Random) drums_set_random(0);
 	if (PRM d2_Equal) drums_set_equal(1);
 	if (PRM d2_Random) drums_set_random(1);
+
+	//Значения в сэмплах
+	//for (int k = 0; k < DrumKits; k++) {
+
+	//}
 
 }
 

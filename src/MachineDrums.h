@@ -12,6 +12,8 @@ extern int SR;  //sample rate
 const int DrumKits = 2;	//число драмок
 const int DrumBeats = 16;	//число битов барабанов
 extern float *DRUM_POS[DrumKits][DrumBeats];
+//extern int *DRUM_POS_SAMPLES[DrumKits][DrumBeats];		//
+
 
 void drums_setup();					//линк с GUI
 void drums_update(float dt);		//считать положения барабанов из GUI, и обработка кнопок

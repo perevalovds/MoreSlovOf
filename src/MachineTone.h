@@ -82,12 +82,13 @@ struct MachineTone {
     int Loop_Len; //длина повтора
     //int Play_Len; //общая длина
 
-    int index_; //номер повтора
+    int index_ = 0; //номер повтора - используется для барабанов
     
     
     void audioOut_delay( StereoSample &out );
     void audioOut_grain( StereoSample &out );
     void audioOut_spectr( StereoSample &out );
+	void audioOut_drum(StereoSample &out, int kit);
 	inline void audio_lfo_next_value();
 
     //гранулы

@@ -2,6 +2,7 @@
 
 #include "gui_generated.h"
 #include "Morph.h"
+#include "MachineDrums.h"
 
 extern ofxKuTextGui gui;
 
@@ -77,7 +78,7 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
 void MachineTone::update( float dt ) {
 	//The reading from GUI and smoothing goes at ToneMachine::update
 
-	string name = ofToString(id_ + 1);
+	//string name = ofToString(id_ + 1);
 	
 	//Read values from GUI
 	//Also some value is smoothed
@@ -101,13 +102,18 @@ void MachineTone::update( float dt ) {
 
 //--------------------------------------------------
 void MachineTone::audioOut( StereoSample &out ) {
-	if (mode == 0) { audioOut_grain(out);  }
-	else {
-		if (mode == 1) { audioOut_spectr(out); }
-		else {
-			if (mode == 2) { audioOut_delay(out); }
-			else out.clear();
-		}
+	switch (mode) {
+	case 0: audioOut_grain(out);
+		break;
+	case 1: audioOut_spectr(out);
+		break;
+	case 2: audioOut_delay(out);
+		break;
+	case 3: audioOut_drum(out, 0);
+		break;
+	case 4: audioOut_drum(out, 1);
+		break;
+	default: out.clear();
 	}
 
 	//применяем морфинг
@@ -182,6 +188,32 @@ void MachineTone::audioOut_grain( StereoSample &out ) {
         }
         
     }
+	sample++;
+}
+
+//--------------------------------------------------
+void MachineTone::audioOut_drum(StereoSample &out, int kit) {
+	//барабан - один звук звучит Loop_Len
+	
+	//первый звук будет неверный, но потом правильный
+
+	//next repeat
+	if (sample >= Loop_Len) {
+		audio_lfo_next_value();
+		sample = 0;
+
+		index_ = (index_ + 1) % DrumBeats;
+		play_pos = int(*DRUM_POS[kit][index_] * N);		//медленная операция
+	}
+
+	if (play_pos >= 0 && play_pos < N) {
+		float v = sound[play_pos];
+
+		out.L = v * vol*(1 - pan); //громкость гасится из-за pan в 2 раза в центре
+		out.R = v * vol*(pan);
+
+		play_pos++;
+	}
 	sample++;
 }
 
