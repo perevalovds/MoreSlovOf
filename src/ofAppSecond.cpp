@@ -5,6 +5,8 @@
 AppSecond *APP_SECOND = 0;
 extern shared_ptr<ofAppBaseWindow> *SECOND_WINDOW;
 
+extern ofxKuTextGui gui;
+
 //--------------------------------------------------------------
 void AppSecond::setup(){
 	APP_SECOND = this;
@@ -41,7 +43,11 @@ void AppSecond::draw(){
 	H_ = ofGetHeight();
 	int sample_h = H_ / 5;
 	int id_h = H_ / 8;
-	int circle_h = H_ / 5;
+	int circle_h = H_ / 6;
+
+	int morph_h = H_ / 6;
+
+	int vol_h = H_ / 6;
 
 
 	//дорожки
@@ -73,9 +79,35 @@ void AppSecond::draw(){
 			ofFill();
 			ofDrawCircle(w / 2, y + circle_h / 2, w / 6);
 		}
-		y += 
-
 		y += circle_h;
+
+
+		//morph
+		string name = ofToString(k + 1);
+		float morph = gui.getSmoothedValue("w_percent" + name) / 100.0f;
+
+		if (morph > 0) {
+			ofSetColor(0,255,0,morph*255.0f);
+			font_.drawString("morph", 20, y + morph_h / 2);
+		}
+		y += morph_h;
+
+		//громкость
+		float vol = *gui.findVarFloat("w_vol" + name);
+		{
+			int yv1 = H_ - vol_h - 10;
+			int yv0 = yv1 + vol_h;
+			ofSetColor(160);
+			ofFill();
+			int xc = w / 2;
+			ofDrawRectangle(xc - 1.5, yv0, 3, -vol_h);
+
+
+			ofSetColor(255);
+			int y = int(ofMap(vol, 0, 1, yv0, yv1));
+			ofDrawRectangle(xc - w / 8, y-2, w / 8 * 2, 2);
+		}
+
 		ofPopMatrix();
 	}
 

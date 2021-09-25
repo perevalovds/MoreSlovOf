@@ -264,9 +264,8 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	}
 
 	//Global Vol
-	if (ch == 1 && ctrl == 14) {
-
-	}
+	//if (ch == 1 && ctrl == 14) {
+	//}
 
 	
 
@@ -283,19 +282,23 @@ void MidiApc40::midi_in_note(int port, int ch, int pitch, int onoff, int velocit
 		MLOG(out.str());
 	}
 
-	//Rec (Record Arm)
-	if (pitch == 48) {
-		if (ch >= 1 && ch <= maxTones) {
+	if (ch >= 1 && ch <= maxTones) {
+		//Rec (Record Arm)
+		if (pitch == 48) {
 			*gui.findVarStringList("REC" + ofToString(ch)) = onoff;
 		}
 		//if (ch == 8) {
 		//	*gui.findVarStringList("REP_REC") = onoff;
 		//}
-	}
-	//Louder ("Solo/Que") - дополнительное увеличение громкости
-	if (pitch == 49) {
-		if (ch >= 1 && ch <= maxTones) {
+
+		//Louder ("Solo/Que") - дополнительное увеличение громкости
+		if (pitch == 49 && ch <= maxTones - 1) {
 			*gui.findVarStringList("w_louder" + ofToString(ch)) = onoff;
+		}
+
+		//Activator - Morph ON/OFF
+		if (pitch == 50 && ch <= maxTones - 1) {
+			*gui.findVarInt("w_percent" + ofToString(ch)) = 100*onoff;
 		}
 	}
 }

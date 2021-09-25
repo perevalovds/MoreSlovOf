@@ -135,8 +135,9 @@ void ToneMachine::update(float dt) {
 		p.panstp = *gui.findVarInt("w_panstp" + name);
 		p.panmov = *gui.findVarFloat("w_panmov" + name);
 
+		//Morph
 		p.morph_id = *gui.findVarStringList("w_morph" + name);
-		p.morph_insensity = *gui.findVarInt("w_percent" + name) / 100.0f;
+		p.morph_insensity = gui.updateSmoothedValue("w_percent" + name, dt, PRM sm_morph_sec) / 100.0f; //*gui.findVarInt("w_percent" + name) / 100.0f;
 
 		//Filter type
 		p.flt_mode = *gui.findVarStringList("w_flt" + name);

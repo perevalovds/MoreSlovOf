@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-25-18-04-19-814
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-25-22-02-16-341
 
 Parameters params;
 //--------------------------------------------------------------
@@ -281,6 +281,7 @@ Parameters::Parameters() {
 	smth_delay_sec=0.5;
 	smth_spd_sec=0.5;
 	sm_gr_len_sec=0.5;
+	sm_morph_sec=0.5;
 	v_spd1=0;
 	v_grain_len1=0;
 	v_cutoff1=0;
@@ -757,10 +758,11 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addFloat("d2_len",d2_len,0.5,0,1,1000,100);
 	gui.addFloat("d2_spd",d2_spd,1,0,2,1000,100);
 	gui.addPage("Variations");
-	gui.addDummy("Change_Speed");
+	gui.addDummy("SMOOTHING");
 	gui.addFloat("smth_delay_sec",smth_delay_sec,0.5,0,20,2000,200);
 	gui.addFloat("smth_spd_sec",smth_spd_sec,0.5,0,10,1000,100);
 	gui.addFloat("sm_gr_len_sec",sm_gr_len_sec,0.5,0,10,1000,100);
+	gui.addFloat("sm_morph_sec",sm_morph_sec,0.5,0,10,1000,100);
 	gui.addTab();
 	gui.addDummy("Techno1_a");
 	gui.addDummy("Grain");
@@ -1157,6 +1159,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("smth_delay_sec", ofColor(255,255,100));
 	gui.set_var_color("smth_spd_sec", ofColor(255,255,100));
 	gui.set_var_color("sm_gr_len_sec", ofColor(255,255,100));
+	gui.set_var_color("sm_morph_sec", ofColor(255,255,100));
 	gui.set_var_color("v_spd1", ofColor(255,100,255));
 	gui.set_var_color("v_grain_len1", ofColor(255,100,255));
 	gui.set_var_color("v_cutoff1", ofColor(100,100,255));

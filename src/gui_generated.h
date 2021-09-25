@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-25-18-04-19-812
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-25-22-02-16-339
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -316,6 +316,7 @@ struct Parameters {
 	float smth_delay_sec;
 	float smth_spd_sec;
 	float sm_gr_len_sec;
+	float sm_morph_sec;
 	float v_spd1;
 	float v_grain_len1;
 	float v_cutoff1;
