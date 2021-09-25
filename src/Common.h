@@ -4,6 +4,17 @@
 
 #include "ofMain.h"
 
+extern int SR;		//Sample rate
+
+struct StereoSample {
+	float L = 0;
+	float R = 0;
+	void clear() { L = R = 0; }
+	void add(const StereoSample &in, float vol = 1) {
+		L += in.L * vol;
+		R += in.R * vol;
+	}
+};
 
 //assert, exit
 void x_exit(const string &message);

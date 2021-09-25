@@ -2,6 +2,7 @@
 
 //Sea of words
 #include "ofMain.h"
+#include "Common.h"
 #include "SeaWord.h"
 #include "Machines.h"
 

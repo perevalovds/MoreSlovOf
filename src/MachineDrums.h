@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "Common.h"
 #include "LfoBeat.h"
 #include "ofxFft.h"
 #include "ofxSoundUtils.h"

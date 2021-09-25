@@ -1,17 +1,12 @@
 #pragma once
 
 #include "ofMain.h"
+#include "Common.h"
 #include "LfoBeat.h"
 #include "ofxFft.h"
 #include "ofxSoundUtils.h"
 
 extern int SR;  //sample rate
-
-struct StereoSample {
-	float L = 0;
-	float R = 0;
-	void clear() { L = R = 0; }
-};
 
 //Обращение к параметрами машины внутри машины
 #define TP prm_->

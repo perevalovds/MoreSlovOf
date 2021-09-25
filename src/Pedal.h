@@ -2,6 +2,7 @@
 
 //Pedal
 #include "ofMain.h"
+#include "Common.h"
 
 void pedal_setup();
 void pedal_update();

@@ -4,6 +4,7 @@
 //память должна быть выделена заранее, чтобы не было сбоев со звуковом
 
 #include "ofMain.h"
+#include "Common.h"
 #include "SeaSample.h"
 
 struct SeaWordParam {

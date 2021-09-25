@@ -5,6 +5,7 @@
 //А для создания звука - пересылает вызовы в DAEMONS
 
 #include "ofMain.h"
+#include "Common.h"
 #include "ofxSoundUtils.h"
 
 struct SoundEngine {

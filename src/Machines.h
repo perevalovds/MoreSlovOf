@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "Common.h"
 #include "MachineTone.h"
 #include "ofxKuTextGui.h"
 

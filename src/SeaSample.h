@@ -3,6 +3,7 @@
 //Один сэмпл слова
 
 #include "ofMain.h"
+#include "Common.h"
 
 struct SeaSampleParam {
 	//Vol, stereo

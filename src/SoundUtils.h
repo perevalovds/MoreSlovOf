@@ -3,7 +3,7 @@
 //Sound utils
 
 #include "ofMain.h"
-
+#include "Common.h"
 
 
 //случайный sample&hold на два канала

@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxMidi.h"
-
+#include "Common.h"
 
 
 class MidiApc40 : public ofxMidiListener {	

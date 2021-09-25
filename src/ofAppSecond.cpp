@@ -58,9 +58,13 @@ void AppSecond::draw(){
 		ofTranslate(pos_x(k), 0);
 		//если выделенная дорожка - то рисуем фон
 		if (k == PRM EDIT_ - 1) {
-			ofSetColor(100);
+			ofSetColor(70,100,70);
 			ofFill();
 			ofDrawRectangle(0, 0, w, H_);
+
+			ofSetColor(255);
+			ofNoFill();
+			ofDrawRectangle(1, 1, w-2, H_-2);
 		}
 
 		//сэмпл
@@ -77,20 +81,46 @@ void AppSecond::draw(){
 		if (k == PRM REC) {
 			ofSetColor(255, 0, 0);
 			ofFill();
-			ofDrawCircle(w / 2, y + circle_h / 2, w / 6);
+			ofDrawCircle(w / 2, y + circle_h / 2, w / 12);
 		}
 		y += circle_h;
 
 
-		//morph
+		//morph и тип
 		string name = ofToString(k + 1);
 		float morph = gui.getSmoothedValue("w_percent" + name) / 100.0f;
+		int type = *gui.findVarStringList("w_mode" + name);
 
 		if (morph > 0) {
 			ofSetColor(0,255,0,morph*255.0f);
 			font_.drawString("morph", 20, y + morph_h / 2);
 		}
 		y += morph_h;
+
+		string type_str;
+		if (type == 0) {
+			type_str = "Grain";
+			ofSetColor(200, 200, 100);
+		}
+		if (type == 1) {
+			type_str = "Spectr";
+			ofSetColor(100, 100, 200);
+		}
+		if (type == 2) {
+			type_str = "Repeat";
+			ofSetColor(150);
+		}
+		if (type == 3) {
+			type_str = "Drum1";
+			ofSetColor(100, 200, 200);
+		}
+		if (type == 4) {
+			type_str = "Drum2";
+			ofSetColor(100, 200, 200);
+		}
+		font_.drawString(type_str, 20, y + morph_h / 2);
+		y += morph_h;
+
 
 		//громкость
 		float vol = *gui.findVarFloat("w_vol" + name);

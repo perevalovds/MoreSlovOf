@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-25-22-02-16-339
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-25-23-42-50-600
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -136,6 +136,7 @@ struct Parameters {
 	int w_percent1;
 	int w_louder1;
 	float w_pan1;
+	float w_send1;
 	float w_vol1;
 	float w_pos1;
 	int REC2;
@@ -156,6 +157,7 @@ struct Parameters {
 	int w_percent2;
 	int w_louder2;
 	float w_pan2;
+	float w_send2;
 	float w_vol2;
 	float w_pos2;
 	int REC3;
@@ -176,6 +178,7 @@ struct Parameters {
 	int w_percent3;
 	int w_louder3;
 	float w_pan3;
+	float w_send3;
 	float w_vol3;
 	float w_pos3;
 	int REC4;
@@ -196,6 +199,7 @@ struct Parameters {
 	int w_percent4;
 	int w_louder4;
 	float w_pan4;
+	float w_send4;
 	float w_vol4;
 	float w_pos4;
 	int REC5;
@@ -216,6 +220,7 @@ struct Parameters {
 	int w_percent5;
 	int w_louder5;
 	float w_pan5;
+	float w_send5;
 	float w_vol5;
 	float w_pos5;
 	int REC6;
@@ -236,6 +241,7 @@ struct Parameters {
 	int w_percent6;
 	int w_louder6;
 	float w_pan6;
+	float w_send6;
 	float w_vol6;
 	float w_pos6;
 	int REC7;
@@ -256,6 +262,7 @@ struct Parameters {
 	int w_percent7;
 	int w_louder7;
 	float w_pan7;
+	float w_send7;
 	float w_vol7;
 	float w_pos7;
 	float REP_VOL;
@@ -313,6 +320,14 @@ struct Parameters {
 	int d2_Random;
 	float d2_len;
 	float d2_spd;
+	float delay1_vol;
+	float delay1_sec;
+	float delay1_fdbck;
+	float delay1_cross;
+	float delay2_vol;
+	float delay2_sec;
+	float delay2_fdbck;
+	float delay2_cross;
 	float smth_delay_sec;
 	float smth_spd_sec;
 	float sm_gr_len_sec;

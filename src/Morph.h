@@ -2,6 +2,7 @@
 
 //Морфинг в другой звук
 #include "ofMain.h"
+#include "Common.h"
 #include "MachineTone.h"
 
 struct Morph {

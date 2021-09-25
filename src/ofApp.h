@@ -5,6 +5,7 @@
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
+#include "Common.h"
 
 class ofApp : public ofBaseApp {
 
