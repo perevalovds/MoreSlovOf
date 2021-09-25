@@ -227,6 +227,12 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 		if (ch <= N) set_float("w_vol", ch, value, 1);	//громкость Techno
 		if (ch == 8) set_float("REP_VOL", -1, value, 1);	//громкость REP_VOL
 	}
+
+	//устанавливаем, что эта дорожка редактируется - так как AKAI высыдает ее и остальные при переключении
+	if (ctrl >= 16 && ctrl <= 23 && ch <= NPult) {
+		PRM EDIT_ = ch;
+	}
+
 	//1 - Mode
 	if (ctrl == 16 && ch <= NPult) set_stringlist("w_mode", ch, value, 2);
 	//2 - Delay

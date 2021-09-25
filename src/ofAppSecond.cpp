@@ -12,7 +12,7 @@ void AppSecond::setup(){
 	ofSetWindowShape(1024, 600);
 	ofSetVerticalSync(false);
 
-	font_.load("fonts/verdana", 20);
+	font_.load("fonts/verdana.ttf", 30);
 }
 
 //--------------------------------------------------------------
@@ -40,26 +40,41 @@ void AppSecond::draw(){
 	W_ = ofGetWidth();
 	H_ = ofGetHeight();
 	int sample_h = H_ / 5;
+	int id_h = H_ / 8;
 	int circle_h = H_ / 5;
 
 
 	//дорожки
-	for (int k = 0; k < n+1; k++) {
+	for (int k = 0; k < n+1; k++) {		//n+1, чтобы показать 7-й трек
 		auto *tone = MACHINE.tone[k];
 		int w = get_w(k);
 		ofPushMatrix();
 		ofTranslate(pos_x(k), 0);
+		//если выделенная дорожка - то рисуем фон
+		if (k == PRM EDIT_ - 1) {
+			ofSetColor(100);
+			ofFill();
+			ofDrawRectangle(0, 0, w, H_);
+		}
+
 		//сэмпл
 		if (tone) {
 			tone->draw_thumb(0, 0, w, sample_h);
 		}
-		//запись
 		int y = sample_h;
+		//номер
+		ofSetColor(255);
+		font_.drawString(ofToString(k + 1), w / 2, y + id_h / 2);
+		y += id_h;
+
+		//запись
 		if (k == PRM REC) {
 			ofSetColor(255, 0, 0);
 			ofFill();
 			ofDrawCircle(w / 2, y + circle_h / 2, w / 6);
 		}
+		y += 
+
 		y += circle_h;
 		ofPopMatrix();
 	}
