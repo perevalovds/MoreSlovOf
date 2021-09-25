@@ -11,6 +11,15 @@ public:
 	void update();
 	void draw();
 
+protected:
+	ofTrueTypeFont font_;
+
+	int n = 6;		//число дорожек для рисования, и 7-я - частично
+	float W_ = 100;
+	float H_ = 100;
+	float pos_x(int k);
+	float get_w(int k);
+
 
 };
 

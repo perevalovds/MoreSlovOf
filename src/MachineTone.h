@@ -54,7 +54,7 @@ struct MachineTone {
     void audioOut( StereoSample &out );
     void update( float dt );
 	
-	void draw_thumb(); //рисовать звук и pos
+	void draw_thumb(int x = -1, int y = -1, int w = -1, int h = -1); //рисовать звук и pos
 
 	void setup_backups(int n_backups);	//хранить n_backups записанных звуков
 	void restore_backup(int k);			//восстановить backup в текущий воспроизводимый звук
@@ -128,7 +128,7 @@ struct MachineTone {
 	vector<float> thumb_;	//данные для картинки звука
 	void make_thumb();
 
-	void draw_thumb_(const vector<float> &thumb, int x, int y, float pos = -1, float vol = -1);
+	void draw_thumb_(const vector<float> &thumb, int x, int y, float pos = -1, float vol = -1, int w = -1, int h = -1);
 
 	//backup
 	int backup_n_ = 0;			//сколько backup хранить

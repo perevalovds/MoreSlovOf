@@ -291,17 +291,20 @@ void MachineTone::make_thumb() {
 
 //--------------------------------------------------
 //рисовать звук и pos
-void MachineTone::draw_thumb() {
-	int x = *gui.findVarInt("thumb_x" + ofToString(id_ + 1));	
-	int y = PRM thumb_y;
+void MachineTone::draw_thumb(int x, int y, int w, int h) {
+	if (x < 0) {
+		x = *gui.findVarInt("thumb_x" + ofToString(id_ + 1));
+		y = PRM thumb_y;
+	}
 
-	draw_thumb_(thumb_, x, y, TP pos, measure_vol_);
+	draw_thumb_(thumb_, x, y, TP pos, measure_vol_, w, h);
 }
 
 //--------------------------------------------------
-void MachineTone::draw_thumb_(const vector<float> &thumb, int x, int y, float pos, float vol) {
-	int w = PRM thumb_w;
-	int h2 = PRM thumb_h / 2;
+void MachineTone::draw_thumb_(const vector<float> &thumb, int x, int y, float pos, float vol, int w, int h) {
+	if (w < 0) w = PRM thumb_w;
+	if (h < 0) h = PRM thumb_h;
+	int h2 = h / 2;
 	y += h2;
 
 	float scly = PRM thumb_scl * h2;
