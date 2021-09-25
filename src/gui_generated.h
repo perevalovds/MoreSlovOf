@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-24-09-14-00-330
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-25-15-51-26-806
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -24,6 +24,14 @@ struct Parameters {
 	int _scr_w_;
 	int scr_h;
 	int _scr_h_;
+	int scr2_x;
+	int _scr2_x_;
+	int scr2_y;
+	int _scr2_y_;
+	int scr2_w;
+	int _scr2_w_;
+	int scr2_h;
+	int _scr2_h_;
 	int messages_n;
 	int _messages_n_;
 	int messages_font;

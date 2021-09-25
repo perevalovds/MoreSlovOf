@@ -10,8 +10,9 @@
 #include "Pedal.h"
 #include "Common.h"
 #include "MidiApc40.h"
+#include "ofAppSecond.h"
 
-string app_ver = "v.19 (64 bit, autosave on)";
+string app_ver = "v.20 (64 bit, autosave on)";
 string Title = "MoreSlov " + app_ver;
 string Title_RU = "МореСлов " + app_ver;
 
@@ -19,6 +20,7 @@ string param_ini = "param.ini";
 
 ofxKuTextGui gui;
 
+extern AppSecond *APP_SECOND;	//второй экран
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -40,7 +42,6 @@ void ofApp::setup() {
 
 	//----------------------------
 	//GUI
-
 
 	//Если нет param.ini - значит запустили из TotalCommander, выдать ошибку
 	x_assert(ofFile::doesFileExist(param_ini), "Can't find " + param_ini + ". May be you run app from Total Commander. Run from Explorer!");
@@ -131,6 +132,11 @@ void ofApp::setup_screen() {
 	}
 	if (borderless) was_borderless = true;
 
+
+	//Второй экран
+	if (APP_SECOND) {
+		APP_SECOND->set_screen_size(PRM _scr2_x_, PRM _scr2_y_, PRM _scr2_w_, PRM _scr2_h_);
+	}
 }
 
 //--------------------------------------------------------------
@@ -167,7 +173,9 @@ void ofApp::exit() {
 
 	//Sound
 	SOUND.exit();
-	
+
+	//Second screen
+	OF_EXIT_APP(0);
 
 }
 
@@ -196,6 +204,13 @@ void ofApp::update_buttons() {  //нажатия кнопок
 //--------------------------------------------------------------
 void ofApp::update(){
 	float dt = 1.0 / PRM FPS;	//фиксированный dt для точного моделирования
+
+	//----------------------------
+	//Second screen
+	if (!screen_was_setup_ && ofGetElapsedTimef() >= 1) {
+		screen_was_setup_ = true;
+		setup_screen();
+	}
 
 	//----------------------------
 	//GUI

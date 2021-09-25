@@ -40,6 +40,7 @@ public:
 
 	//Экран
 	void setup_screen();
+	bool screen_was_setup_ = false;	//раз обновляем экран через 1 сек после старта - для второго окна
 	bool was_borderless = false;	//для переключение режима borderless
 	void restore_screen();		//восстановление экрана - помещение в 0,0 и нормальный размер
 

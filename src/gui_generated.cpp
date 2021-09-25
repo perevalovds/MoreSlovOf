@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-24-09-14-00-332
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-25-15-51-26-808
 
 Parameters params;
 //--------------------------------------------------------------
@@ -17,6 +17,10 @@ Parameters::Parameters() {
 	_scr_y_=20;
 	_scr_w_=1000;
 	_scr_h_=800;
+	_scr2_x_=1920;
+	_scr2_y_=0;
+	_scr2_w_=1024;
+	_scr2_h_=550;
 	_messages_n_=25;
 	_messages_font_=25;
 	_messages_x_=20;
@@ -362,6 +366,11 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addInt("*scr_y",_scr_y_,20,-20000,20000,1,20);
 	gui.addInt("*scr_w",_scr_w_,1000,100,10000,1,20);
 	gui.addInt("*scr_h",_scr_h_,800,100,10000,1,20);
+	gui.addDummy("Second_screen");
+	gui.addInt("*scr2_x",_scr2_x_,1920,-20000,20000,1,20);
+	gui.addInt("*scr2_y",_scr2_y_,0,-20000,20000,1,20);
+	gui.addInt("*scr2_w",_scr2_w_,1024,100,10000,1,20);
+	gui.addInt("*scr2_h",_scr2_h_,550,100,10000,1,20);
 	gui.addTab();
 	gui.addDummy("Message log:");
 	gui.addInt("*messages_n",_messages_n_,25,1,1000,1,10);
@@ -888,6 +897,10 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("*scr_y", ofColor(255,140,255));
 	gui.set_var_color("*scr_w", ofColor(255,140,255));
 	gui.set_var_color("*scr_h", ofColor(255,140,255));
+	gui.set_var_color("*scr2_x", ofColor(255,140,255));
+	gui.set_var_color("*scr2_y", ofColor(255,140,255));
+	gui.set_var_color("*scr2_w", ofColor(255,140,255));
+	gui.set_var_color("*scr2_h", ofColor(255,140,255));
 	gui.set_var_color("*in_channels", ofColor(255,140,140));
 	gui.set_var_color("*out_channel_start", ofColor(255,140,140));
 	gui.set_var_color("*out_channels", ofColor(255,140,140));
@@ -1213,6 +1226,10 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	scr_y = _scr_y_;
 	scr_w = _scr_w_;
 	scr_h = _scr_h_;
+	scr2_x = _scr2_x_;
+	scr2_y = _scr2_y_;
+	scr2_w = _scr2_w_;
+	scr2_h = _scr2_h_;
 	messages_n = _messages_n_;
 	messages_font = _messages_font_;
 	messages_x = _messages_x_;
