@@ -261,8 +261,8 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 		out << " port " << port << ", ch " << ch << ", ctrl " << ctrl << ", value " << value;
 		MLOG(out.str());
 	}
-	int N = maxTones;	//число техно-звуков
-	int NPult = N - 1;	//число звуков, которыми управляем с пульта
+	int N = maxTones_part1+1;	//число техно-звуков, 7 шт
+	int NPult = maxTones_part1;	//число звуков, которыми управляем с пульта
 	
 	//LPD
 	if (port == lpd_port) {
@@ -280,8 +280,10 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 	if (port == apc_port) {
 		//Mixer - Vol
 		if (ctrl == 7) {
-			if (ch <= N) set_float("w_vol", ch, value, 1);	//громкость Techno
-			if (ch == 8) set_float("REP_VOL", -1, value, 1);	//громкость REP_VOL
+			if (ch <= NPult) set_float("w_vol", ch, value, 1);	//громкость Techno
+			if (ch == 7) PRM w_volMix7 = value / 127.0;	//дорожки 7,8,9,10
+			if (ch == 8) PRM w_volMix8 = value / 127.0; //дорожки 11,12
+			//if (ch == 8) set_float("REP_VOL", -1, value, 1);	//громкость REP_VOL
 		}
 
 		//устанавливаем, что эта дорожка редактируется - так как AKAI высыдает ее и остальные при переключении

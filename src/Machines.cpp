@@ -92,6 +92,10 @@ void ToneMachine::update(float dt) {
 
 		//Volume
 		float vol = *gui.findVarFloat("w_vol" + name);
+
+		if (i >= 7 - 1 && i <= 10 - 1) vol *= PRM w_volMix7;		//модуляция дорожек 7,8,9,10 с дорожки 7 микшера
+		if (i >= 11 - 1 && i <= 12 - 1) vol *= PRM w_volMix8;		//модуляция дорожек 11,12 с дорожки 8 микшера
+
 		if (mod) vol = ofClamp(vol + *gui.findVarFloat("v_vol" + name), 0, 1); //модуляция
 		vol = ofxSoundUtils::volume_linear_to_exp(vol);	//экспонента
 		vol *= (1 + *gui.findVarStringList("w_louder" + name));//опционально увеличиваем с помощью дополнительного флажка "w_louder" - Solo / Que на APC40

@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-11-35-49-970
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-12-02-58-822
 
 Parameters params;
 //--------------------------------------------------------------
@@ -1465,7 +1465,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_pan10", ofColor(150,150,150));
 	gui.set_var_color("w_vol10", ofColor(255,255,100));
 	gui.set_var_color("w_pos10", ofColor(255,100,255));
-	gui.set_var_color("REC11", ofColor(100,100,255));
+	gui.set_var_color("REC11", ofColor(100,255,100));
 	gui.set_var_color("w_mode11", ofColor(255,100,255));
 	gui.set_var_color("w_delay11", ofColor(255,100,255));
 	gui.set_var_color("w_len11", ofColor(255,100,255));
@@ -1482,7 +1482,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_vol11", ofColor(255,255,100));
 	gui.set_var_color("w_volMix8", ofColor(100,100,255));
 	gui.set_var_color("w_pos11", ofColor(255,100,255));
-	gui.set_var_color("REC12", ofColor(100,100,255));
+	gui.set_var_color("REC12", ofColor(100,255,100));
 	gui.set_var_color("w_mode12", ofColor(255,100,255));
 	gui.set_var_color("w_delay12", ofColor(255,100,255));
 	gui.set_var_color("w_len12", ofColor(255,100,255));
