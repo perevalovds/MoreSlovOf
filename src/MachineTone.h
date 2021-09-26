@@ -56,7 +56,7 @@ struct MachineTone {
 	void draw_thumb(int x = -1, int y = -1, int w = -1, int h = -1); //рисовать звук и pos
 
 	void setup_backups(int n_backups);	//хранить n_backups записанных звуков
-	void load_sample(int k);			//загрузить сэмпл в текущий воспроизводимый звук
+	void load_sample(int k);			//загрузить сэмпл в текущий воспроизводимый звук - из 7-й дорожки
 	void draw_backups(int x, int y);
 
 	int id_ = 0;

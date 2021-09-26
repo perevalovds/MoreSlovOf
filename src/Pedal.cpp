@@ -1,6 +1,6 @@
 #include "Pedal.h"
 #include "gui_generated.h"
-#include "ofxKuMessageLog.h"
+
 
 ofSerial arduino_;
 int ard_connected_ = 0;

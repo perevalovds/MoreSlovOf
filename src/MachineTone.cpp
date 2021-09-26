@@ -4,6 +4,7 @@
 #include "Morph.h"
 #include "MachineDrums.h"
 #include "SoundFX.h"
+#include "Machines.h"
 
 extern ofxKuTextGui gui;
 
@@ -353,11 +354,16 @@ void MachineTone::setup_backups(int n_backups) {	//хранить n_backups за
 }
 
 //--------------------------------------------------
-void MachineTone::load_sample(int k) {			//загрузить сэмпл в текущий воспроизводимый звук
-	if (backups_.empty()) return;
-	k = min(k, int(backups_.size()) - 1);
+void MachineTone::load_sample(int k) {			//загрузить сэмпл в текущий воспроизводимый звук - из 7-й дорожки
+	auto *tone7 = MACHINE.tone[maxTones_part1];	//берем звуки из 7-й дорожки
+	if (!tone7) {
+		MLOG("MachineTone::load_sample error - tone7 is NULL");
+		return;
+	}
+	if (tone7->backups_.empty()) return;
+	k = min(k, int(tone7->backups_.size()) - 1);
 	bool backup_restore = true;
-	setup(id_, backups_[k].sound, 0, 0, backup_restore);
+	setup(id_, tone7->backups_[k].sound, 0, 0, backup_restore);
 }
 
 //--------------------------------------------------

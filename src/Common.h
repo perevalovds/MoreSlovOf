@@ -3,6 +3,7 @@
 //Общие данные и работа с GUI
 
 #include "ofMain.h"
+#include "ofxKuMessageLog.h"
 
 extern int SR;		//Sample rate
 
