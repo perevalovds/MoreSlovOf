@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-00-14-21-491
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-08-41-30-334
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -93,7 +93,10 @@ struct Parameters {
 	string _APC_midi_in_;
 	string APC_midi_out;
 	string _APC_midi_out_;
+	string LPD_midi_in;
+	string _LPD_midi_in_;
 	string APC_status_;
+	string LPD_status_;
 	int Print_MIDI;
 	int log_midi;
 	int max_rec_msec;
@@ -126,10 +129,10 @@ struct Parameters {
 	float w_grain_len1;
 	int w_flt1;
 	float w_cutoff1;
-	float w_send1A;
-	float w_send1B;
 	int w_morph1;
 	int w_percent1;
+	float w_sendA1;
+	float w_sendB1;
 	int w_louder1;
 	float w_pan1;
 	float w_vol1;
@@ -144,8 +147,8 @@ struct Parameters {
 	float w_cutoff2;
 	int w_morph2;
 	int w_percent2;
-	float w_send2A;
-	float w_send2B;
+	float w_sendA2;
+	float w_sendB2;
 	int w_louder2;
 	float w_pan2;
 	float w_vol2;
@@ -160,8 +163,8 @@ struct Parameters {
 	float w_cutoff3;
 	int w_morph3;
 	int w_percent3;
-	float w_send3A;
-	float w_send3B;
+	float w_sendA3;
+	float w_sendB3;
 	int w_louder3;
 	float w_pan3;
 	float w_vol3;
@@ -176,8 +179,8 @@ struct Parameters {
 	float w_cutoff4;
 	int w_morph4;
 	int w_percent4;
-	float w_send4A;
-	float w_send4B;
+	float w_sendA4;
+	float w_sendB4;
 	int w_louder4;
 	float w_pan4;
 	float w_vol4;
@@ -192,8 +195,8 @@ struct Parameters {
 	float w_cutoff5;
 	int w_morph5;
 	int w_percent5;
-	float w_send5A;
-	float w_send5B;
+	float w_sendA5;
+	float w_sendB5;
 	int w_louder5;
 	float w_pan5;
 	float w_vol5;
@@ -208,8 +211,8 @@ struct Parameters {
 	float w_cutoff6;
 	int w_morph6;
 	int w_percent6;
-	float w_send6A;
-	float w_send6B;
+	float w_sendA6;
+	float w_sendB6;
 	int w_louder6;
 	float w_pan6;
 	float w_vol6;
@@ -224,8 +227,8 @@ struct Parameters {
 	float w_cutoff7;
 	int w_morph7;
 	int w_percent7;
-	float w_send7A;
-	float w_send7B;
+	float w_sendA7;
+	float w_sendB7;
 	int w_louder7;
 	float w_pan7;
 	float w_vol7;
