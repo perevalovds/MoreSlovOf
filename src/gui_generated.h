@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-11-05-11-212
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-11-35-49-967
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -233,6 +233,7 @@ struct Parameters {
 	int w_louder7;
 	float w_pan7;
 	float w_vol7;
+	float w_volMix7;
 	float w_pos7;
 	int REC8;
 	int w_mode8;
@@ -297,6 +298,7 @@ struct Parameters {
 	int w_louder11;
 	float w_pan11;
 	float w_vol11;
+	float w_volMix8;
 	float w_pos11;
 	int REC12;
 	int w_mode12;

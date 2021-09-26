@@ -47,6 +47,8 @@ struct ToneParams {
 struct MachineTone {
 	~MachineTone();
 	
+	int sound_reloading_ = 0;	//указание, что мы перезагружаем звук - в этом случае не надо генерировать
+	ofMutex mutex_;		//защита от изменений при записи звука
 	vector<float> sound;
     
     void setup(int id, vector<float> &sound0, float BPM, ToneParams *params, bool backup_restore = false); //также вызывается при восстановлении backup

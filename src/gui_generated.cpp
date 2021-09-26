@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-11-05-11-214
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-11-35-49-970
 
 Parameters params;
 //--------------------------------------------------------------
@@ -197,6 +197,7 @@ Parameters::Parameters() {
 	w_louder7=0;
 	w_pan7=0.5;
 	w_vol7=0.5;
+	w_volMix7=1;
 	w_pos7=0;
 	REC8=0;
 	w_mode8=0;
@@ -261,6 +262,7 @@ Parameters::Parameters() {
 	w_louder11=0;
 	w_pan11=0.5;
 	w_vol11=0.5;
+	w_volMix8=1;
 	w_pos11=0;
 	REC12=0;
 	w_mode12=0;
@@ -794,6 +796,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_louder7",w_louder7,0,2,"OFF","ON");
 	gui.addFloat("w_pan7",w_pan7,0.5,0,1,100,10);
 	gui.addFloat("w_vol7",w_vol7,0.5,0,1,100,10);
+	gui.addFloat("w_volMix7",w_volMix7,1,0,1,100,10);
 	gui.addFloat("w_pos7",w_pos7,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Techno8");
@@ -816,6 +819,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_louder8",w_louder8,0,2,"OFF","ON");
 	gui.addFloat("w_pan8",w_pan8,0.5,0,1,100,10);
 	gui.addFloat("w_vol8",w_vol8,0.5,0,1,100,10);
+	gui.addVar("w_volMix7");
 	gui.addFloat("w_pos8",w_pos8,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Techno9");
@@ -838,6 +842,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_louder9",w_louder9,0,2,"OFF","ON");
 	gui.addFloat("w_pan9",w_pan9,0.5,0,1,100,10);
 	gui.addFloat("w_vol9",w_vol9,0.5,0,1,100,10);
+	gui.addVar("w_volMix7");
 	gui.addFloat("w_pos9",w_pos9,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Techno10");
@@ -860,6 +865,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_louder10",w_louder10,0,2,"OFF","ON");
 	gui.addFloat("w_pan10",w_pan10,0.5,0,1,100,10);
 	gui.addFloat("w_vol10",w_vol10,0.5,0,1,100,10);
+	gui.addVar("w_volMix7");
 	gui.addFloat("w_pos10",w_pos10,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Techno11");
@@ -882,6 +888,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_louder11",w_louder11,0,2,"OFF","ON");
 	gui.addFloat("w_pan11",w_pan11,0.5,0,1,100,10);
 	gui.addFloat("w_vol11",w_vol11,0.5,0,1,100,10);
+	gui.addFloat("w_volMix8",w_volMix8,1,0,1,100,10);
 	gui.addFloat("w_pos11",w_pos11,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Techno12");
@@ -904,6 +911,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_louder12",w_louder12,0,2,"OFF","ON");
 	gui.addFloat("w_pan12",w_pan12,0.5,0,1,100,10);
 	gui.addFloat("w_vol12",w_vol12,0.5,0,1,100,10);
+	gui.addVar("w_volMix8");
 	gui.addFloat("w_pos12",w_pos12,0,0,1,100,10);
 	gui.addTab();
 	gui.addDummy("Repeats");
@@ -1407,6 +1415,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_louder7", ofColor(150,150,150));
 	gui.set_var_color("w_pan7", ofColor(150,150,150));
 	gui.set_var_color("w_vol7", ofColor(255,255,100));
+	gui.set_var_color("w_volMix7", ofColor(100,100,255));
 	gui.set_var_color("w_pos7", ofColor(255,100,255));
 	gui.set_var_color("REC8", ofColor(100,100,255));
 	gui.set_var_color("w_mode8", ofColor(255,100,255));
@@ -1471,6 +1480,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_louder11", ofColor(150,150,150));
 	gui.set_var_color("w_pan11", ofColor(150,150,150));
 	gui.set_var_color("w_vol11", ofColor(255,255,100));
+	gui.set_var_color("w_volMix8", ofColor(100,100,255));
 	gui.set_var_color("w_pos11", ofColor(255,100,255));
 	gui.set_var_color("REC12", ofColor(100,100,255));
 	gui.set_var_color("w_mode12", ofColor(255,100,255));

@@ -16,6 +16,13 @@ MachineTone::~MachineTone() {
 //--------------------------------------------------
  //также вызывается при восстановлении backup
 void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *params, bool backup_restore) {
+	//защита от изменений при записи звука в звуковую карту
+	ofScopedLock lock(mutex_); // Lock the mutex.
+	// `lock` will unlock the mutex when it goes out of scope.
+
+	sound_reloading_ = true; //указание, что не надо генерировать сейчас звук
+
+
 	id_ = id;
 
 	if (!backup_restore) {
@@ -46,7 +53,7 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
     //lfo_flt.setup(TON flttype, TON fltstp, TON flt, TON fltrnd, TON fltmov);
     
     //Play_Len = (repeats-1) * Loop_Len + N;
-    update(0);
+    update(0);		//TODO еще в конце вызываем второй раз - нужно ли тут?
     
     play_pos = -1;
     grain_pos = 0;
@@ -55,7 +62,9 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
     index_ = 0;
     //--------------
     //Спектр
-	if (fft) delete fft;	 //если повторный вызов - то надо очистить (при восстановлени backup)
+	if (fft) {
+		delete fft;	 //если повторный вызов - то надо очистить (при восстановлени backup)
+	}
     fft = ofxFft::create(fft_n, OF_FFT_WINDOW_HAMMING); //OF_FFT_WINDOW_HANN);
     fft_pos = 0;
     fft_buffer.resize(fft_n);
@@ -72,8 +81,10 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
     
     play_fft = 0;
     
-    //--------------
-    update(0);
+    //--------------	
+    update(0);		//TODO второй раз вызывали update(), см. выше
+
+	sound_reloading_ = false;	//включаем звук обратно
 }
 
 //--------------------------------------------------
@@ -104,6 +115,13 @@ void MachineTone::update( float dt ) {
 
 //--------------------------------------------------
 void MachineTone::audioOut( StereoSample &out ) {
+	//если звук перезагружается - то выдать пустой звук
+	if (sound_reloading_) {
+		out.clear();
+		return;
+	}
+	ofScopedLock lock(mutex_); // Lock the mutex.  блокируем звук на перезагрузку
+
 	switch (mode) {
 	case 0: audioOut_grain(out);
 		break;
