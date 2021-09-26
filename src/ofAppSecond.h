@@ -20,6 +20,7 @@ protected:
 	float pos_x(int k);
 	float get_w(int k);
 
+	void draw_fader(int x, int y, int r, float value);
 
 };
 

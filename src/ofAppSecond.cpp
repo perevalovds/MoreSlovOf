@@ -43,10 +43,9 @@ void AppSecond::draw(){
 	H_ = ofGetHeight();
 	int sample_h = H_ / 5;
 	int id_h = H_ / 8;
-	int circle_h = H_ / 6;
+	int circle_h = H_ / 8;
 
-	int morph_h = H_ / 6;
-
+	int morph_h = H_ / 8;
 	int vol_h = H_ / 6;
 
 
@@ -80,8 +79,9 @@ void AppSecond::draw(){
 		//запись
 		if (k == PRM REC) {
 			ofSetColor(255, 0, 0);
-			ofFill();
-			ofDrawCircle(w / 2, y + circle_h / 2, w / 12);
+			ofFill();	
+			int circle_r = w / 12;
+			ofDrawCircle(w / 2, y + circle_h / 2, circle_r);
 		}
 		y += circle_h;
 
@@ -136,6 +136,17 @@ void AppSecond::draw(){
 			ofSetColor(255);
 			int y = int(ofMap(vol, 0, 1, yv0, yv1));
 			ofDrawRectangle(xc - w / 8, y-2, w / 8 * 2, 2);
+
+
+			//Delay faders
+			int delay_r = w / 8;
+			float delay1 = *gui.findVarFloat("w_sendA" + name);
+			float delay2 = *gui.findVarFloat("w_sendB" + name);
+			ofSetColor(230);
+			draw_fader(w / 4, yv1 - delay_r * 3, delay_r, delay1);
+			draw_fader(3*w / 4, yv1 - delay_r * 3, delay_r, delay2);
+
+
 		}
 
 		ofPopMatrix();
@@ -148,6 +159,16 @@ void AppSecond::draw(){
 		ofDrawLine(x, 0, x, H_);
 	}
 
+}
+
+//--------------------------------------------------------------
+void AppSecond::draw_fader(int x, int y, int r, float value) {
+	ofNoFill();
+	ofDrawCircle(x, y, r);
+	float angl = ofMap(value, 0, 1, (270 - 30) * DEG_TO_RAD, (-90 + 30) * DEG_TO_RAD);
+	float dx = r * cos(angl);
+	float dy = -r * sin(angl);
+	ofDrawLine(x, y, x + dx, y + dy);
 }
 
 //--------------------------------------------------------------
