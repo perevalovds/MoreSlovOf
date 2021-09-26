@@ -105,6 +105,7 @@ struct MachineTone {
     
     //внутренние параметры
     int pos_s, len_s, speed_s, grain_s;
+	int drum_grain_s;	//длина гранулы в барабанах
 
 	ofxSoundUtilsFilter mic_filter_L, mic_filter_R;
     

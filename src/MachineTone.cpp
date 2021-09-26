@@ -109,15 +109,19 @@ void MachineTone::update( float dt ) {
     grain_s = grain_f * SR;
     speed_s = grain_s * speed_f;
 
+
+	drum_grain_s = grain_f*10 * N / DrumBeats;	//длина гранулы - делим общую длину сэмпла на 16; *10 так как она до 0.1
+
     len_s = max(len_s,1);
     //speed_s = ofClamp(speed_s,0,1);
 }
 
 //--------------------------------------------------
 void MachineTone::audioOut( StereoSample &out ) {
+	out.clear();
+
 	//если звук перезагружается - то выдать пустой звук
 	if (sound_reloading_) {
-		out.clear();
 		return;
 	}
 	ofScopedLock lock(mutex_); // Lock the mutex.  блокируем звук на перезагрузку
@@ -133,7 +137,7 @@ void MachineTone::audioOut( StereoSample &out ) {
 		break;
 	case 4: audioOut_drum(out, 1);
 		break;
-	default: out.clear();
+	default: {}
 	}
 
 	//применяем морфинг
@@ -228,15 +232,17 @@ void MachineTone::audioOut_drum(StereoSample &out, int kit) {
 
 		index_ = (index_ + 1) % DrumBeats;
 		play_pos = int(*DRUM_POS[kit][index_] * N);		//медленная операция
+		grain_pos = 0;
 	}
 
-	if (play_pos >= 0 && play_pos < N) {
+	if (play_pos >= 0 && play_pos < N && grain_pos < drum_grain_s) {
 		float v = sound[play_pos];
 
 		out.L = v * vol*(1 - pan); //громкость гасится из-за pan в 2 раза в центре
 		out.R = v * vol*(pan);
 
 		play_pos++;
+		grain_pos++;
 	}
 	sample++;
 }
