@@ -93,6 +93,10 @@ void ToneMachine::update(float dt) {
 		p.pan = *gui.findVarFloat("w_pan" + name);
 		if (mod) p.pan = ofClamp(p.pan + *gui.findVarFloat("v_pan" + name), -1, 1);	//модуляция
 
+		//Effects
+		p.send_fx1 = *gui.findVarFloat("w_fxA" + name);
+		p.send_fx2 = *gui.findVarFloat("w_fxB" + name);
+
 		//Mode
 		p.mode = *gui.findVarStringList("w_mode" + name);
 

@@ -3,6 +3,7 @@
 #include "gui_generated.h"
 #include "Morph.h"
 #include "MachineDrums.h"
+#include "SoundFX.h"
 
 extern ofxKuTextGui gui;
 
@@ -128,8 +129,12 @@ void MachineTone::audioOut( StereoSample &out ) {
 	out.L *= TP vol * (1 - TP pan); //громкость гасится из-за pan в 2 раза в центре
 	out.R *= TP vol * (TP pan);
 
+	//добавляем в эффекты
+	SOUNDFX.send_sound(out, TP send_fx1, TP send_fx2);
+
 	//обновляем громкость
 	measure_vol_ = max(fabs(out.L) + fabs(out.R), measure_vol_*0.999f);
+
 
 }
 

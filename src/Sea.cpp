@@ -3,6 +3,7 @@
 #include "ofxKuMessageLog.h"
 #include "Common.h"
 #include "Morph.h"
+#include "SoundFX.h"
 
 extern ofxKuTextGui gui;
 Sea SEA;
@@ -16,6 +17,9 @@ void Sea::setup() {
 
 	MACHINE.setup();
 	MORPH.setup();
+
+	//Ёффекты
+	SOUNDFX.setup();
 
 	recbuttons_setup();
 }
@@ -39,6 +43,9 @@ void Sea::update(float dt) {
 			w.update();
 		}
 	}
+
+	//Ёффекты
+	SOUNDFX.update();
 
 	//техно
 	recbuttons_update();
@@ -190,9 +197,13 @@ void Sea::crop(const vector<float> &sound0, int n0, vector<float> &sound) {
 //--------------------------------------------------------------
 void Sea::audioOut(vector<float> &stereo_buffer, int n) {
 
+
 	StereoSample mach_sample;
 	for (int i = 0; i < n; i++) {
-		MACHINE.audioOut(mach_sample);
+		SOUNDFX.send_clear();	//очистка сэмпла эффектов
+		MACHINE.audioOut(mach_sample);	//генераци€ звука, а также отправка на эффекты
+		SOUNDFX.process_add(mach_sample); //добавление эффекта в микс
+
 		stereo_buffer[2 * i] += mach_sample.L;
 		stereo_buffer[2 * i + 1] += mach_sample.R;
 	}

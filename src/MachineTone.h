@@ -15,6 +15,10 @@ struct ToneParams {
 	float vol = 0.5;
 	float pan = 0.5;
 
+	//effects
+	float send_fx1 = 0;
+	float send_fx2 = 0;
+
 	int mode = 0;
 	float delay = 100;	//pause between samples
 	float pos = 0;

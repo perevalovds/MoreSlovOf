@@ -140,8 +140,8 @@ void AppSecond::draw(){
 
 			//Delay faders
 			int delay_r = w / 8;
-			float delay1 = *gui.findVarFloat("w_sendA" + name);
-			float delay2 = *gui.findVarFloat("w_sendB" + name);
+			float delay1 = *gui.findVarFloat("w_fxA" + name);
+			float delay2 = *gui.findVarFloat("w_fxB" + name);
 			ofSetColor(230);
 			draw_fader(w / 4, yv1 - delay_r * 3, delay_r, delay1);
 			draw_fader(3*w / 4, yv1 - delay_r * 3, delay_r, delay2);

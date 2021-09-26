@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-08-41-30-335
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-10-09-48-610
 
 Parameters params;
 //--------------------------------------------------------------
@@ -95,8 +95,8 @@ Parameters::Parameters() {
 	w_cutoff1=0.5;
 	w_morph1=0;
 	w_percent1=0;
-	w_sendA1=0;
-	w_sendB1=0;
+	w_fxA1=0;
+	w_fxB1=0;
 	w_louder1=0;
 	w_pan1=0.5;
 	w_vol1=0.5;
@@ -111,8 +111,8 @@ Parameters::Parameters() {
 	w_cutoff2=0.5;
 	w_morph2=0;
 	w_percent2=0;
-	w_sendA2=0;
-	w_sendB2=0;
+	w_fxA2=0;
+	w_fxB2=0;
 	w_louder2=0;
 	w_pan2=0.5;
 	w_vol2=0.5;
@@ -127,8 +127,8 @@ Parameters::Parameters() {
 	w_cutoff3=0.5;
 	w_morph3=0;
 	w_percent3=0;
-	w_sendA3=0;
-	w_sendB3=0;
+	w_fxA3=0;
+	w_fxB3=0;
 	w_louder3=0;
 	w_pan3=0.5;
 	w_vol3=0.5;
@@ -143,8 +143,8 @@ Parameters::Parameters() {
 	w_cutoff4=0.5;
 	w_morph4=0;
 	w_percent4=0;
-	w_sendA4=0;
-	w_sendB4=0;
+	w_fxA4=0;
+	w_fxB4=0;
 	w_louder4=0;
 	w_pan4=0.5;
 	w_vol4=0.5;
@@ -159,8 +159,8 @@ Parameters::Parameters() {
 	w_cutoff5=0.5;
 	w_morph5=0;
 	w_percent5=0;
-	w_sendA5=0;
-	w_sendB5=0;
+	w_fxA5=0;
+	w_fxB5=0;
 	w_louder5=0;
 	w_pan5=0.5;
 	w_vol5=0.5;
@@ -175,8 +175,8 @@ Parameters::Parameters() {
 	w_cutoff6=0.5;
 	w_morph6=0;
 	w_percent6=0;
-	w_sendA6=0;
-	w_sendB6=0;
+	w_fxA6=0;
+	w_fxB6=0;
 	w_louder6=0;
 	w_pan6=0.5;
 	w_vol6=0.5;
@@ -191,8 +191,8 @@ Parameters::Parameters() {
 	w_cutoff7=0.5;
 	w_morph7=0;
 	w_percent7=0;
-	w_sendA7=0;
-	w_sendB7=0;
+	w_fxA7=0;
+	w_fxB7=0;
 	w_louder7=0;
 	w_pan7=0.5;
 	w_vol7=0.5;
@@ -537,9 +537,9 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addDummy("Morph");
 	gui.addStringList("w_morph1",w_morph1,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent1",w_percent1,0,0,100,1,10);
-	gui.addDummy("Delay");
-	gui.addFloat("w_sendA1",w_sendA1,0,0,1,100,10);
-	gui.addFloat("w_sendB1",w_sendB1,0,0,1,100,10);
+	gui.addDummy("Effects");
+	gui.addFloat("w_fxA1",w_fxA1,0,0,1,100,10);
+	gui.addFloat("w_fxB1",w_fxB1,0,0,1,100,10);
 	gui.addDummy("Vol-Pos");
 	gui.addStringList("w_louder1",w_louder1,0,2,"OFF","ON");
 	gui.addFloat("w_pan1",w_pan1,0.5,0,1,100,10);
@@ -560,8 +560,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_morph2",w_morph2,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent2",w_percent2,0,0,100,1,10);
 	gui.addDummy("Delay");
-	gui.addFloat("w_sendA2",w_sendA2,0,0,1,100,10);
-	gui.addFloat("w_sendB2",w_sendB2,0,0,1,100,10);
+	gui.addFloat("w_fxA2",w_fxA2,0,0,1,100,10);
+	gui.addFloat("w_fxB2",w_fxB2,0,0,1,100,10);
 	gui.addDummy("Vol-Pos");
 	gui.addStringList("w_louder2",w_louder2,0,2,"OFF","ON");
 	gui.addFloat("w_pan2",w_pan2,0.5,0,1,100,10);
@@ -582,8 +582,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_morph3",w_morph3,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent3",w_percent3,0,0,100,1,10);
 	gui.addDummy("Delay");
-	gui.addFloat("w_sendA3",w_sendA3,0,0,1,100,10);
-	gui.addFloat("w_sendB3",w_sendB3,0,0,1,100,10);
+	gui.addFloat("w_fxA3",w_fxA3,0,0,1,100,10);
+	gui.addFloat("w_fxB3",w_fxB3,0,0,1,100,10);
 	gui.addDummy("Vol-Pos");
 	gui.addStringList("w_louder3",w_louder3,0,2,"OFF","ON");
 	gui.addFloat("w_pan3",w_pan3,0.5,0,1,100,10);
@@ -604,8 +604,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_morph4",w_morph4,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent4",w_percent4,0,0,100,1,10);
 	gui.addDummy("Delay");
-	gui.addFloat("w_sendA4",w_sendA4,0,0,1,100,10);
-	gui.addFloat("w_sendB4",w_sendB4,0,0,1,100,10);
+	gui.addFloat("w_fxA4",w_fxA4,0,0,1,100,10);
+	gui.addFloat("w_fxB4",w_fxB4,0,0,1,100,10);
 	gui.addDummy("Vol-Pos");
 	gui.addStringList("w_louder4",w_louder4,0,2,"OFF","ON");
 	gui.addFloat("w_pan4",w_pan4,0.5,0,1,100,10);
@@ -626,8 +626,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_morph5",w_morph5,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent5",w_percent5,0,0,100,1,10);
 	gui.addDummy("Delay");
-	gui.addFloat("w_sendA5",w_sendA5,0,0,1,100,10);
-	gui.addFloat("w_sendB5",w_sendB5,0,0,1,100,10);
+	gui.addFloat("w_fxA5",w_fxA5,0,0,1,100,10);
+	gui.addFloat("w_fxB5",w_fxB5,0,0,1,100,10);
 	gui.addDummy("Vol-Pos");
 	gui.addStringList("w_louder5",w_louder5,0,2,"OFF","ON");
 	gui.addFloat("w_pan5",w_pan5,0.5,0,1,100,10);
@@ -648,8 +648,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_morph6",w_morph6,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent6",w_percent6,0,0,100,1,10);
 	gui.addDummy("Delay");
-	gui.addFloat("w_sendA6",w_sendA6,0,0,1,100,10);
-	gui.addFloat("w_sendB6",w_sendB6,0,0,1,100,10);
+	gui.addFloat("w_fxA6",w_fxA6,0,0,1,100,10);
+	gui.addFloat("w_fxB6",w_fxB6,0,0,1,100,10);
 	gui.addDummy("Vol-Pos");
 	gui.addStringList("w_louder6",w_louder6,0,2,"OFF","ON");
 	gui.addFloat("w_pan6",w_pan6,0.5,0,1,100,10);
@@ -670,8 +670,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("w_morph7",w_morph7,0,4,"file1","file2","file3","file4");
 	gui.addInt("w_percent7",w_percent7,0,0,100,1,10);
 	gui.addDummy("Delay");
-	gui.addFloat("w_sendA7",w_sendA7,0,0,1,100,10);
-	gui.addFloat("w_sendB7",w_sendB7,0,0,1,100,10);
+	gui.addFloat("w_fxA7",w_fxA7,0,0,1,100,10);
+	gui.addFloat("w_fxB7",w_fxB7,0,0,1,100,10);
 	gui.addDummy("Vol-Pos");
 	gui.addStringList("w_louder7",w_louder7,0,2,"OFF","ON");
 	gui.addFloat("w_pan7",w_pan7,0.5,0,1,100,10);
@@ -761,12 +761,12 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addTab();
 	gui.addDummy("DELAY1");
 	gui.addFloat("delay1_vol",delay1_vol,0,0,1,1000,100);
-	gui.addFloat("delay1_sec",delay1_sec,0.5,0.01,1,1000,100);
+	gui.addFloat("delay1_sec",delay1_sec,0.5,0.01,2,2000,200);
 	gui.addFloat("delay1_fdbck",delay1_fdbck,0,0,0.9,1000,100);
 	gui.addFloat("delay1_cross",delay1_cross,0,0,1,100,10);
 	gui.addDummy("DELAY2");
 	gui.addFloat("delay2_vol",delay2_vol,0,0,1,1000,100);
-	gui.addFloat("delay2_sec",delay2_sec,0.5,0.01,1,1000,100);
+	gui.addFloat("delay2_sec",delay2_sec,0.5,0.01,2,2000,200);
 	gui.addFloat("delay2_fdbck",delay2_fdbck,0,0,0.9,1000,100);
 	gui.addFloat("delay2_cross",delay2_cross,0,0,1,100,10);
 	gui.addPage("LFO");
@@ -1047,8 +1047,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_cutoff1", ofColor(255,255,100));
 	gui.set_var_color("w_morph1", ofColor(150,150,150));
 	gui.set_var_color("w_percent1", ofColor(255,255,100));
-	gui.set_var_color("w_sendA1", ofColor(100,100,255));
-	gui.set_var_color("w_sendB1", ofColor(100,100,255));
+	gui.set_var_color("w_fxA1", ofColor(100,100,255));
+	gui.set_var_color("w_fxB1", ofColor(100,100,255));
 	gui.set_var_color("w_louder1", ofColor(150,150,150));
 	gui.set_var_color("w_pan1", ofColor(150,150,150));
 	gui.set_var_color("w_vol1", ofColor(255,255,100));
@@ -1063,8 +1063,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_cutoff2", ofColor(255,255,100));
 	gui.set_var_color("w_morph2", ofColor(150,150,150));
 	gui.set_var_color("w_percent2", ofColor(255,255,100));
-	gui.set_var_color("w_sendA2", ofColor(100,100,255));
-	gui.set_var_color("w_sendB2", ofColor(100,100,255));
+	gui.set_var_color("w_fxA2", ofColor(100,100,255));
+	gui.set_var_color("w_fxB2", ofColor(100,100,255));
 	gui.set_var_color("w_louder2", ofColor(150,150,150));
 	gui.set_var_color("w_pan2", ofColor(150,150,150));
 	gui.set_var_color("w_vol2", ofColor(255,255,100));
@@ -1079,8 +1079,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_cutoff3", ofColor(255,255,100));
 	gui.set_var_color("w_morph3", ofColor(150,150,150));
 	gui.set_var_color("w_percent3", ofColor(255,255,100));
-	gui.set_var_color("w_sendA3", ofColor(100,100,255));
-	gui.set_var_color("w_sendB3", ofColor(100,100,255));
+	gui.set_var_color("w_fxA3", ofColor(100,100,255));
+	gui.set_var_color("w_fxB3", ofColor(100,100,255));
 	gui.set_var_color("w_louder3", ofColor(150,150,150));
 	gui.set_var_color("w_pan3", ofColor(150,150,150));
 	gui.set_var_color("w_vol3", ofColor(255,255,100));
@@ -1095,8 +1095,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_cutoff4", ofColor(255,255,100));
 	gui.set_var_color("w_morph4", ofColor(150,150,150));
 	gui.set_var_color("w_percent4", ofColor(255,255,100));
-	gui.set_var_color("w_sendA4", ofColor(100,100,255));
-	gui.set_var_color("w_sendB4", ofColor(100,100,255));
+	gui.set_var_color("w_fxA4", ofColor(100,100,255));
+	gui.set_var_color("w_fxB4", ofColor(100,100,255));
 	gui.set_var_color("w_louder4", ofColor(150,150,150));
 	gui.set_var_color("w_pan4", ofColor(150,150,150));
 	gui.set_var_color("w_vol4", ofColor(255,255,100));
@@ -1111,8 +1111,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_cutoff5", ofColor(255,255,100));
 	gui.set_var_color("w_morph5", ofColor(150,150,150));
 	gui.set_var_color("w_percent5", ofColor(255,255,100));
-	gui.set_var_color("w_sendA5", ofColor(100,100,255));
-	gui.set_var_color("w_sendB5", ofColor(100,100,255));
+	gui.set_var_color("w_fxA5", ofColor(100,100,255));
+	gui.set_var_color("w_fxB5", ofColor(100,100,255));
 	gui.set_var_color("w_louder5", ofColor(150,150,150));
 	gui.set_var_color("w_pan5", ofColor(150,150,150));
 	gui.set_var_color("w_vol5", ofColor(255,255,100));
@@ -1127,8 +1127,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_cutoff6", ofColor(255,255,100));
 	gui.set_var_color("w_morph6", ofColor(150,150,150));
 	gui.set_var_color("w_percent6", ofColor(255,255,100));
-	gui.set_var_color("w_sendA6", ofColor(100,100,255));
-	gui.set_var_color("w_sendB6", ofColor(100,100,255));
+	gui.set_var_color("w_fxA6", ofColor(100,100,255));
+	gui.set_var_color("w_fxB6", ofColor(100,100,255));
 	gui.set_var_color("w_louder6", ofColor(150,150,150));
 	gui.set_var_color("w_pan6", ofColor(150,150,150));
 	gui.set_var_color("w_vol6", ofColor(255,255,100));
@@ -1143,8 +1143,8 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("w_cutoff7", ofColor(150,150,150));
 	gui.set_var_color("w_morph7", ofColor(150,150,150));
 	gui.set_var_color("w_percent7", ofColor(150,150,150));
-	gui.set_var_color("w_sendA7", ofColor(100,100,255));
-	gui.set_var_color("w_sendB7", ofColor(100,100,255));
+	gui.set_var_color("w_fxA7", ofColor(100,100,255));
+	gui.set_var_color("w_fxB7", ofColor(100,100,255));
 	gui.set_var_color("w_louder7", ofColor(150,150,150));
 	gui.set_var_color("w_pan7", ofColor(150,150,150));
 	gui.set_var_color("w_vol7", ofColor(255,255,100));

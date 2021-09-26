@@ -269,10 +269,10 @@ void MidiApc40::midi_in_ctrl(int port, int ch, int ctrl, int value) {
 		//Delay FX
 		if (ctrl <= NPult) {
 			float v = value / 127.0;
-			float delay1 = ofMap(v, 0.5, 0, 0, 1, true);	//влево - delay1
-			float delay2 = ofMap(v, 0.5, 1, 0, 1, true);	//вправо - delay2
-			set_float("w_sendA", ctrl, delay1);
-			set_float("w_sendB", ctrl, delay2);
+			float delay1 = ofMap(v, 0.45, 0, 0, 1, true);	//влево - delay1
+			float delay2 = ofMap(v, 0.55, 1, 0, 1, true);	//вправо - delay2
+			set_float("w_fxA", ctrl, delay1);
+			set_float("w_fxB", ctrl, delay2);
 		}
 	}
 

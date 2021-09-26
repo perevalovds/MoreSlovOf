@@ -4,8 +4,6 @@
 #include "ofxAudioFile.h"
 #include "Common.h"
 #include "Sea.h"
-#include "SoundFX.h"
-
 
 SoundEngine SOUND;
 
@@ -27,9 +25,6 @@ void SoundEngine::setup() {
 	//Запись
 	max_mic_rec_n_ = Common::max_mic_rec_n();
 	mic_recording_.resize(max_mic_rec_n_);
-
-	//Эффекты
-	SOUNDFX.setup();
 
 	//Запуск звука
 	start_stream();
@@ -206,9 +201,6 @@ void SoundEngine::update() {
 		show_devices();
 	}
 
-	//Эффекты
-	SOUNDFX.update();
-
 	PRM SND_CALLB_ = callbacks_status_string();
 	//if (key == ' ') {
 	//	recording = 1;
@@ -322,9 +314,6 @@ void SoundEngine::audioOut(ofSoundBuffer &output) {
 	fill(stereo_buffer_.begin(), stereo_buffer_.end(), 0);
 	float vol_pass = PRM PASS_VOL;
 	float vol_sea = PRM SEA_VOL;
-
-	//Эффекты
-	SOUNDFX.send_clear();
 
 	//звуки моря слов, также добавляют send в эффекты
 	SEA.audioOut(stereo_buffer_, n);
