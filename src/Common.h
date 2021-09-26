@@ -6,6 +6,11 @@
 
 extern int SR;		//Sample rate
 
+const int maxTones_part1 = 6;	//первая часть, управляемая с пультов
+const int maxTones_part2 = 6;	//первая часть, управляемая только из программы
+const int maxTones = maxTones_part1 + maxTones_part2;	//все дорожки
+
+
 struct StereoSample {
 	float L = 0;
 	float R = 0;

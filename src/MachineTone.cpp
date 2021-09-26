@@ -297,9 +297,10 @@ void MachineTone::make_thumb() {
 //--------------------------------------------------
 //рисовать звук и pos
 void MachineTone::draw_thumb(int x, int y, int w, int h) {
+	//рисуем в две строки
 	if (x < 0) {
-		x = *gui.findVarInt("thumb_x" + ofToString(id_ + 1));
-		y = PRM thumb_y;
+		x = *gui.findVarInt("thumb_x" + ofToString((id_%maxTones_part1) + 1));
+		y = PRM thumb_y + (PRM thumb_h+20) * (id_/ maxTones_part1);
 	}
 
 	draw_thumb_(thumb_, x, y, TP pos, measure_vol_, w, h);
@@ -352,7 +353,7 @@ void MachineTone::setup_backups(int n_backups) {	//хранить n_backups за
 }
 
 //--------------------------------------------------
-void MachineTone::restore_backup(int k) {			//восстановить backup в текущий воспроизводимый звук
+void MachineTone::load_sample(int k) {			//загрузить сэмпл в текущий воспроизводимый звук
 	if (backups_.empty()) return;
 	k = min(k, int(backups_.size()) - 1);
 	bool backup_restore = true;

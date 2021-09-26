@@ -351,12 +351,12 @@ void MidiApc40::midi_in_note(int port, int ch, int pitch, int onoff, int velocit
 			//}
 
 			//Louder ("Solo/Que") - дополнительное увеличение громкости
-			if (pitch == 49 && ch <= maxTones - 1) {
+			if (pitch == 49 && ch < maxTones_part1) {
 				*gui.findVarStringList("w_louder" + ofToString(ch)) = onoff;
 			}
 
 			//Activator - Morph ON/OFF
-			if (pitch == 50 && ch <= maxTones - 1) {
+			if (pitch == 50 && ch < maxTones_part1){
 				*gui.findVarInt("w_percent" + ofToString(ch)) = 100 * onoff;
 			}
 		}

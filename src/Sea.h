@@ -32,7 +32,7 @@ protected:
 	vector<int*> rec_gui_;	//значения REC1..7
 	vector<int> rec_state_;	//последнее состояние кнопок
 
-	void restore_backup(int i);
+	void load_sample(int i);	//загрузить сэмпл из предзаписанных в заданную дорожку
 };
 
 

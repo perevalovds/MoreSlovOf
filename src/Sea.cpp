@@ -51,13 +51,13 @@ void Sea::update(float dt) {
 	recbuttons_update();
 	MACHINE.update(dt);
 
-	//backups
-	if (PRM backup1) restore_backup(0);
-	if (PRM backup2) restore_backup(1);
-	if (PRM backup3) restore_backup(2);
-	if (PRM backup4) restore_backup(3);
-	if (PRM backup5) restore_backup(4);
-	if (PRM backup6) restore_backup(5);
+	//load recorded samples
+	if (PRM load1) load_sample(0);
+	if (PRM load2) load_sample(1);
+	if (PRM load3) load_sample(2);
+	if (PRM load4) load_sample(3);
+	if (PRM load5) load_sample(4);
+	if (PRM load6) load_sample(5);
 }
 
 //--------------------------------------------------------------
@@ -71,7 +71,7 @@ void Sea::draw() {
 	MACHINE.draw_thumbs();
 
 	//backups
-	auto *tone = MACHINE.tone[maxTones - 1];
+	auto *tone = MACHINE.tone[maxTones_part1];
 	if (tone) {
 		tone->draw_backups(PRM backup_x, PRM backup_y);
 	}
@@ -277,17 +277,20 @@ void Sea::recbuttons_set_next() {	//сдвиг на следующую дорожку, если не нажата к
 		int &v = PRM REC;
 		if (rec_state_[v] == 0) {	//вообще нет нажатых
 			v++;
-			v %= maxTones;	//скидываем из 7 в 0
-			v %= (maxTones - 1);	//-1 так как последн€€ не должна записыватьс€ автоматически
+			v %= maxTones_part1;	//скидываем из 7 в 0
+			v %= (maxTones_part1 - 1);	//-1 так как последн€€ не должна записыватьс€ автоматически
 		}
 	}
 }
 
 //--------------------------------------------------------------
-void Sea::restore_backup(int i) {
-	auto *tone = MACHINE.tone[maxTones - 1];
+//загрузить сэмпл из предзаписанных в заданную дорожку
+void Sea::load_sample(int i) {
+	int k = maxTones_part1 + PRM load_to;
+	x_assert(k >= 0 && k < maxTones, "Sea::load_sample error - wrong track " + ofToString(k));
+	auto *tone = MACHINE.tone[k];
 	if (tone) {
-		tone->restore_backup(i);
+		tone->load_sample(i);
 	}
 }
 

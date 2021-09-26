@@ -22,11 +22,19 @@ ToneMachine::ToneMachine() {
 
 //--------------------------------------------------
 void ToneMachine::setup() {
-    shared_pushed = false;
+	shared_pushed = false;
 
 	//барабаны
 	drums_setup();
 
+	//создаем все дорожки - в первую очередь, чтобы вторая часть принимала сэмплы из backup
+	vector<float> empty_sound(1000);
+	for (int i = 0; i < maxTones; i++) {
+		push_tone(i, empty_sound, PRM BPM * 2);	//*2 - так как в других местах так делаем
+	}
+
+
+	
 }
     
 //--------------------------------------------------
@@ -41,11 +49,11 @@ void ToneMachine::draw_thumbs() {		//рисовать звуки
 //--------------------------------------------------
 void ToneMachine::push_tone(int ton_number, vector<float> &sound, float BPM) {
 	int i = ton_number;
-	MLOG("Techno " + ofToString(i + 1));
+	//MLOG("Techno " + ofToString(i + 1));
 
 	//Создание тона
-	//если это последняя машина - то не пересоздаем
-	bool is_backups = (i == maxTones - 1);
+	//если это 7-я машина - то не пересоздаем
+	bool is_backups = (i == maxTones_part1);
 	MachineTone *ton = (is_backups) ? tone[i] : 0;
 	if (!ton) {
 		ton = new MachineTone();
@@ -79,7 +87,8 @@ void ToneMachine::update(float dt) {
 		auto &p = params_[i];
 		string name = ofToString(i + 1);
 
-		int mod = (i < maxTones - 1 && *gui.findVarStringList("Variate" + name));	//включена ли модуляция
+		//модуляция только для первой части дорожек
+		int mod = (i < maxTones_part1 && *gui.findVarStringList("Variate" + name));	//включена ли модуляция
 
 		//Volume
 		float vol = *gui.findVarFloat("w_vol" + name);
