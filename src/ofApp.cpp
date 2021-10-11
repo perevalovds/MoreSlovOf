@@ -12,7 +12,7 @@
 #include "MidiApc40.h"
 #include "ofAppSecond.h"
 
-string app_ver = "v.25 (64 bit, autosave on)";
+string app_ver = "v.26 (64 bit, autosave on)";
 string Title = "MoreSlov " + app_ver;
 string Title_RU = "МореСлов " + app_ver;
 

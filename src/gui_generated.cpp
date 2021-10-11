@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-12-02-58-822
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-13-04-33-608
 
 Parameters params;
 //--------------------------------------------------------------
@@ -185,6 +185,7 @@ Parameters::Parameters() {
 	REC7=0;
 	w_mode7=0;
 	w_delay7=0;
+	w_delay7kf=1;
 	w_len7=0.5;
 	w_spd7=0.5;
 	w_grain_len7=0.01;
@@ -202,6 +203,7 @@ Parameters::Parameters() {
 	REC8=0;
 	w_mode8=0;
 	w_delay8=0;
+	w_delay8kf=1;
 	w_len8=0.5;
 	w_spd8=0.5;
 	w_grain_len8=0.01;
@@ -218,6 +220,7 @@ Parameters::Parameters() {
 	REC9=0;
 	w_mode9=0;
 	w_delay9=0;
+	w_delay9kf=1;
 	w_len9=0.5;
 	w_spd9=0.5;
 	w_grain_len9=0.01;
@@ -234,6 +237,7 @@ Parameters::Parameters() {
 	REC10=0;
 	w_mode10=0;
 	w_delay10=0;
+	w_delay10kf=1;
 	w_len10=0.5;
 	w_spd10=0.5;
 	w_grain_len10=0.01;
@@ -250,6 +254,7 @@ Parameters::Parameters() {
 	REC11=0;
 	w_mode11=0;
 	w_delay11=0;
+	w_delay11kf=1;
 	w_len11=0.5;
 	w_spd11=0.5;
 	w_grain_len11=0.01;
@@ -267,6 +272,7 @@ Parameters::Parameters() {
 	REC12=0;
 	w_mode12=0;
 	w_delay12=0;
+	w_delay12kf=1;
 	w_len12=0.5;
 	w_spd12=0.5;
 	w_grain_len12=0.01;
@@ -780,6 +786,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC7",REC7,0,2,"OFF","ON");
 	gui.addStringList("w_mode7",w_mode7,0,5,"GRAIN","SPECTR","DELAY","DRUM1","DRUM2");
 	gui.addStringList("w_delay7",w_delay7,0,7,"64","32","16","8","4","2","1");
+	gui.addFloat("w_delay7kf",w_delay7kf,1,1,10,100,1000);
 	gui.addFloat("w_len7",w_len7,0.5,0,1,200,20);
 	gui.addFloat("w_spd7",w_spd7,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len7",w_grain_len7,0.01,0.002,0.1,100,10);
@@ -803,6 +810,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC8",REC8,0,2,"OFF","ON");
 	gui.addStringList("w_mode8",w_mode8,0,5,"GRAIN","SPECTR","DELAY","DRUM1","DRUM2");
 	gui.addStringList("w_delay8",w_delay8,0,7,"64","32","16","8","4","2","1");
+	gui.addFloat("w_delay8kf",w_delay8kf,1,1,10,100,1000);
 	gui.addFloat("w_len8",w_len8,0.5,0,1,200,20);
 	gui.addFloat("w_spd8",w_spd8,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len8",w_grain_len8,0.01,0.002,0.1,100,10);
@@ -826,6 +834,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC9",REC9,0,2,"OFF","ON");
 	gui.addStringList("w_mode9",w_mode9,0,5,"GRAIN","SPECTR","DELAY","DRUM1","DRUM2");
 	gui.addStringList("w_delay9",w_delay9,0,7,"64","32","16","8","4","2","1");
+	gui.addFloat("w_delay9kf",w_delay9kf,1,1,10,100,1000);
 	gui.addFloat("w_len9",w_len9,0.5,0,1,200,20);
 	gui.addFloat("w_spd9",w_spd9,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len9",w_grain_len9,0.01,0.002,0.1,100,10);
@@ -849,6 +858,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC10",REC10,0,2,"OFF","ON");
 	gui.addStringList("w_mode10",w_mode10,0,5,"GRAIN","SPECTR","DELAY","DRUM1","DRUM2");
 	gui.addStringList("w_delay10",w_delay10,0,7,"64","32","16","8","4","2","1");
+	gui.addFloat("w_delay10kf",w_delay10kf,1,1,10,100,1000);
 	gui.addFloat("w_len10",w_len10,0.5,0,1,200,20);
 	gui.addFloat("w_spd10",w_spd10,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len10",w_grain_len10,0.01,0.002,0.1,100,10);
@@ -872,6 +882,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC11",REC11,0,2,"OFF","ON");
 	gui.addStringList("w_mode11",w_mode11,0,5,"GRAIN","SPECTR","DELAY","DRUM1","DRUM2");
 	gui.addStringList("w_delay11",w_delay11,0,7,"64","32","16","8","4","2","1");
+	gui.addFloat("w_delay11kf",w_delay11kf,1,1,10,100,1000);
 	gui.addFloat("w_len11",w_len11,0.5,0,1,200,20);
 	gui.addFloat("w_spd11",w_spd11,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len11",w_grain_len11,0.01,0.002,0.1,100,10);
@@ -895,6 +906,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addStringList("REC12",REC12,0,2,"OFF","ON");
 	gui.addStringList("w_mode12",w_mode12,0,5,"GRAIN","SPECTR","DELAY","DRUM1","DRUM2");
 	gui.addStringList("w_delay12",w_delay12,0,7,"64","32","16","8","4","2","1");
+	gui.addFloat("w_delay12kf",w_delay12kf,1,1,10,100,1000);
 	gui.addFloat("w_len12",w_len12,0.5,0,1,200,20);
 	gui.addFloat("w_spd12",w_spd12,0.5,0,1,100,10);
 	gui.addFloat("w_grain_len12",w_grain_len12,0.01,0.002,0.1,100,10);
@@ -1403,6 +1415,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("REC7", ofColor(100,100,255));
 	gui.set_var_color("w_mode7", ofColor(255,100,255));
 	gui.set_var_color("w_delay7", ofColor(255,100,255));
+	gui.set_var_color("w_delay7kf", ofColor(100,100,255));
 	gui.set_var_color("w_len7", ofColor(255,100,255));
 	gui.set_var_color("w_spd7", ofColor(255,100,255));
 	gui.set_var_color("w_grain_len7", ofColor(255,100,255));
@@ -1420,6 +1433,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("REC8", ofColor(100,100,255));
 	gui.set_var_color("w_mode8", ofColor(255,100,255));
 	gui.set_var_color("w_delay8", ofColor(255,100,255));
+	gui.set_var_color("w_delay8kf", ofColor(100,100,255));
 	gui.set_var_color("w_len8", ofColor(255,100,255));
 	gui.set_var_color("w_spd8", ofColor(255,100,255));
 	gui.set_var_color("w_grain_len8", ofColor(255,100,255));
@@ -1436,6 +1450,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("REC9", ofColor(100,100,255));
 	gui.set_var_color("w_mode9", ofColor(255,100,255));
 	gui.set_var_color("w_delay9", ofColor(255,100,255));
+	gui.set_var_color("w_delay9kf", ofColor(100,100,255));
 	gui.set_var_color("w_len9", ofColor(255,100,255));
 	gui.set_var_color("w_spd9", ofColor(255,100,255));
 	gui.set_var_color("w_grain_len9", ofColor(255,100,255));
@@ -1452,6 +1467,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("REC10", ofColor(100,100,255));
 	gui.set_var_color("w_mode10", ofColor(255,100,255));
 	gui.set_var_color("w_delay10", ofColor(255,100,255));
+	gui.set_var_color("w_delay10kf", ofColor(100,100,255));
 	gui.set_var_color("w_len10", ofColor(255,100,255));
 	gui.set_var_color("w_spd10", ofColor(255,100,255));
 	gui.set_var_color("w_grain_len10", ofColor(255,100,255));
@@ -1468,6 +1484,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("REC11", ofColor(100,255,100));
 	gui.set_var_color("w_mode11", ofColor(255,100,255));
 	gui.set_var_color("w_delay11", ofColor(255,100,255));
+	gui.set_var_color("w_delay11kf", ofColor(100,100,255));
 	gui.set_var_color("w_len11", ofColor(255,100,255));
 	gui.set_var_color("w_spd11", ofColor(255,100,255));
 	gui.set_var_color("w_grain_len11", ofColor(255,100,255));
@@ -1485,6 +1502,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("REC12", ofColor(100,255,100));
 	gui.set_var_color("w_mode12", ofColor(255,100,255));
 	gui.set_var_color("w_delay12", ofColor(255,100,255));
+	gui.set_var_color("w_delay12kf", ofColor(100,100,255));
 	gui.set_var_color("w_len12", ofColor(255,100,255));
 	gui.set_var_color("w_spd12", ofColor(255,100,255));
 	gui.set_var_color("w_grain_len12", ofColor(255,100,255));

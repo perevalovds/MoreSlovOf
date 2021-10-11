@@ -123,7 +123,7 @@ void AppSecond::draw(){
 
 
 		//громкость
-		float vol = *gui.findVarFloat("w_vol" + name);
+		float vol = (k < n) ? *gui.findVarFloat("w_vol" + name) : PRM w_volMix7;	//TODO еще выдавать 8ю
 		{
 			int yv1 = H_ - vol_h - 10;
 			int yv0 = yv1 + vol_h;

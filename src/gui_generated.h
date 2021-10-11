@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-12-02-58-820
+//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-13-04-33-605
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -221,6 +221,7 @@ struct Parameters {
 	int REC7;
 	int w_mode7;
 	int w_delay7;
+	float w_delay7kf;
 	float w_len7;
 	float w_spd7;
 	float w_grain_len7;
@@ -238,6 +239,7 @@ struct Parameters {
 	int REC8;
 	int w_mode8;
 	int w_delay8;
+	float w_delay8kf;
 	float w_len8;
 	float w_spd8;
 	float w_grain_len8;
@@ -254,6 +256,7 @@ struct Parameters {
 	int REC9;
 	int w_mode9;
 	int w_delay9;
+	float w_delay9kf;
 	float w_len9;
 	float w_spd9;
 	float w_grain_len9;
@@ -270,6 +273,7 @@ struct Parameters {
 	int REC10;
 	int w_mode10;
 	int w_delay10;
+	float w_delay10kf;
 	float w_len10;
 	float w_spd10;
 	float w_grain_len10;
@@ -286,6 +290,7 @@ struct Parameters {
 	int REC11;
 	int w_mode11;
 	int w_delay11;
+	float w_delay11kf;
 	float w_len11;
 	float w_spd11;
 	float w_grain_len11;
@@ -303,6 +308,7 @@ struct Parameters {
 	int REC12;
 	int w_mode12;
 	int w_delay12;
+	float w_delay12kf;
 	float w_len12;
 	float w_spd12;
 	float w_grain_len12;

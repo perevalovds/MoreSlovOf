@@ -121,6 +121,11 @@ void ToneMachine::update(float dt) {
 		p.delay = pow(2, pdelay_log2_raw);
 		//cout << i << " " << p.delay << endl;
 
+		//дорожки 7..12 - дополнительно удлиняются
+		if (i >= maxTones_part1) {
+			p.delay *= *gui.findVarFloat("w_delay" + name + "kf");
+		}
+
 		//Position
 		p.pos = *gui.findVarFloat("w_pos" + name);
 		if (mod) p.pos = ofClamp(p.pos + *gui.findVarFloat("v_pos" + name), 0, 1); //модуляция
