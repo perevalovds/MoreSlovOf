@@ -14,6 +14,8 @@ struct SoundEngine {
 	void draw();
 	void exit();
 
+	bool toggleFileRecording();	//запись в WAV
+
 	void show_devices();
 	void start_stream();
 
@@ -52,6 +54,21 @@ protected:
 	int pedal_index_ = 0;	//0 - техно, 1 - повторы, у техно - приоритет
 
 	vector<float> stereo_buffer_;
+
+	//Recording
+	bool wav_recfile_ = false;
+	const int wav_duration_sec = 60 * 60;		//час записи
+	int wav_duration_samples = 0; //устанавливается в setup
+
+	void recfile_setup();		//буферы для записи выделяются сразу, на час
+	void recfile_start();
+	void recfile_stop();   //Внимание, после этой функции wavsnd_ портится - в него пишем микс
+
+	void wav_write_sound_sample(float mic, float sndL, float sndR);	//записать очередной звуковой сэмпл в WAV-буферы
+	vector<short> wavmic_, wavsnd_;	//стереобуферы
+	int wavpos_ = 0;
+	string wav_file_name_;
+
 };
 
 extern SoundEngine SOUND;

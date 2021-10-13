@@ -26,6 +26,9 @@ void SoundEngine::setup() {
 	max_mic_rec_n_ = Common::max_mic_rec_n();
 	mic_recording_.resize(max_mic_rec_n_);
 
+	//Запись WAV
+	recfile_setup();
+
 	//Запуск звука
 	start_stream();
 }
@@ -207,7 +210,8 @@ void SoundEngine::update() {
 	//	recorded = 0;
 	//	record_pos = 0;
 	//}
-
+	
+	PRM RECFILE = wav_recfile_;		//чтобы пользователь только Shift+R запускал запись, а не мышкой
 
 	PRM pass_thru_delta_ = ofToString(pass_write_pos_ - pass_read_pos_);
 
@@ -321,23 +325,37 @@ void SoundEngine::audioOut(ofSoundBuffer &output) {
 		v *= vol_sea;		//Громкость
 	}
 
-	//добавляем звук с микрофона 
-	if (PRM PASS_THRU) {
-		//pass thru
-		if (pass_read_pos_ + n > pass_write_pos_) {
-			cout << "WARNING: PASS_THRU read buffer " << pass_read_pos_ << " can be further than write " << pass_write_pos_ << endl;
-		}
+	//добавляем звук с микрофона
+	if (pass_read_pos_ + n > pass_write_pos_) {
+		cout << "WARNING: PASS_THRU read buffer " << pass_read_pos_ << " can be further than write " << pass_write_pos_ << endl;
+	}
 	
-		for (int i = 0; i < n; i++) {
-			float v = pass_thru_buf_[pass_read_pos_ % pass_thru_buf_n] * vol_pass;
-			pass_read_pos_++;
+	for (int i = 0; i < n; i++) {
+		float mic = pass_thru_buf_[pass_read_pos_ % pass_thru_buf_n] * vol_pass;
+		pass_read_pos_++;
 
-			stereo_buffer_[i * 2] = stereo_buffer_[i * 2 + 1] += v;
+		//запись WAV
+		if (wav_recfile_) {
+			wav_write_sound_sample(mic, stereo_buffer_[i * 2], stereo_buffer_[i * 2 + 1]);
+		}
+
+		//отправка микрофона в микс
+		if (PRM PASS_THRU) {
+			stereo_buffer_[i * 2] = stereo_buffer_[i * 2 + 1] += mic;
 		}
 	}
-	else {
+	
+	/*else {
 		pass_read_pos_ += n;
-	}
+
+		//запись WAV
+		if (wav_recfile_) {
+			float mic = 0;
+			for (int i = 0; i < n; i++) {
+				wav_write_sound_sample(mic, stereo_buffer_[i * 2], stereo_buffer_[i * 2 + 1]);
+			}
+		}
+	}*/
 
 	//заполнение выхода
 	float out_vol = PRM OUT_VOL;
@@ -355,5 +373,74 @@ void SoundEngine::audioOut(ofSoundBuffer &output) {
 
 }
 
+//--------------------------------------------------------------------------------
+bool SoundEngine::toggleFileRecording() {	//запись в WAV
+	wav_recfile_ = !wav_recfile_;
+	PRM RECFILE = wav_recfile_;
+
+	if (wav_recfile_) {
+		recfile_start();
+	}
+	else {
+		recfile_stop();
+	}
+
+	return wav_recfile_;
+
+}
+
+//--------------------------------------------------------------------------------
+void SoundEngine::recfile_setup() {
+	PRM RECFILE = 0;
+	wav_recfile_ = 0;
+
+	wavpos_ = 0;
+
+	wav_duration_samples = SR * wav_duration_sec * 2;
+
+	wavmic_.resize(wav_duration_samples);
+	wavsnd_.resize(wav_duration_samples);
+}
+
+//--------------------------------------------------------------------------------
+void SoundEngine::recfile_start() {
+	wavpos_ = 0;
+	wav_file_name_ = ofGetTimestampString("%Y_%m_%d-%H%M%S");
+}
+
+//--------------------------------------------------------------------------------
+void SoundEngine::recfile_stop() { //Внимание, после этой функции  wavsnd_ портится - в него пишем микс
+
+	if (wavpos_ <= 0) return;
+	string file_mic = "temp/" + wav_file_name_ + "_mic.wav";
+	string file_snd = "temp/" + wav_file_name_ + "_snd.wav";
+	string file_mix = "temp/" + wav_file_name_ + "_xmix.wav";
+	ofxAudioFile::save_wav_16bit_stereo(ofToDataPath(file_mic), wavmic_.data(), wavpos_);
+	ofxAudioFile::save_wav_16bit_stereo(ofToDataPath(file_snd), wavsnd_.data(), wavpos_);
+
+	//микс - пишем в snd, чтобы не выделять память
+	for (int i = 0; i < wavpos_; i++) {
+		int v = int(wavmic_[i]) + int(wavsnd_[i]);
+		wavsnd_[i] = min(max(v, -32767), 32767);
+	}
+	ofxAudioFile::save_wav_16bit_stereo(ofToDataPath(file_mix), wavsnd_.data(), wavpos_);
+
+	cout << "Saved " << "temp/" + wav_file_name_ << endl;
+}
+
+//--------------------------------------------------------------------------------
+//уменьшаем громкость - чтобы не было перегрузки в WAV
+const float wav_decrease_vol = 4.0f;
+#define FLOAT_TO_SHORT_DECVOL(x) (min(max(int(x*32767.0f / wav_decrease_vol), -32767),32767))
+
+
+void SoundEngine::wav_write_sound_sample(float mic, float sndL, float sndR) {
+	if (wavpos_ >= wav_duration_samples) return;
+	wavmic_[wavpos_] = wavmic_[wavpos_ + 1] = FLOAT_TO_SHORT_DECVOL(mic);
+	wavsnd_[wavpos_] = FLOAT_TO_SHORT_DECVOL(sndL);
+	wavpos_++;
+	wavsnd_[wavpos_] = FLOAT_TO_SHORT_DECVOL(sndR);
+	wavpos_++;
+}
 
 //--------------------------------------------------------------------------------

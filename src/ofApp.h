@@ -18,7 +18,7 @@ public:
 	void load();
 	void save();
 	void exit();
-	void flash();
+	void flash(ofColor color = ofColor(255));
 
 	void keyPressed(int key);
 	void keyReleased(int key);
@@ -33,6 +33,7 @@ public:
 	void gotMessage(ofMessage msg);
 
 	float flash_ = 0;
+	ofColor flash_color_;
 	int show_gui = 1;
 	float time0_ = 0;
 

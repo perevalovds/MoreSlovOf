@@ -1,5 +1,5 @@
 #include "gui_generated.h"
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-13-04-33-608
+//Auto-generated GUI file for ofxKuTextGui, 2021-10-13-10-42-54-311
 
 Parameters params;
 //--------------------------------------------------------------
@@ -77,6 +77,7 @@ Parameters::Parameters() {
 	Crop_fade_ms=10;
 	Min_Vol=0.2;
 	WORDS_="...";
+	RECFILE=0;
 	EDIT_=1;
 	REC=0;
 	REC1=0;
@@ -625,7 +626,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addVar("-vol_in");
 	gui.addVar("-vol_out");
 	gui.addString("-WORDS",WORDS_,"...");
-	gui.addDummy("");
+	gui.addStringList("RECFILE",RECFILE,0,2,"OFF","ON");
 	gui.addVar("-PEDAL");
 	gui.addVar("-PEDAL2");
 	gui.addDummy("");
@@ -767,7 +768,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.addVar("-vol_in");
 	gui.addVar("-vol_out");
 	gui.addVar("-WORDS");
-	gui.addDummy("");
+	gui.addVar("RECFILE");
 	gui.addVar("-PEDAL");
 	gui.addVar("-PEDAL2");
 	gui.addDummy("");
@@ -1307,6 +1308,7 @@ void Parameters::setup(ofxKuTextGui &gui, string fileName) {
 	gui.set_var_color("Crop_fade_ms", ofColor(200,100,100));
 	gui.set_var_color("Min_Vol", ofColor(200,100,100));
 	gui.set_var_color("-WORDS", ofColor(255,255,100));
+	gui.set_var_color("RECFILE", ofColor(255,0,0));
 	gui.set_var_color("-EDIT", ofColor(100,100,200));
 	gui.set_var_color("REC", ofColor(255,255,100));
 	gui.set_var_color("REC1", ofColor(255,100,100));

@@ -1,7 +1,7 @@
 #include "SoundFX.h"
 #include "ofxKuMessageLog.h"
 #include "gui_generated.h"
-#include "ofxAudioFile.h"
+//#include "ofxAudioFile.h"
 #include "Common.h"
 #include "Sea.h"
 

@@ -12,7 +12,7 @@
 #include "MidiApc40.h"
 #include "ofAppSecond.h"
 
-string app_ver = "v.26 (64 bit, autosave on)";
+string app_ver = "v.27 (64 bit, autosave on)";
 string Title = "MoreSlov " + app_ver;
 string Title_RU = "МореСлов " + app_ver;
 
@@ -27,6 +27,7 @@ void ofApp::setup() {
 	cout << "------------------------------------------" << endl;
 	MLOG(Title_RU, Title);
 	cout << "Keys: Enter to clear logs" << endl;
+	cout << "    Shift + R - Recording to file on/off" << endl;
 	cout << "    z, Space  - Pedals" << endl;
 	cout << "    a,s,d,f,g,h - variations" << endl;
 	cout << "    Shift+F - toggle fullscreen, Shift+Q - restore borderless screen" << endl;
@@ -162,8 +163,9 @@ void ofApp::save() {
 }
 
 //--------------------------------------------------------------
-void ofApp::flash() {
+void ofApp::flash(ofColor color) {
 	flash_ = 1;
+	flash_color_ = color;
 }
 
 //--------------------------------------------------------------
@@ -273,7 +275,9 @@ void ofApp::draw(){
 
 	//вспышка
 	if (flash_ > 0) {
-		ofSetColor(255, flash_ * 128);
+		ofColor c = flash_color_;
+		c.a = flash_ * 128;
+		ofSetColor(c);
 		ofFill();
 		ofRect(0, 0, w, h);
 	}
@@ -303,6 +307,10 @@ void ofApp::keyPressed  (int key){
 	if (key == 'h') PRM Variate6 = 1;
 
 	//----------------------------------
+	if (key == 'R') {	//запись в WAV
+		bool rec = SOUND.toggleFileRecording();
+		flash(rec ? ofColor(255, 0, 0) : ofColor(0, 255, 0));
+	}
 
 	if (key == OF_KEY_RETURN) MLOGGER.clear(); //сброс логов
 

@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-09-26-13-04-33-605
+//Auto-generated GUI file for ofxKuTextGui, 2021-10-13-10-42-54-309
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -113,6 +113,7 @@ struct Parameters {
 	int Crop_fade_ms;
 	float Min_Vol;
 	string WORDS_;
+	int RECFILE;
 	int EDIT_;
 	int REC;
 	int REC1;
