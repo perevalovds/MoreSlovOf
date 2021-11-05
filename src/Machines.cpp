@@ -132,8 +132,10 @@ void ToneMachine::update(float dt) {
 
 		//Length
 		float len = *gui.findVarFloat("w_len" + name);
+		//диапазон
+		p.len = ofMap(len, 0, 1, 0.01, 1);
 		//нелинейность и диапазон
-		p.len = ofMap(len*len, 0, 1, 0.01, 5);	
+		//p.len = ofMap(len*len, 0, 1, 0.01, 5);	
 
 		//Grain speed
 		float spd = gui.updateSmoothedValue("w_spd" + name, dt, PRM smth_spd_sec); //*gui.findVarFloat("w_spd" + name);

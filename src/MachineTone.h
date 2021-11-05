@@ -104,7 +104,13 @@ struct MachineTone {
     float pos_f, len_f, speed_f, grain_f;
     
     //внутренние параметры
-    int pos_s, len_s, speed_s, grain_s;
+	int pos_s;
+	int len_grain_s;//длина для grain относительно LoopLen
+	int len_spectr_s;	//длина для fft до 5 сек
+	int len_repeat_s;//длина для grain относительно LoopLen
+
+	int speed_s;
+	int grain_s;
 	int drum_grain_s;	//длина гранулы в барабанах
 
 	ofxSoundUtilsFilter mic_filter_L, mic_filter_R;

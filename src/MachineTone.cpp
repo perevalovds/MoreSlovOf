@@ -105,14 +105,23 @@ void MachineTone::update( float dt ) {
     
     
     pos_s = pos_f * N;
-    len_s = len_f * SR;
+	
+	len_grain_s = len_f * Loop_Len;
+	len_grain_s = max(len_grain_s, 1);
+
+	len_spectr_s = len_f * SR * 5;
+	len_spectr_s = max(len_spectr_s, 1);
+
+	len_repeat_s = len_f * N;
+	len_repeat_s = min(max(len_repeat_s, 1), N);
+
     grain_s = grain_f * SR;
     speed_s = grain_s * speed_f;
 
 
 	drum_grain_s = grain_f*10 * N / DrumBeats;	//длина гранулы - делим общую длину сэмпла на 16; *10 так как она до 0.1
 
-    len_s = max(len_s,1);
+    
     //speed_s = ofClamp(speed_s,0,1);
 }
 
@@ -178,7 +187,7 @@ void MachineTone::audioOut_delay( StereoSample &out ) {
 		sample = 0; 
 	}
         
-    if (sample >= 0 && sample < N) {
+    if (sample >= 0 && sample < len_repeat_s) { // && sample < N) {
         float v = sound[sample];
         
         out.L = v*vol*(1-pan); //громкость гасится из-за pan в 2 раза в центре
@@ -200,7 +209,7 @@ void MachineTone::audioOut_grain( StereoSample &out ) {
         //played_count = 0;
     }
     
-    if (play_pos >= 0 && play_pos < pos_s + len_s) {
+    if (play_pos >= 0 && sample < len_grain_s) { // && play_pos < pos_s + len_s) {
         if (play_pos < N) {
             float v = sound[play_pos];
             
@@ -276,7 +285,7 @@ void MachineTone::audioOut_make_buffer() {
     int n = fft_n;
     int n2 = n/2;
     
-    int len_fft = min(pos_s+len_s + n, N);
+    int len_fft = min(pos_s+ len_spectr_s + n, N);
     
     for (int Q=0; Q<2; Q++) {
         int pos = play_fft + n2*speed_f*Q + pos_s;
