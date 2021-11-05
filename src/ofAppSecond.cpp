@@ -41,12 +41,18 @@ void AppSecond::draw(){
 	//ставим размеры дл€ использовани€
 	W_ = ofGetWidth();
 	H_ = ofGetHeight();
-	int sample_h = H_ / 5;
-	int id_h = H_ / 8;
-	int circle_h = H_ / 8;
+	int step1 = H_ / 5;
+	int step6 = H_ / 6;
+	int step2 = H_ / 8;
+	int step3 = H_ / 10;
+	int step16 = H_ / 16;
 
-	int morph_h = H_ / 8;
-	int vol_h = H_ / 6;
+	int sample_h = step1;
+	int id_h = step2;
+	int circle_h = step2;
+
+	int morph_h = step2;
+	int vol_h = step6;
 
 
 	//дорожки
@@ -81,13 +87,20 @@ void AppSecond::draw(){
 			ofSetColor(255, 0, 0);
 			ofFill();	
 			int circle_r = w / 12;
-			ofDrawCircle(w / 2, y + circle_h / 2, circle_r);
+			ofDrawCircle(w / 2, y, circle_r);
 		}
-		y += circle_h;
+		y += step16;
 
+		//len
+		string name = ofToString(k + 1);
+		float len = *gui.findVarFloat("w_len" + name);
+		ofSetColor(len > 0.05 ? ofColor(150) : ofColor(255, 255, 0));
+		font_.drawString("len " + ofToString(len,3), 20, y + step16 / 2);
+		ofLine(0, y + step16, w * len, y + step16);
+		y += step16;
 
 		//morph и тип
-		string name = ofToString(k + 1);
+		
 		float morph = gui.getSmoothedValue("w_percent" + name) / 100.0f;
 		int type = *gui.findVarStringList("w_mode" + name);
 
@@ -143,8 +156,8 @@ void AppSecond::draw(){
 			float delay1 = *gui.findVarFloat("w_fxA" + name);
 			float delay2 = *gui.findVarFloat("w_fxB" + name);
 			ofSetColor(230);
-			draw_fader(w / 4, yv1 - delay_r * 3, delay_r, delay1);
-			draw_fader(3*w / 4, yv1 - delay_r * 3, delay_r, delay2);
+			draw_fader(w / 4, yv1 - delay_r * 1, delay_r, delay1);
+			draw_fader(3*w / 4, yv1 - delay_r * 1, delay_r, delay2);
 
 
 		}
