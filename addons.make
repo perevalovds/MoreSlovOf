@@ -1,0 +1,9 @@
+ofxAudioFile
+ofxFANN
+ofxFft
+ofxFontStash
+ofxKu
+ofxKuTextGui
+ofxMidi
+ofxOsc
+ofxSoundUtils
