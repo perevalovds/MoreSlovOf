@@ -359,7 +359,7 @@ void MidiApc40::midi_in_note(int port, int ch, int pitch, int onoff, int velocit
 
 			//Activator - TEMPO SLOW/FAST
 			if (pitch == 50 && ch < maxTones_part1){
-				*gui.findVarInt("TEMP" + ofToString(ch)) = onoff;
+				*gui.findVarStringList("TEMP" + ofToString(ch)) = onoff;
 			}
 
 			//--- Commented ---
