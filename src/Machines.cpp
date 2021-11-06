@@ -158,6 +158,9 @@ void ToneMachine::update(float dt) {
 		p.pantype = *gui.findVarStringList("w_pantype" + name);
 		p.panstp = *gui.findVarInt("w_panstp" + name);
 		p.panmov = *gui.findVarFloat("w_panmov" + name);
+		p.flttype = *gui.findVarStringList("w_flttype" + name);
+		p.fltstp = *gui.findVarInt("w_fltstp" + name);
+		p.fltmov = *gui.findVarFloat("w_fltmov" + name);
 
 		//Morph
 		p.morph_id = *gui.findVarStringList("w_morph" + name);

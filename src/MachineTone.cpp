@@ -50,7 +50,8 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
 
     lfo_vol.setup(TP voltype, TP volstp, 1/*TP vol*/, 0, TP volmov);
     lfo_pan.setup(TP pantype, TP panstp, 0.5/*TP pan*/, 0, TP panmov);
-    //lfo_flt.setup(TON flttype, TON fltstp, TON flt, TON fltrnd, TON fltmov);
+    lfo_flt.setup(TP flttype, TP fltstp, 0, 0, TP fltmov);
+	lfo_flt.setRange(-1, 1);
     
     //Play_Len = (repeats-1) * Loop_Len + N;
     update(0);		//TODO еще в конце вызываем второй раз - нужно ли тут?
@@ -153,8 +154,9 @@ void MachineTone::audioOut( StereoSample &out ) {
 	MORPH.apply_to_audio(TP morph_id, morph_audio_counter_, TP morph_insensity, out);
 
 	//применяем фильтр
-	out.L = mic_filter_L.process(out.L, TP flt_cutoff, TP flt_mode);
-	out.R = mic_filter_R.process(out.R, TP flt_cutoff, TP flt_mode);
+	float cutoff = min(max(TP flt_cutoff + flt, 0.0f), 1.0f);
+	out.L = mic_filter_L.process(out.L, cutoff, TP flt_mode);
+	out.R = mic_filter_R.process(out.R, cutoff, TP flt_mode);
 
 
 	//применяем Vol и Pan
@@ -174,8 +176,8 @@ void MachineTone::audioOut( StereoSample &out ) {
 inline void MachineTone::audio_lfo_next_value() {
 	vol = lfo_vol.nextValue();
 	pan = lfo_pan.nextValue();
-	//flt = lfo_flt.nextValue();
-	//cout << "index " << index << " pan " << pan << endl;
+	flt = lfo_flt.nextValue();
+	//cout << "id " << id_ << " flt " << flt << endl;
 	
 }
 

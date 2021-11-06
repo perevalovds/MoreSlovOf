@@ -29,15 +29,17 @@ void LfoBeat::setRange(float range00, float range10) {
 //--------------------------------------------------
 float LfoBeat::nextValue() {
     float lfo = 0;
-    if (type == TypeConst)  lfo = 0;
-    if (type == TypeUp)     lfo = ofLerp(-1,1,pos*pos_correction);
-    if (type == TypeDown)   lfo = ofLerp(1,-1,pos*pos_correction);
-    if (type == TypeRand)   lfo = ofRandom(-1,1);
-    if (type == TypeSin)    lfo = sin(TWO_PI*pos);
-    if (type == TypeSinM)   lfo = -sin(TWO_PI*pos);
-    if (type == TypeCos)    lfo = cos(TWO_PI*pos);
-    if (type == TypeCosM)   lfo = -cos(TWO_PI*pos);
-    
+    switch (type) {
+    case TypeConst:  lfo = 0; break;
+    case TypeUp:     lfo = ofLerp(-1, 1, pos * pos_correction); break;
+    case TypeDown:   lfo = ofLerp(1, -1, pos * pos_correction); break;
+    case TypeRand:   lfo = ofRandom(-1, 1); break;
+    case TypeSin:    lfo = sin(TWO_PI * pos); break;
+    case TypeSinM:   lfo = -sin(TWO_PI * pos); break;
+    case TypeCos:    lfo = cos(TWO_PI * pos); break;
+    case TypeCosM:   lfo = -cos(TWO_PI * pos); break;
+    }
+
     float v = value0 + ofRandom(-rnd,rnd) + mov*lfo;
     
     pos += pos_step;

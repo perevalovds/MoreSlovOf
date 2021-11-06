@@ -31,6 +31,9 @@ struct ToneParams {
 	int pantype = 0;
 	int panstp = 1;
 	float panmov = 0;
+	int flttype = 0;
+	int fltstp = 1;
+	float fltmov = 0;
 	//float VOL = 0.5;
 
 	int morph_id = 0;
