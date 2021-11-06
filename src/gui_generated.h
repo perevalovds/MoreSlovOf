@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-11-06-12-27-25-612
+//Auto-generated GUI file for ofxKuTextGui, 2021-11-06-14-31-26-810
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -105,7 +105,8 @@ struct Parameters {
 	int _max_words_;
 	int max_polyphony;
 	int _max_polyphony_;
-	int BPM;
+	int BPM_1;
+	int BPM_2;
 	int Auto_Rec_Next;
 	int Crop_Mode;
 	int Crop_thresh;
@@ -117,6 +118,7 @@ struct Parameters {
 	int EDIT_;
 	int REC;
 	int REC1;
+	int TEMP1;
 	int w_mode1;
 	int w_delay1;
 	float w_len1;
@@ -134,6 +136,7 @@ struct Parameters {
 	float w_vol1;
 	float w_pos1;
 	int REC2;
+	int TEMP2;
 	int w_mode2;
 	int w_delay2;
 	float w_len2;
@@ -151,6 +154,7 @@ struct Parameters {
 	float w_vol2;
 	float w_pos2;
 	int REC3;
+	int TEMP3;
 	int w_mode3;
 	int w_delay3;
 	float w_len3;
@@ -168,6 +172,7 @@ struct Parameters {
 	float w_vol3;
 	float w_pos3;
 	int REC4;
+	int TEMP4;
 	int w_mode4;
 	int w_delay4;
 	float w_len4;
@@ -185,6 +190,7 @@ struct Parameters {
 	float w_vol4;
 	float w_pos4;
 	int REC5;
+	int TEMP5;
 	int w_mode5;
 	int w_delay5;
 	float w_len5;
@@ -202,6 +208,7 @@ struct Parameters {
 	float w_vol5;
 	float w_pos5;
 	int REC6;
+	int TEMP6;
 	int w_mode6;
 	int w_delay6;
 	float w_len6;
@@ -226,6 +233,7 @@ struct Parameters {
 	int load6;
 	int load_to;
 	int REC7;
+	int TEMP7;
 	int w_mode7;
 	int w_delay7;
 	float w_delay7kf;
@@ -245,6 +253,7 @@ struct Parameters {
 	float w_volMix7;
 	float w_pos7;
 	int REC8;
+	int TEMP8;
 	int w_mode8;
 	int w_delay8;
 	float w_delay8kf;
@@ -263,6 +272,7 @@ struct Parameters {
 	float w_vol8;
 	float w_pos8;
 	int REC9;
+	int TEMP9;
 	int w_mode9;
 	int w_delay9;
 	float w_delay9kf;
@@ -281,6 +291,7 @@ struct Parameters {
 	float w_vol9;
 	float w_pos9;
 	int REC10;
+	int TEMP10;
 	int w_mode10;
 	int w_delay10;
 	float w_delay10kf;
@@ -299,6 +310,7 @@ struct Parameters {
 	float w_vol10;
 	float w_pos10;
 	int REC11;
+	int TEMP11;
 	int w_mode11;
 	int w_delay11;
 	float w_delay11kf;
@@ -318,6 +330,7 @@ struct Parameters {
 	float w_volMix8;
 	float w_pos11;
 	int REC12;
+	int TEMP12;
 	int w_mode12;
 	int w_delay12;
 	float w_delay12kf;

@@ -14,6 +14,7 @@ extern int SR;  //sample rate
 struct ToneParams {
 	float vol = 0.5;
 	float pan = 0.5;
+	float bpm = 120;
 
 	//effects
 	float send_fx1 = 0;
@@ -54,7 +55,7 @@ struct MachineTone {
 	ofMutex mutex_;		//защита от изменений при записи звука
 	vector<float> sound;
     
-    void setup(int id, vector<float> &sound0, float BPM, ToneParams *params, bool backup_restore = false); //также вызывается при восстановлении backup
+    void setup(int id, vector<float> &sound0, ToneParams *params, bool backup_restore = false); //также вызывается при восстановлении backup
     void audioOut( StereoSample &out );
     void update( float dt );
 	

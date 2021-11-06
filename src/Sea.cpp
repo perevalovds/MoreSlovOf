@@ -114,8 +114,8 @@ void Sea::push_word(const vector<float> &sound0, int n0, int pedal_index) {
 	else {
 		//Techno 
 		int i = PRM REC;
-		int BPM = PRM BPM * 2;	//умножаем на 2, чтобы были быстрее самые короткие длительности				
-		MACHINE.push_tone(i, sound, BPM);
+		//int BPM = PRM BPM * 2;	//умножаем на 2, чтобы были быстрее самые короткие длительности				
+		MACHINE.push_tone(i, sound);
 
 		recbuttons_set_next();	//переключаемся на следующую дорожку, если не нажата красная
 

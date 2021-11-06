@@ -15,7 +15,7 @@ MachineTone::~MachineTone() {
 
 //--------------------------------------------------
  //также вызывается при восстановлении backup
-void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *params, bool backup_restore) {
+void MachineTone::setup(int id, vector<float> &sound0, ToneParams *params, bool backup_restore) {
 	//защита от изменений при записи звука в звуковую карту
 	ofScopedLock lock(mutex_); // Lock the mutex.
 	// `lock` will unlock the mutex when it goes out of scope.
@@ -41,7 +41,6 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
 	if (!backup_restore) {
 		add_backup(sound, thumb_);	//записываем в backup
 
-		samples_per_bit = SR * 60 / (BPM * 4);    //сколько сэмплов в доле
 	}
 
     vol = 0.5;
@@ -96,6 +95,9 @@ void MachineTone::update( float dt ) {
 	
 	//Read values from GUI
 	//Also some value is smoothed
+	
+	samples_per_bit = SR * 60 / (TP bpm * 4);    //сколько сэмплов в доле
+
 	Loop_Len = int(samples_per_bit * TP delay);
 	
 	pos_f = TP pos;
@@ -103,7 +105,6 @@ void MachineTone::update( float dt ) {
 	speed_f = TP spd;
     grain_f = TP grain_len;
     mode = TP mode;
-    
     
     pos_s = pos_f * N;
 	
@@ -398,7 +399,7 @@ void MachineTone::load_sample(int k) {			//загрузить сэмпл в те
 	if (tone7->backups_.empty()) return;
 	k = min(k, int(tone7->backups_.size()) - 1);
 	bool backup_restore = true;
-	setup(id_, tone7->backups_[k].sound, 0, 0, backup_restore);
+	setup(id_, tone7->backups_[k].sound, 0, backup_restore);
 }
 
 //--------------------------------------------------
