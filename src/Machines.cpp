@@ -30,7 +30,7 @@ void ToneMachine::setup() {
 	//создаем все дорожки - в первую очередь, чтобы вторая часть принимала сэмплы из backup
 	vector<float> empty_sound(1000);
 	for (int i = 0; i < maxTones; i++) {
-		push_tone(i, empty_sound, PRM BPM * 2);	//*2 - так как в других местах так делаем
+		push_tone(i, empty_sound); // , PRM BPM * 2);	//*2 - так как в других местах так делаем
 	}
 
 
@@ -47,7 +47,7 @@ void ToneMachine::draw_thumbs() {		//рисовать звуки
 }
 
 //--------------------------------------------------
-void ToneMachine::push_tone(int ton_number, vector<float> &sound, float BPM) {
+void ToneMachine::push_tone(int ton_number, vector<float> &sound) {
 	int i = ton_number;
 	//MLOG("Techno " + ofToString(i + 1));
 
@@ -63,7 +63,7 @@ void ToneMachine::push_tone(int ton_number, vector<float> &sound, float BPM) {
 	}
 
 	//Запуск тона
-	ton->setup(i, sound, BPM, &params_[i]);
+	ton->setup(i, sound, &params_[i]);
 
 	//удаляем старую
 	MachineTone *temp = tone[i];
@@ -102,6 +102,11 @@ void ToneMachine::update(float dt) {
 		p.vol = vol;
 		//cout << "vol " << i << " " << vol << endl;
 		
+		//BPM
+		int bpm_index = *gui.findVarStringList("TEMP" + name);
+		p.bpm = ((bpm_index == 0) ? PRM BPM_1 : PRM BPM_2) * 2;	//умножаем на 2, чтобы побольше скорость
+
+
 		//Pan
 		p.pan = *gui.findVarFloat("w_pan" + name);
 		if (mod) p.pan = ofClamp(p.pan + *gui.findVarFloat("v_pan" + name), -1, 1);	//модуляция
@@ -132,8 +137,10 @@ void ToneMachine::update(float dt) {
 
 		//Length
 		float len = *gui.findVarFloat("w_len" + name);
+		//диапазон
+		p.len = ofMap(len, 0, 1, 0.01, 1);
 		//нелинейность и диапазон
-		p.len = ofMap(len*len, 0, 1, 0.01, 5);	
+		//p.len = ofMap(len*len, 0, 1, 0.01, 5);	
 
 		//Grain speed
 		float spd = gui.updateSmoothedValue("w_spd" + name, dt, PRM smth_spd_sec); //*gui.findVarFloat("w_spd" + name);
@@ -156,6 +163,9 @@ void ToneMachine::update(float dt) {
 		p.pantype = *gui.findVarStringList("w_pantype" + name);
 		p.panstp = *gui.findVarInt("w_panstp" + name);
 		p.panmov = *gui.findVarFloat("w_panmov" + name);
+		p.flttype = *gui.findVarStringList("w_flttype" + name);
+		p.fltstp = *gui.findVarInt("w_fltstp" + name);
+		p.fltmov = *gui.findVarFloat("w_fltmov" + name);
 
 		//Morph
 		p.morph_id = *gui.findVarStringList("w_morph" + name);

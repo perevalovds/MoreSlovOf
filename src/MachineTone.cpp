@@ -15,7 +15,7 @@ MachineTone::~MachineTone() {
 
 //--------------------------------------------------
  //также вызывается при восстановлении backup
-void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *params, bool backup_restore) {
+void MachineTone::setup(int id, vector<float> &sound0, ToneParams *params, bool backup_restore) {
 	//защита от изменений при записи звука в звуковую карту
 	ofScopedLock lock(mutex_); // Lock the mutex.
 	// `lock` will unlock the mutex when it goes out of scope.
@@ -41,7 +41,6 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
 	if (!backup_restore) {
 		add_backup(sound, thumb_);	//записываем в backup
 
-		samples_per_bit = SR * 60 / (BPM * 4);    //сколько сэмплов в доле
 	}
 
     vol = 0.5;
@@ -50,7 +49,8 @@ void MachineTone::setup(int id, vector<float> &sound0, float BPM, ToneParams *pa
 
     lfo_vol.setup(TP voltype, TP volstp, 1/*TP vol*/, 0, TP volmov);
     lfo_pan.setup(TP pantype, TP panstp, 0.5/*TP pan*/, 0, TP panmov);
-    //lfo_flt.setup(TON flttype, TON fltstp, TON flt, TON fltrnd, TON fltmov);
+    lfo_flt.setup(TP flttype, TP fltstp, 0, 0, TP fltmov);
+	lfo_flt.setRange(-1, 1);
     
     //Play_Len = (repeats-1) * Loop_Len + N;
     update(0);		//TODO еще в конце вызываем второй раз - нужно ли тут?
@@ -95,6 +95,9 @@ void MachineTone::update( float dt ) {
 	
 	//Read values from GUI
 	//Also some value is smoothed
+	
+	samples_per_bit = SR * 60 / (TP bpm * 4);    //сколько сэмплов в доле
+
 	Loop_Len = int(samples_per_bit * TP delay);
 	
 	pos_f = TP pos;
@@ -103,16 +106,24 @@ void MachineTone::update( float dt ) {
     grain_f = TP grain_len;
     mode = TP mode;
     
-    
     pos_s = pos_f * N;
-    len_s = len_f * SR;
+	
+	len_grain_s = len_f * Loop_Len;
+	len_grain_s = max(len_grain_s, 1);
+
+	len_spectr_s = len_f * SR * 5;
+	len_spectr_s = max(len_spectr_s, 1);
+
+	len_repeat_s = len_f * N;
+	len_repeat_s = min(max(len_repeat_s, 1), N);
+
     grain_s = grain_f * SR;
     speed_s = grain_s * speed_f;
 
 
 	drum_grain_s = grain_f*10 * N / DrumBeats;	//длина гранулы - делим общую длину сэмпла на 16; *10 так как она до 0.1
 
-    len_s = max(len_s,1);
+    
     //speed_s = ofClamp(speed_s,0,1);
 }
 
@@ -144,8 +155,9 @@ void MachineTone::audioOut( StereoSample &out ) {
 	MORPH.apply_to_audio(TP morph_id, morph_audio_counter_, TP morph_insensity, out);
 
 	//применяем фильтр
-	out.L = mic_filter_L.process(out.L, TP flt_cutoff, TP flt_mode);
-	out.R = mic_filter_R.process(out.R, TP flt_cutoff, TP flt_mode);
+	float cutoff = min(max(TP flt_cutoff + flt, 0.0f), 1.0f);
+	out.L = mic_filter_L.process(out.L, cutoff, TP flt_mode);
+	out.R = mic_filter_R.process(out.R, cutoff, TP flt_mode);
 
 
 	//применяем Vol и Pan
@@ -165,8 +177,8 @@ void MachineTone::audioOut( StereoSample &out ) {
 inline void MachineTone::audio_lfo_next_value() {
 	vol = lfo_vol.nextValue();
 	pan = lfo_pan.nextValue();
-	//flt = lfo_flt.nextValue();
-	//cout << "index " << index << " pan " << pan << endl;
+	flt = lfo_flt.nextValue();
+	//cout << "id " << id_ << " flt " << flt << endl;
 	
 }
 
@@ -178,7 +190,7 @@ void MachineTone::audioOut_delay( StereoSample &out ) {
 		sample = 0; 
 	}
         
-    if (sample >= 0 && sample < N) {
+    if (sample >= 0 && sample < len_repeat_s) { // && sample < N) {
         float v = sound[sample];
         
         out.L = v*vol*(1-pan); //громкость гасится из-за pan в 2 раза в центре
@@ -200,7 +212,7 @@ void MachineTone::audioOut_grain( StereoSample &out ) {
         //played_count = 0;
     }
     
-    if (play_pos >= 0 && play_pos < pos_s + len_s) {
+    if (play_pos >= 0 && sample < len_grain_s) { // && play_pos < pos_s + len_s) {
         if (play_pos < N) {
             float v = sound[play_pos];
             
@@ -276,7 +288,7 @@ void MachineTone::audioOut_make_buffer() {
     int n = fft_n;
     int n2 = n/2;
     
-    int len_fft = min(pos_s+len_s + n, N);
+    int len_fft = min(pos_s+ len_spectr_s + n, N);
     
     for (int Q=0; Q<2; Q++) {
         int pos = play_fft + n2*speed_f*Q + pos_s;
@@ -387,7 +399,7 @@ void MachineTone::load_sample(int k) {			//загрузить сэмпл в те
 	if (tone7->backups_.empty()) return;
 	k = min(k, int(tone7->backups_.size()) - 1);
 	bool backup_restore = true;
-	setup(id_, tone7->backups_[k].sound, 0, 0, backup_restore);
+	setup(id_, tone7->backups_[k].sound, 0, backup_restore);
 }
 
 //--------------------------------------------------

@@ -14,6 +14,7 @@ extern int SR;  //sample rate
 struct ToneParams {
 	float vol = 0.5;
 	float pan = 0.5;
+	float bpm = 120;
 
 	//effects
 	float send_fx1 = 0;
@@ -31,6 +32,9 @@ struct ToneParams {
 	int pantype = 0;
 	int panstp = 1;
 	float panmov = 0;
+	int flttype = 0;
+	int fltstp = 1;
+	float fltmov = 0;
 	//float VOL = 0.5;
 
 	int morph_id = 0;
@@ -51,7 +55,7 @@ struct MachineTone {
 	ofMutex mutex_;		//защита от изменений при записи звука
 	vector<float> sound;
     
-    void setup(int id, vector<float> &sound0, float BPM, ToneParams *params, bool backup_restore = false); //также вызывается при восстановлении backup
+    void setup(int id, vector<float> &sound0, ToneParams *params, bool backup_restore = false); //также вызывается при восстановлении backup
     void audioOut( StereoSample &out );
     void update( float dt );
 	
@@ -104,7 +108,13 @@ struct MachineTone {
     float pos_f, len_f, speed_f, grain_f;
     
     //внутренние параметры
-    int pos_s, len_s, speed_s, grain_s;
+	int pos_s;
+	int len_grain_s;//длина для grain относительно LoopLen
+	int len_spectr_s;	//длина для fft до 5 сек
+	int len_repeat_s;//длина для grain относительно LoopLen
+
+	int speed_s;
+	int grain_s;
 	int drum_grain_s;	//длина гранулы в барабанах
 
 	ofxSoundUtilsFilter mic_filter_L, mic_filter_R;

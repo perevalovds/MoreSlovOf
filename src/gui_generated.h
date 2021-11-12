@@ -1,5 +1,5 @@
 #pragma once
-//Auto-generated GUI file for ofxKuTextGui, 2021-10-13-10-42-54-309
+//Auto-generated GUI file for ofxKuTextGui, 2021-11-06-14-31-26-810
 
 #include "ofMain.h"
 #include "ofxKuTextGui.h"
@@ -105,7 +105,8 @@ struct Parameters {
 	int _max_words_;
 	int max_polyphony;
 	int _max_polyphony_;
-	int BPM;
+	int BPM_1;
+	int BPM_2;
 	int Auto_Rec_Next;
 	int Crop_Mode;
 	int Crop_thresh;
@@ -117,6 +118,7 @@ struct Parameters {
 	int EDIT_;
 	int REC;
 	int REC1;
+	int TEMP1;
 	int w_mode1;
 	int w_delay1;
 	float w_len1;
@@ -124,6 +126,7 @@ struct Parameters {
 	float w_grain_len1;
 	int w_flt1;
 	float w_cutoff1;
+	float w_reso1;
 	int w_morph1;
 	int w_percent1;
 	float w_fxA1;
@@ -133,6 +136,7 @@ struct Parameters {
 	float w_vol1;
 	float w_pos1;
 	int REC2;
+	int TEMP2;
 	int w_mode2;
 	int w_delay2;
 	float w_len2;
@@ -140,6 +144,7 @@ struct Parameters {
 	float w_grain_len2;
 	int w_flt2;
 	float w_cutoff2;
+	float w_reso2;
 	int w_morph2;
 	int w_percent2;
 	float w_fxA2;
@@ -149,6 +154,7 @@ struct Parameters {
 	float w_vol2;
 	float w_pos2;
 	int REC3;
+	int TEMP3;
 	int w_mode3;
 	int w_delay3;
 	float w_len3;
@@ -156,6 +162,7 @@ struct Parameters {
 	float w_grain_len3;
 	int w_flt3;
 	float w_cutoff3;
+	float w_reso3;
 	int w_morph3;
 	int w_percent3;
 	float w_fxA3;
@@ -165,6 +172,7 @@ struct Parameters {
 	float w_vol3;
 	float w_pos3;
 	int REC4;
+	int TEMP4;
 	int w_mode4;
 	int w_delay4;
 	float w_len4;
@@ -172,6 +180,7 @@ struct Parameters {
 	float w_grain_len4;
 	int w_flt4;
 	float w_cutoff4;
+	float w_reso4;
 	int w_morph4;
 	int w_percent4;
 	float w_fxA4;
@@ -181,6 +190,7 @@ struct Parameters {
 	float w_vol4;
 	float w_pos4;
 	int REC5;
+	int TEMP5;
 	int w_mode5;
 	int w_delay5;
 	float w_len5;
@@ -188,6 +198,7 @@ struct Parameters {
 	float w_grain_len5;
 	int w_flt5;
 	float w_cutoff5;
+	float w_reso5;
 	int w_morph5;
 	int w_percent5;
 	float w_fxA5;
@@ -197,6 +208,7 @@ struct Parameters {
 	float w_vol5;
 	float w_pos5;
 	int REC6;
+	int TEMP6;
 	int w_mode6;
 	int w_delay6;
 	float w_len6;
@@ -204,6 +216,7 @@ struct Parameters {
 	float w_grain_len6;
 	int w_flt6;
 	float w_cutoff6;
+	float w_reso6;
 	int w_morph6;
 	int w_percent6;
 	float w_fxA6;
@@ -220,6 +233,7 @@ struct Parameters {
 	int load6;
 	int load_to;
 	int REC7;
+	int TEMP7;
 	int w_mode7;
 	int w_delay7;
 	float w_delay7kf;
@@ -228,6 +242,7 @@ struct Parameters {
 	float w_grain_len7;
 	int w_flt7;
 	float w_cutoff7;
+	float w_reso7;
 	int w_morph7;
 	int w_percent7;
 	float w_fxA7;
@@ -238,6 +253,7 @@ struct Parameters {
 	float w_volMix7;
 	float w_pos7;
 	int REC8;
+	int TEMP8;
 	int w_mode8;
 	int w_delay8;
 	float w_delay8kf;
@@ -246,6 +262,7 @@ struct Parameters {
 	float w_grain_len8;
 	int w_flt8;
 	float w_cutoff8;
+	float w_reso8;
 	int w_morph8;
 	int w_percent8;
 	float w_fxA8;
@@ -255,6 +272,7 @@ struct Parameters {
 	float w_vol8;
 	float w_pos8;
 	int REC9;
+	int TEMP9;
 	int w_mode9;
 	int w_delay9;
 	float w_delay9kf;
@@ -263,6 +281,7 @@ struct Parameters {
 	float w_grain_len9;
 	int w_flt9;
 	float w_cutoff9;
+	float w_reso9;
 	int w_morph9;
 	int w_percent9;
 	float w_fxA9;
@@ -272,6 +291,7 @@ struct Parameters {
 	float w_vol9;
 	float w_pos9;
 	int REC10;
+	int TEMP10;
 	int w_mode10;
 	int w_delay10;
 	float w_delay10kf;
@@ -280,6 +300,7 @@ struct Parameters {
 	float w_grain_len10;
 	int w_flt10;
 	float w_cutoff10;
+	float w_reso10;
 	int w_morph10;
 	int w_percent10;
 	float w_fxA10;
@@ -289,6 +310,7 @@ struct Parameters {
 	float w_vol10;
 	float w_pos10;
 	int REC11;
+	int TEMP11;
 	int w_mode11;
 	int w_delay11;
 	float w_delay11kf;
@@ -297,6 +319,7 @@ struct Parameters {
 	float w_grain_len11;
 	int w_flt11;
 	float w_cutoff11;
+	float w_reso11;
 	int w_morph11;
 	int w_percent11;
 	float w_fxA11;
@@ -307,6 +330,7 @@ struct Parameters {
 	float w_volMix8;
 	float w_pos11;
 	int REC12;
+	int TEMP12;
 	int w_mode12;
 	int w_delay12;
 	float w_delay12kf;
@@ -315,6 +339,7 @@ struct Parameters {
 	float w_grain_len12;
 	int w_flt12;
 	float w_cutoff12;
+	float w_reso12;
 	int w_morph12;
 	int w_percent12;
 	float w_fxA12;
@@ -388,72 +413,108 @@ struct Parameters {
 	int w_pantype1;
 	int w_panstp1;
 	float w_panmov1;
+	int w_flttype1;
+	int w_fltstp1;
+	float w_fltmov1;
 	int w_voltype7;
 	int w_volstp7;
 	float w_volmov7;
 	int w_pantype7;
 	int w_panstp7;
 	float w_panmov7;
+	int w_flttype7;
+	int w_fltstp7;
+	float w_fltmov7;
 	int w_voltype2;
 	int w_volstp2;
 	float w_volmov2;
 	int w_pantype2;
 	int w_panstp2;
 	float w_panmov2;
+	int w_flttype2;
+	int w_fltstp2;
+	float w_fltmov2;
 	int w_voltype8;
 	int w_volstp8;
 	float w_volmov8;
 	int w_pantype8;
 	int w_panstp8;
 	float w_panmov8;
+	int w_flttype8;
+	int w_fltstp8;
+	float w_fltmov8;
 	int w_voltype3;
 	int w_volstp3;
 	float w_volmov3;
 	int w_pantype3;
 	int w_panstp3;
 	float w_panmov3;
+	int w_flttype3;
+	int w_fltstp3;
+	float w_fltmov3;
 	int w_voltype9;
 	int w_volstp9;
 	float w_volmov9;
 	int w_pantype9;
 	int w_panstp9;
 	float w_panmov9;
+	int w_flttype9;
+	int w_fltstp9;
+	float w_fltmov9;
 	int w_voltype4;
 	int w_volstp4;
 	float w_volmov4;
 	int w_pantype4;
 	int w_panstp4;
 	float w_panmov4;
+	int w_flttype4;
+	int w_fltstp4;
+	float w_fltmov4;
 	int w_voltype10;
 	int w_volstp10;
 	float w_volmov10;
 	int w_pantype10;
 	int w_panstp10;
 	float w_panmov10;
+	int w_flttype10;
+	int w_fltstp10;
+	float w_fltmov10;
 	int w_voltype5;
 	int w_volstp5;
 	float w_volmov5;
 	int w_pantype5;
 	int w_panstp5;
 	float w_panmov5;
+	int w_flttype5;
+	int w_fltstp5;
+	float w_fltmov5;
 	int w_voltype11;
 	int w_volstp11;
 	float w_volmov11;
 	int w_pantype11;
 	int w_panstp11;
 	float w_panmov11;
+	int w_flttype11;
+	int w_fltstp11;
+	float w_fltmov11;
 	int w_voltype6;
 	int w_volstp6;
 	float w_volmov6;
 	int w_pantype6;
 	int w_panstp6;
 	float w_panmov6;
+	int w_flttype6;
+	int w_fltstp6;
+	float w_fltmov6;
 	int w_voltype12;
 	int w_volstp12;
 	float w_volmov12;
 	int w_pantype12;
 	int w_panstp12;
 	float w_panmov12;
+	int w_flttype12;
+	int w_fltstp12;
+	float w_fltmov12;
 	float smth_delay_sec;
 	float smth_spd_sec;
 	float sm_gr_len_sec;

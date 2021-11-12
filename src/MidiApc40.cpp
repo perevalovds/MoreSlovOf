@@ -357,10 +357,17 @@ void MidiApc40::midi_in_note(int port, int ch, int pitch, int onoff, int velocit
 				*gui.findVarStringList("w_louder" + ofToString(ch)) = onoff;
 			}
 
-			//Activator - Morph ON/OFF
+			//Activator - TEMPO SLOW/FAST
 			if (pitch == 50 && ch < maxTones_part1){
-				*gui.findVarInt("w_percent" + ofToString(ch)) = 100 * onoff;
+				*gui.findVarStringList("TEMP" + ofToString(ch)) = onoff;
 			}
+
+			//--- Commented ---
+			//Activator - Morph ON/OFF
+			//if (pitch == 50 && ch < maxTones_part1){
+			//	*gui.findVarInt("w_percent" + ofToString(ch)) = 100 * onoff;
+			//}
+			//-----------------
 		}
 	}
 }

@@ -267,19 +267,25 @@ void SoundEngine::audioIn(ofSoundBuffer &input) {
 	int n = input.getNumFrames();
 	int ch = input.getNumChannels();
 	int IN_CH = PRM in_channels;
+	if (n <= 0 || IN_CH <= 0) return;
 
+		 
+	float sum = 0; //RMS
 	for (int c = 0; c < IN_CH; c++) {
 		for (int i = 0; i < n; i++) {
 			//меняем громкость микрофона
 			auto &inp = input[i*ch + c];
+			inp = min(max(inp, -1.0f), 1.0f);	//иногда попадает бесконечность в начале
 			inp *= mic_vol;
 
 			//фильтруем микрофон
 			inp = mic_filter[c].process(inp, PRM mic_cutoff, PRM MIC_FILTER);
+			sum += inp*inp;  //RMS
 		}
 	}
 	//volume
-	float vol = input.getRMSAmplitude();
+	//float vol = input.getRMSAmplitude(); //реализовал сам
+	float vol = sqrt(fabs(sum)) / (IN_CH * n);
 	float &Vol = PRM vol_in_;
 	Vol = max(Vol * 0.93f, vol);
 
